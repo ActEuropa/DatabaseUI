@@ -31,10 +31,10 @@ hRouter.get("/country/:name", function(req, res, next) {
 
 //MAIN PAGE ROUTING
 //!!! UNCOMMENT THIS SECTION FOR PRODUCTION !!!
-//app.use(hRouter);
 //hRouter.get("/", function(req, res, next) {
 //    res.send("website root");
 //})
+app.use(hRouter);
 
 //404 page
 app.use(function (req, res, next) {
