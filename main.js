@@ -13,7 +13,7 @@ var dbRouter = express.Router();
 //app.use(subdomain('database', dbRouter));
 
 hRouter.get("/", function(req, res, next) {
-    res.render("views/index.ejs")
+    res.render("index.ejs");
 })
 hRouter.get("/person/:name", function(req, res, next) {
     console.log("Person=" + req.params.name)
@@ -22,11 +22,11 @@ hRouter.get("/person/:name", function(req, res, next) {
 hRouter.get("/party/:country/:name", function(req, res, next) {
     console.log("Country=" + req.params.country)
     console.log("Party=" + req.params.name)
-    res.render("views/PoliticalParty.ejs")
+    res.render("PoliticalParty.ejs");
 })
 hRouter.get("/country/:name", function(req, res, next) {
     console.log("Country=" + req.params.name)
-    res.render("public/html/CountryPage.html")
+    res.render("CountryPage.ejs");
 })
 
 //MAIN PAGE ROUTING
