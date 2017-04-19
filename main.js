@@ -9,7 +9,7 @@ app.get("/", function(req, res, next) {
 })
 app.get("/person/:name", function(req, res, next) {
     console.log("Person=" + req.params.name)
-    res.render('PoliticianPage.ejs', {person_name: req.params.name});
+    res.render('Person.ejs', {person_name: req.params.name});
 })
 app.get("/party/:country/:name", function(req, res, next) {
     console.log("Country=" + req.params.country)

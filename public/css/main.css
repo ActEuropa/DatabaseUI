@@ -391,17 +391,168 @@ li {
     font-size:14px;
 }
 /*POLITICIAN PAGE*/
-#bgimg{
-    height:200px;
-    width:100%;
-    background-image: url("https://en-marche.fr/assets/images/10-decembre-final-emmanuel-macron?s=fc5aecc4e15617ff8adb711dccaa4cfa");
-    background-position: center;
-}
+
 .profilephoto{
     width:200px;
     height:200px;
 }
+.serifheader{
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #C73E12;
+}
+.columnWrapper{
+    width: 100%;
+    display: flex;
+    align-content: flex-start;
+    padding-left: 0px;
+    padding-right: 40px;
+    justify-content: flex-end;
+}
+.leftColumn{
+    width: calc((100vw - 1000px) / 2 + 300px);
+    padding-left: 0;
+    padding-right: 40px;
+    justify-content: flex-end;
+}
+.leftColumn_content{
+    width:260px;
+    float:right;
+    line-height: 24px;
+}
+.rightColumn{
+    width: calc((100vw - 1000px) / 2 + 700px);
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: 40px;
+}
+.rightColumn_top{
+    height:300px;
+    padding-top:50px;
+    color:white;
+}
+.rightColumn_top span{
+    opacity:0.6;
+}
+.rightColumn_top strong{
+    font-weight: 400;
+}
+.rightColumn_bottom{
+    background-color:#F2F0F0;
+    width:100%;
+    height:100%;
+    margin-left:-40px;
+    padding-left:40px;
+}
+.profile_img{
+    width: 300px;
+    height: 450px;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0px 20px 10px rgba(0,0,0,0.3);
+}
+.profile_img img {
+  position:absolute; 
+  height:100%;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+.position{
+opacity:1;
+}
 
+.position div{
+    padding: 12px;
+    border:solid 1px grey;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.2s ease-in-out;
+    margin-bottom:24px;
+}
+.currentpos div{
+    border:solid 1px #c77c63
+}
+.position:hover{
+    opacity:1;
+}
+.position div:hover{
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    border:solid 1px black;
+}
+.currentpos div:hover{
+    border:solid 1px #c73e12;
+}
+.miniheader{
+    text-align:center;
+    line-height:18px;
+    font-size:0.8em;
+    padding: 0 12px;
+}
+
+.minisubheader{
+    margin-top:4px;
+    text-align:center;
+    font-size:0.75em;
+    color:grey;
+    font-weight:normal;
+}
+.currentpos div .miniheader{
+    line-height:20px;
+    font-size:0.9em;
+    color: #c73e12;
+}
+
+
+.person_BG{
+    height:350px;
+    width:100%;
+    background:blue;
+    position:absolute;
+    z-index:-1;
+    overflow:hidden;
+}
+.bgImg{
+    width:100%;
+}
+.bgOverlay{
+    width:100%; 
+    height:350px;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    background:black;
+    opacity:0.5;
+    z-index:1;
+}
+
+.political_party_btn{
+    height: 64px;
+    float:left;
+    background: rgba(255,255,255,0.6);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    transition: all 0.2s ease-in-out;
+    margin-right:6px;
+    margin-top:35px;
+}
+.political_party_btn:hover{
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.political_party_btn img{
+    height:40px;
+    max-width:82px;
+    padding:12px;
+}
+.political_party_btn a{opacity:1;}
+.political_party_btn a:hover{opacity:1}
+.partyname{
+    padding:0 18px 0 0;
+    margin-top:0;
+    text-align:left;
+}
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
