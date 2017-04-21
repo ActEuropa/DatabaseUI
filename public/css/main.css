@@ -169,6 +169,7 @@ select{
     flex: 2 1 528px;
     max-width:528px;
     max-height:528px;
+    position: relative;
 }
 #sticky-list  {
   height:256px;
@@ -831,4 +832,63 @@ textarea {
     h3 {
         page-break-after: avoid;
     }
+}
+/* ==========================================================================
+   CUBE LOADER
+   ========================================================================== */
+#cubeloader_wrap {
+  position: relative;
+  display: inline-block;
+  left:256px;
+  top:256px;
+  width: 32px;
+  height: 32px;
+}
+
+.cubeloader {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  transform-style: preserve-3d;
+  animation: rotatesmall linear 4s infinite 0s;
+}
+
+.cube-face {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  border: 1px solid #aeaeae;
+}
+
+.cube-face-front {
+  transform: translate3d(0, 0, 16px);
+}
+
+.cube-face-back {
+  transform: rotateY(180deg) translate3d(0, 0, 16px);
+}
+
+.cube-face-left {
+  transform: rotateY(-90deg) translate3d(0, 0, 16px);
+}
+
+.cube-face-right {
+  transform: rotateY(90deg) translate3d(0, 0, 16px);
+}
+
+.cube-face-top {
+  transform: rotateX(90deg) translate3d(0, 0, 16px);
+}
+
+.cube-face-bottom {
+  transform: rotateX(-90deg) translate3d(0, 0, 16px);
+}
+
+@keyframes rotatesmall {
+  from {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+  } 
 }

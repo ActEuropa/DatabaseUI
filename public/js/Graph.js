@@ -165,7 +165,7 @@ var orbitcheck = function() {
     var polar = controls.getPolarAngle();
     if (polar > 1.45 && polar < 1.65 && azimuthal > -0.15 && azimuthal < 0.15) {
         checkforview = "side";
-        console.log("SIDE");
+
         for (i = 0; i < points.length; i++) {
             new TWEEN.Tween(points[i].position).to({ z: 256 }, 1000).easing(TWEEN.Easing.Exponential.Out).start();
         }
@@ -178,11 +178,9 @@ var orbitcheck = function() {
         new TWEEN.Tween(back.material).to({ opacity: 0.5 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
         new TWEEN.Tween(frame.position).to({ z: 256 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
         new TWEEN.Tween(back.position).to({ z: 256 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
-        new TWEEN.Tween(bottom.material).to({ opacity: 0 }, 100).start();
+        currentBGtween = new TWEEN.Tween(bottom.material).to({ opacity: 0 }, 100).start();
     }
     else if (polar < 0.05) {
-
-        console.log("TOP VIEW");
         checkforview = "top";
         for (i = 0; i < points.length; i++) {
             new TWEEN.Tween(points[i].position).to({ y: 256 }, 1000).easing(TWEEN.Easing.Exponential.Out).start();
@@ -194,7 +192,8 @@ var orbitcheck = function() {
         new TWEEN.Tween(frame.scale).to({ y: 0.0001 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
         new TWEEN.Tween(frame.position).to({ y: 256 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
         new TWEEN.Tween(bottom.position).to({ y: 256 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
-        new TWEEN.Tween(back.material).to({ opacity: 0 }, 100).start();
+        
+        currentBGtween = new TWEEN.Tween(back.material).to({ opacity: 0 }, 100).start();
         new TWEEN.Tween(bottom.scale).to({ x: 1.4, y: 1.4 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
         new TWEEN.Tween(bottom.material).to({ opacity: 0.5 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
     }
@@ -202,6 +201,7 @@ var orbitcheck = function() {
         console.log("BOTTOM VIEW");
     }
 }
+var currentBGtween;
 var moved = function() {
     if (checkforview != undefined) {
         var polar = controls.getPolarAngle();
@@ -296,10 +296,11 @@ if(holdcross)
     domEvents.addEventListener(mesh, 'mouseout', function (event) {
         if(!holdcross)
         {
-            crosshairs = crosshairs.filter(function(crosshair) { 
-                return crosshair !== value
+            crosshairs = crosshairs.filter(function(tremove) { 
+                return tremove !== crosshair
             })
             scene.remove(crosshair);
+            
         }
         
         text.element.style.opacity = 0;
@@ -360,6 +361,7 @@ if(holdcross)
     container.appendChild(renderer.domElement);
 
     stats = new Stats();
+    container.removeChild(document.getElementById("cubeloader_wrap"));
     container.appendChild(stats.dom);
 
     //controls
@@ -368,7 +370,6 @@ if(holdcross)
     controls.maxAzimuthAngle = Math.PI / 2;
     controls.addEventListener('end', orbitcheck);
     controls.addEventListener('change', moved);
-    controls.target.set(1, 1, 0);
     controls.enableZoom = false;
     controls.enablePan = false;
     controls.update();
@@ -377,4 +378,5 @@ if(holdcross)
 
     window.addEventListener('resize', onWindowResize, false);
     animate();
+    
 }
