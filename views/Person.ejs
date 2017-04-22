@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/main.css">
+     <link rel="stylesheet" href="/css/Chart.css">
     <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Vollkorn" rel="stylesheet">
     <link id="favicon" href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -69,7 +70,7 @@
                     <span>Born </span><strong>21/12/1977 (39), at Amiens, France</strong>
                 </div>
                 <div class="rightColumn_bottom">
-                  <ul>
+                  <ul style="overflow:auto;">
                       <li class="political_party_btn">
                             <a class="position">
                                 <table>
@@ -110,8 +111,8 @@
                             </a>
                         </li>
                   </ul>
-                  <div id="vosem-container">
-                                  <div id="cubeloader_wrap">
+                  <div>
+            <div id="cubeloader_wrap">
                 <div class="cubeloader">
                      <div class="cube-face  cube-face-front"></div>
                      <div class="cube-face  cube-face-back"></div>
@@ -121,7 +122,27 @@
                      <div class="cube-face  cube-face-bottom"></div>
                 </div>
              </div>
-                  </div>
+        <div id="vosem-container" onclick="click">
+            
+             <img class="icon-btn" src="/img/icons/SETTINGS.svg" id="settings-icon">
+             <div class="flyout_div" id="settings-flyout">
+                 <div class="flyout_item">
+                     <label class="switch">
+                         <input type="checkbox">
+                         <div class="slider round"></div>
+                     </label>
+                     <span>Always show crosshairs</span>
+                </div>
+                <div class="flyout_item" >
+                     <label class="switch">
+                         <input type="checkbox" checked="true">
+                         <div class="slider"></div>
+                     </label>
+                     <span>Show names on hover</span>
+                </div>
+            </div>
+        </div>
+        </div>
                 </div>
         </div>
     </div>

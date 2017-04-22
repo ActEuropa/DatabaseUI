@@ -361,7 +361,7 @@ if(holdcross)
     container.appendChild(renderer.domElement);
 
     stats = new Stats();
-    container.removeChild(document.getElementById("cubeloader_wrap"));
+    
     container.appendChild(stats.dom);
 
     //controls
@@ -379,6 +379,7 @@ if(holdcross)
     window.addEventListener('resize', onWindowResize, false);
     animate();
     container.style.opacity = 1;
+    $("#cubeloader_wrap").animate("opacity",0,400,function(){$("#cubeloader_wrap").remove();});
 
     //settings
     $(".switch > input").change(function() {
