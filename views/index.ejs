@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/metricsgraphics.css">
     <link rel="stylesheet" href="/css/nice-select.css">
-
+    <link rel="stylesheet" href="/css/Chart.css">
     <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Vollkorn" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -129,18 +129,23 @@
                      <div class="cube-face  cube-face-bottom"></div>
                 </div>
              </div>
-             <div style="
-             position:absolute;
-             bottom:0;
-             right:0;
-             height:96px;
-             width:100px;
-             background-color:white;">
-             <div class="switch">
-  <input id="cmn-toggle-4" class="cmn-toggle cmn-toggle-round-flat" type="checkbox">
-  <label for="cmn-toggle-4">Always show crosshair</label>
-</div>
-             </div>
+             <img class="icon-btn" src="/img/icons/SETTINGS.svg" id="settings-icon">
+             <div class="flyout_div" id="settings-flyout">
+                 <div class="flyout_item">
+                     <label class="switch">
+                         <input type="checkbox">
+                         <div class="slider round"></div>
+                     </label>
+                     <span>Always show crosshairs</span>
+                </div>
+                <div class="flyout_item" >
+                     <label class="switch">
+                         <input type="checkbox" checked="true">
+                         <div class="slider"></div>
+                     </label>
+                     <span>Show names on hover</span>
+                </div>
+            </div>
         </div>
     </div>
     <div class="center">

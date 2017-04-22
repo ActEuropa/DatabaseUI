@@ -32,6 +32,8 @@ jQuery(document).ready(function () {
         stickyClass: 'sticky',
         headlineSelector: 'strong'
     });
+
+    
 });
 NewVosem(Candidates);
 function NewGraph(dataset) {

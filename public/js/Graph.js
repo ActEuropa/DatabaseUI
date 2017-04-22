@@ -24,8 +24,8 @@ var createTextLabel = function() {
     div.style.height = 100;
     div.style.color = this.Color;
     div.innerHTML = "";
-    div.style.top = -1000;
-    div.style.left = -1000;
+    div.style.top = 0;
+    div.style.left = 0;
     div.style.transition = "100ms";
 
     var _this = this;
@@ -378,5 +378,31 @@ if(holdcross)
 
     window.addEventListener('resize', onWindowResize, false);
     animate();
-    
+    container.style.opacity = 1;
+
+    //settings
+    $(".switch > input").change(function() {
+    if(this.checked) {
+        this.parentElement.nextElementSibling.style.color="#002F55";
+    }
+    else
+    {
+        this.parentElement.nextElementSibling.style.color="#7f7f7f";
+    }});
+    var flyout_hidden = false;
+    $("#settings-icon").on("click", function(){
+        var flyout = $("#settings-flyout")
+        if(flyout_hidden == false){
+            $("#settings-icon").css({transform:"rotate(90deg)"});
+            flyout.css({transition : 'ease-in .2s'});
+            flyout.css({opacity: 0, transform:"translateY(12px) scaleX(0.9)", visibility:"hidden"});
+            flyout_hidden = true;
+        }
+        else{
+            $("#settings-icon").css({transform:"rotate(0deg)"});
+            flyout.css({transition : 'ease-out .2s'});
+            flyout.css({opacity: 1, transform:"translateY(0px) scaleX(1)", visibility:"visible"});
+            flyout_hidden = false;
+        }
+    })
 }
