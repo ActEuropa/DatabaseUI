@@ -390,20 +390,24 @@ if(holdcross)
     {
         this.parentElement.nextElementSibling.style.color="#7f7f7f";
     }});
-    var flyout_hidden = false;
-    $("#settings-icon").on("click", function(){
-        var flyout = $("#settings-flyout")
-        if(flyout_hidden == false){
-            $("#settings-icon").css({transform:"rotate(90deg)"});
+    //TODO simplify and have only one function for both events
+    $("#settings-icon").on("click", function(){ sidebtnclick("#settings-flyout","#settings-icon"); });
+    $("#help-icon").on("click", function(){ sidebtnclick("#help-flyout"); });
+    var sidebtnclick = function(flyout, icon=undefined){
+        var flyout = $(flyout)
+        if(flyout.css("visibility") == "visible"){
+            if(icon!=undefined)$(icon).css({transform:"rotate(90deg)"});
             flyout.css({transition : 'ease-in .2s'});
-            flyout.css({opacity: 0, transform:"translateY(12px) scaleX(0.9)", visibility:"hidden"});
+            flyout.css({opacity: 0, transform:"translateX(12px) scaleY(0.9)", visibility:"hidden"});
             flyout_hidden = true;
+            if(flyout = $("#settings-icon")) $("#tutorial_move").attr("src", "");
         }
         else{
-            $("#settings-icon").css({transform:"rotate(0deg)"});
+            if(icon!=undefined)$(icon).css({transform:"rotate(0deg)"});
             flyout.css({transition : 'ease-out .2s'});
-            flyout.css({opacity: 1, transform:"translateY(0px) scaleX(1)", visibility:"visible"});
+            flyout.css({opacity: 1, transform:"translateX(0px) scaleY(1)", visibility:"visible"});
             flyout_hidden = false;
+            if(flyout = $("#settings-icon")) $("#tutorial_move").attr("src", "/mp4/tutorial_move.mp4");
         }
-    })
+    }
 }

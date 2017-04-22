@@ -29,3 +29,6 @@ Details about political parties
 * url: `/party/<country>/<name>`
 
 * example: `http://database.acteuropa.eu/party/france/em`
+
+
+Icons by [Darrio Ferando](http://www.dario.io/)

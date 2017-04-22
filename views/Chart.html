@@ -1,0 +1,178 @@
+<div>
+    <style>
+        #vosem-container{
+    flex: 2 1 528px;
+    max-width:528px;
+    max-height:528px;
+    position: relative;
+    opacity: 0;
+    transition: 1s;
+}
+.flyout_div{
+    position:absolute;
+    right:56px;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: #fff;
+    color:#7f7f7f;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11);
+    transform-origin: bottom right;
+    transition: ease-in .3s;
+    max-width:256px;
+    transform: scaleY(0.9) translateX(12px);
+    visibility: hidden;
+}
+#settings-flyout{bottom:0px;}
+#help-flyout{bottom: 40px;}
+.flyout_div:before {
+  content: "";
+  display: block; /* reduce the damage in FF3.0 */
+  position: absolute;
+  bottom: 12px;
+  right: -13.5px;
+  width: 0;
+  border-width: 12px 0 12px 12px;
+  border-style: solid;
+  border-color: transparent transparent transparent rgba(68, 68, 68, 0.11);
+}
+.flyout_div:after {
+  content: "";
+  display: block; /* reduce the damage in FF3.0 */
+  position: absolute;
+  bottom: 12px;
+  right: -12px;
+  width: 0;
+  border-width: 12px 0 12px 12px;
+  border-style: solid;
+  border-color: transparent transparent transparent #fff;
+}
+
+.flyout_div span{
+    margin-left:4px;
+    font-family: Montserrat, sans-serif;
+    font-size:12px;
+    transition: cubic-bezier(0, 0, 0, 1) .4s;
+}
+.flyout_item{
+    display:block;
+}
+
+
+.icon-btn{
+    opacity:0.5;
+    max-width:28px;
+    max-height:28px;
+    position:absolute;
+    right:10px;
+    transition: ease .3s;
+}
+#settings-icon{bottom:10px;}
+#help-icon{bottom:48px;}
+.icon-btn:hover{
+    opacity:0.75;
+}
+.icon-btn:active{
+    opacity:1;
+}
+
+/* Switch */
+.switch {
+  position:relative;
+  display: inline-block;
+  width:30px;
+  height:15px;
+  margin-bottom:-2px;}
+.switch input {display:none;}
+.slider {
+  position:absolute;
+  cursor: pointer;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background-color: #ccc;
+  transition: cubic-bezier(0, 0, 0, 1) .4s;
+  border-radius: 17px;}
+.slider:before {
+  position:absolute;
+  content: "";
+  height: 9px;
+  width: 9px;
+  left: 3px;
+  right:3px;
+  top:3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: cubic-bezier(0, 0, 0, 1) .4s;
+  border-radius: 50%;}
+input:checked + .slider {background-color: #002F55;}
+input:focus + .slider { box-shadow: 0 0 1px #002F55;}
+input:checked + .slider:before {transform: translateX(15px);}
+
+/*Cube preloader*/
+#cubeloader_wrap {
+  position: relative;
+  display: inline-block;
+  margin:240px;
+  width: 32px;
+  height: 32px;}
+.cubeloader {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  transform-style: preserve-3d;
+  animation: rotatesmall linear 4s infinite 0s;}
+.cube-face {
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  border: 1px solid #aeaeae;}
+.cube-face-front {transform: translate3d(0, 0, 16px); }
+.cube-face-back {transform: rotateY(180deg) translate3d(0, 0, 16px);}
+.cube-face-left {transform: rotateY(-90deg) translate3d(0, 0, 16px);}
+.cube-face-right {transform: rotateY(90deg) translate3d(0, 0, 16px);}
+.cube-face-top {transform: rotateX(90deg) translate3d(0, 0, 16px);}
+.cube-face-bottom {transform: rotateX(-90deg) translate3d(0, 0, 16px);}
+@keyframes rotatesmall {
+  from{transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
+  to{transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg);
+  } }
+    </style>
+    <div id="cubeloader_wrap">
+        <div class="cubeloader">
+            <div class="cube-face  cube-face-front"></div>
+            <div class="cube-face  cube-face-back"></div>
+            <div class="cube-face  cube-face-left"></div>
+            <div class="cube-face  cube-face-right"></div>
+            <div class="cube-face  cube-face-top"></div>
+            <div class="cube-face  cube-face-bottom"></div>
+        </div>
+    </div>
+    <div id="vosem-container" onclick="click">
+        <img class="icon-btn" src="/img/icons/HELP.svg" id="help-icon" >
+        <div class="flyout_div" id="help-flyout" style="font-size:12px;line-height:14px;">
+                <h3>Chart</h3><br>
+                This chart displays political positioning in a three dimensional cube, where each point represents a person.
+                <p style="color:#002F55;opacity:1;">Sliding to a specific side flattens the chart:</p>
+                <video id="tutorial_move" autoplay loop width="120" height="80"><source  src="/mp4/tutorial_move.mp4"></video>
+        </div>
+        <img class="icon-btn" src="/img/icons/SETTINGS.svg" id="settings-icon" >
+        <div class="flyout_div" id="settings-flyout">
+            <div class="flyout_item">
+                <label class="switch">
+                         <input type="checkbox">
+                         <div class="slider round"></div>
+                     </label>
+                <span>Always show crosshairs</span>
+            </div>
+            <div class="flyout_item">
+                <label class="switch">
+                         <input type="checkbox" checked="true">
+                         <div class="slider"></div>
+                     </label>
+                <span>Show names on hover</span>
+            </div>
+        </div>
+    </div>
+</div>
