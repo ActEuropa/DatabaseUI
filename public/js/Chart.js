@@ -19,13 +19,12 @@ function NewVosem(Candidates, foreground = 0x002F55, background = 0xeaeaea, show
 var createTextLabel = function() {
     var div = document.createElement('div');
     div.className = 'text-label';
-    div.style.position = 'absolute';
+    div.style.position = "absolute";
     div.style.width = 100;
     div.style.height = 100;
     div.style.color = this.Color;
     div.innerHTML = "";
-    div.style.top = 0;
-    div.style.left = 0;
+
     div.style.transition = "100ms";
 
     var _this = this;
@@ -51,8 +50,8 @@ var createTextLabel = function() {
         },
         get2DCoords: function (position, camera) {
             var vector = position.project(camera);
-            vector.x = (vector.x + 1) / 2 * WIDTH + LEFT + 12;
-            vector.y = -(vector.y - 1) / 2 * HEIGHT + TOP - 24;
+        vector.x = (vector.x + 1)/2 * WIDTH + 12;
+        vector.y = -(vector.y - 1)/2 * HEIGHT -24;
             return vector;
         }
     };
