@@ -5,7 +5,7 @@
     z-index:1;
     position:relative;
 }
-#navbar { 
+.navbar { 
     padding:0px;
     display:flex;
     align-items: baseline;
@@ -38,13 +38,18 @@ img.logo {
     font-size:1.25em;
     padding: 0px 12px 0px 12px;
     color: white;
+	transition: 0.3s;
+}
+.dark{
+    color:#002F55;
 }
         </style>
     <nav id="navcont">
         <div id="logo"><span style="color: #C73E12;">ACT</span><span>EUROPA</span></div>
-        <ul id="navbar">
-            <li><a class="navbtn" href="#">MANIFESTO</a></li>
-            <li><a class="navbtn" style="opacity:1;" href="/">POLITICAL DATA</a></li>
-            <li><a class="navbtn" href="/VotingPortal.html">VOTE EUROPA</a></li>
+        <ul class="navbar">
+            <li><a class="navbtn" href="http://acteuropa.eu/">BLOG</a></li>
+            <li><a class="navbtn" href="http://acteuropa.eu/manifesto">MANIFESTO</a></li>
+            <li><a class="navbtn" style="opacity:1;" href="http://data.acteuropa.eu/">POLITICAL DATA</a></li>
+            <li><a class="navbtn" href="http://vote.acteuropa.eu/">VOTE EUROPA</a></li>
         </ul>
     </nav>
