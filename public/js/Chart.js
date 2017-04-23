@@ -409,4 +409,10 @@ if(holdcross)
             if(flyout = $("#settings-icon")) $("#tutorial_move").attr("src", "/mp4/tutorial_move.mp4");
         }
     }
+    $("#projbtn_o").on("click",function(){
+        $("#projbtn_o").attr('class', 'projpick-select'); $("#projbtn_p").attr('class', 'projpick-unselect');
+    });
+    $("#projbtn_p").on("click",function(){
+        $("#projbtn_p").attr('class', 'projpick-select'); $("#projbtn_o").attr('class', 'projpick-unselect');
+    });
 }

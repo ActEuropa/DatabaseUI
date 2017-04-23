@@ -67,7 +67,14 @@
     right:10px;
     transition: ease .3s;
 }
-#settings-icon{bottom:10px;}
+.icon-perspective{
+    opacity:1;
+    max-width:28px;
+    max-height:28px;
+    transition: ease .3s;
+}
+
+#settings-icon{bottom:10px;transform:rotate(90deg);}
 #help-icon{bottom:48px;}
 .icon-btn:hover{
     opacity:0.75;
@@ -75,6 +82,15 @@
 .icon-btn:active{
     opacity:1;
 }
+
+.projsvg{ max-width: 32px;max-height:32px;margin-bottom:-10px; }
+.projpick-unselect img{opacity:0.5;}
+.projpick-select img{ opacity:1; }
+.projpick-unselect span{color:#7f7f7f;}
+.projpick-select span{color:#002F55;}
+.projpick-unselect svg polygon, .projpick-unselect svg polyline{fill:none;stroke:#7f7f7f;stroke-width:10;stroke-miterlimit:10;transition:ease .3s;}
+.projpick-select svg polygon, .projpick-select svg polyline{fill:none;stroke:#002F55;stroke-width:10;stroke-miterlimit:10;transition:ease .3s}
+.projpick-select, .projpick-unselect{cursor:pointer;}
 
 /* Switch */
 .switch {
@@ -152,9 +168,9 @@ input:checked + .slider:before {transform: translateX(15px);}
     <div id="vosem-container" onclick="click">
         <img class="icon-btn" src="/img/icons/HELP.svg" id="help-icon" >
         <div class="flyout_div" id="help-flyout" style="font-size:12px;line-height:14px;">
-                <h3>Chart</h3><br>
-                This chart displays political positioning in a three dimensional cube, where each point represents a person.
-                <p style="color:#002F55;opacity:1;">Sliding to a specific side flattens the chart:</p>
+                <h3>Etlunhexa chart</h3><br>
+                This chart displays political positioning in a three dimensional cube, where each point represents a person. <br> It's name comes from the old norse &quot;ætlun&quot; (opinion) and the ancient greek &quot;hexa&quot; (six). So this chart displays opinions from all across europe on six different axis.
+                <p style="color:#002F55;opacity:1;">Sliding to a specific side flattens the chart:</p>;
                 <video id="tutorial_move" autoplay loop width="120" height="80"><source  src="/mp4/tutorial_move.mp4"></video>
         </div>
         <img class="icon-btn" src="/img/icons/SETTINGS.svg" id="settings-icon" >
@@ -164,7 +180,7 @@ input:checked + .slider:before {transform: translateX(15px);}
                          <input type="checkbox">
                          <div class="slider round"></div>
                      </label>
-                <span>Always show crosshairs</span>
+                <span>Permanently show crosshairs</span>
             </div>
             <div class="flyout_item">
                 <label class="switch">
@@ -172,6 +188,21 @@ input:checked + .slider:before {transform: translateX(15px);}
                          <div class="slider"></div>
                      </label>
                 <span>Show names on hover</span>
+            </div>
+            <div class="flyout_item">
+                <label class="switch">
+                         <input type="checkbox">
+                         <div class="slider"></div>
+                     </label>
+                <span>Automatically flatten cube</span>
+            </div>
+            <hr style="margin: 6px 0px;opacity:0.25;">
+            <div class="flyout_item">
+                <div id="projbtn_o" class="projpick-unselect">
+                    <svg class="projsvg" viewbox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><polygon points="49.5 81.9 49.5 173.1 128.5 218.7 207.5 173.1 207.5 81.9 128.5 36.3"/><polyline points="128 219 128 128 49.5 82.1 128.5 127.7 207.5 82.1"/></svg>
+                    <span>Orthogonal</span></div>
+                <div id="projbtn_p" class="projpick-select"><svg class="projsvg" viewbox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><polygon points="36 76 63 175 126 220 189 175 216 76 126 40"/><polyline points="126 220 126 130 36 76 126 130 216 76"/></svg>
+                <span>Perspective</span></div>
             </div>
         </div>
     </div>

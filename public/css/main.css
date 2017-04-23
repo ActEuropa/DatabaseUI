@@ -84,7 +84,7 @@ select{
     border-style: none;
 }
 .flexbox{
-    margin: 0 auto;
+    margin: 12px auto;
     display:flex;
     justify-content: center;
     flex-wrap:wrap;
@@ -529,7 +529,7 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #DEB645;
+    border-top: 1px solid black;
     margin: 1em 2px;
     padding: 0;
 }
