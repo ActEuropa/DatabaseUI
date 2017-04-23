@@ -5,20 +5,20 @@ var app = express()
 app.use(express.static('public'));
 
 app.get("/", function(req, res, next) {
-    res.render("index.ejs");
+    res.render("Pages/index.ejs");
 })
 app.get("/person/:name", function(req, res, next) {
     console.log("Person=" + req.params.name)
-    res.render('Person.ejs', {person_name: req.params.name});
+    res.render('Pages/Person.ejs', {person_name: req.params.name});
 })
 app.get("/party/:country/:name", function(req, res, next) {
     console.log("Country=" + req.params.country)
     console.log("Party=" + req.params.name)
-    res.render("PoliticalParty.ejs");
+    res.render("Pages/PoliticalParty.ejs");
 })
 app.get("/country/:name", function(req, res, next) {
     console.log("Country=" + req.params.name)
-    res.render("CountryPage.ejs");
+    res.render("Pages/CountryPage.ejs");
 })
 
 //404 page
