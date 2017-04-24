@@ -168,7 +168,7 @@ input:checked + .slider:before {transform: translateX(15px);}
     <div id="vosem-container" onclick="click">
         <img class="icon-btn" src="/img/icons/HELP.svg" id="help-icon" >
         <div class="flyout_div" id="help-flyout" style="font-size:12px;line-height:14px;">
-                <h3>Etlunhexa chart</h3><br>
+                <h3>Etlunexa chart</h3><br>
                 This chart displays political positioning in a three dimensional cube, where each point represents a person. <br> It's name comes from the old norse &quot;ætlun&quot; (opinion) and the ancient greek &quot;hexa&quot; (six). So this chart displays opinions from all across europe on six different axis.
                 <p style="color:#002F55;opacity:1;">Sliding to a specific side flattens the chart:</p>;
                 <video id="tutorial_move" autoplay loop width="120" height="80"><source  src="/mp4/tutorial_move.mp4"></video>
@@ -190,17 +190,24 @@ input:checked + .slider:before {transform: translateX(15px);}
                 <span>Show names on hover</span>
             </div>
             <div class="flyout_item">
-                <label class="switch">
+                <label class="switch" checked="true">
                          <input type="checkbox">
                          <div class="slider"></div>
                      </label>
                 <span>Automatically flatten cube</span>
             </div>
+            <div class="flyout_item">
+                <label class="switch">
+                         <input type="checkbox">
+                         <div class="slider"></div>
+                     </label>
+                <span>Fog effect</span>
+            </div>
             <hr style="margin: 6px 0px;opacity:0.25;">
             <div class="flyout_item">
                 <div id="projbtn_o" class="projpick-unselect">
                     <svg class="projsvg" viewbox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><polygon points="49.5 81.9 49.5 173.1 128.5 218.7 207.5 173.1 207.5 81.9 128.5 36.3"/><polyline points="128 219 128 128 49.5 82.1 128.5 127.7 207.5 82.1"/></svg>
-                    <span>Orthogonal</span></div>
+                    <span>Orthograpic</span></div>
                 <div id="projbtn_p" class="projpick-select"><svg class="projsvg" viewbox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><polygon points="36 76 63 175 126 220 189 175 216 76 126 40"/><polyline points="126 220 126 130 36 76 126 130 216 76"/></svg>
                 <span>Perspective</span></div>
             </div>

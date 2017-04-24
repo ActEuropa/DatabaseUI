@@ -1,8 +1,7 @@
 if (!Detector.webgl) Detector.addGetWebGLMessage();
 
-var renderer, scene, camera, stats, rayCaster, mousePosition, domeEvents, crosshair, controls, frame;
+var renderer, scene, camera, stats, crosshair, controls, frame;
 var bottom, back;
-var objects = [];
 var points_r = []; /* Point array to keep track of original location */
 var points = [];
 var textlabels = [];
@@ -10,11 +9,9 @@ var crosshairs = [];
 var WIDTH = 528,
     HEIGHT = 528,
     LEFT = 0,
-    TOP = 0
+    TOP = 0;
 var dimension = 512;
-var perspective = true;
 var container;
-
 function NewVosem(Candidates, foreground = 0x002F55, background = 0xeaeaea, showlabels=true, holdcross=false) {
 var createTextLabel = function() {
     var div = document.createElement('div');
@@ -55,7 +52,7 @@ var createTextLabel = function() {
             return vector;
         }
     };
-}
+};
 
 var cube = function(size) {
 
@@ -104,10 +101,8 @@ var cube = function(size) {
 
     return geometry;
 
-}
+};
 var cross = function(size, x, y, z) {
-
-    var h = size * 0.5;
 
     var geometry = new THREE.Geometry();
     if (checkforview != "side")
@@ -126,7 +121,7 @@ var cross = function(size, x, y, z) {
     );
     return geometry;
 
-}
+};
 
 var onWindowResize = function() {
 
@@ -138,7 +133,7 @@ var onWindowResize = function() {
     LEFT = cont.offsetLeft;
     TOP = cont.offsetTop;
     renderer.setSize(WIDTH, HEIGHT);
-}
+};
 
 var animate = function(time) {
     requestAnimationFrame(animate);
@@ -146,18 +141,15 @@ var animate = function(time) {
     TWEEN.update(time);
     stats.update();
     controls.update;
-}
+};
 
 var checkforview = undefined;
 var render = function() {
-    var time = Date.now() * 0.001;
-
     for (var i = 0; i < textlabels.length; i++) {
         textlabels[i].updatePosition();
     }
     renderer.render(scene, camera);
-}
-var animateOk;
+};
 var orbitcheck = function() {
     var azimuthal = controls.getAzimuthalAngle();
     console.log(azimuthal);
@@ -199,7 +191,7 @@ var orbitcheck = function() {
     else if (polar > 3.09) {
         console.log("BOTTOM VIEW");
     }
-}
+};
 var currentBGtween;
 var moved = function() {
     if (checkforview != undefined) {
@@ -247,8 +239,7 @@ var moved = function() {
             console.log("BOTTOM VIEW");
         }
     }
-}
-var meshes = [];
+};
 var AddPoint = function(label, x, y, z, scene, color) {
     var material = new THREE.MeshBasicMaterial({
         color: color, depthWrite: false
@@ -272,7 +263,7 @@ var AddPoint = function(label, x, y, z, scene, color) {
     text.element.style.opacity = 0;
     this.textlabels.push(text);
     container.appendChild(text.element);
-}
+    }
 if(holdcross)
 {
         var geometryCube = cross(dimension, mesh.position.x, mesh.position.y, mesh.position.z);
@@ -291,37 +282,33 @@ if(holdcross)
         scene.add(crosshair);
         }
         text.element.style.opacity = 1;
-    }, false)
+    }, false);
     domEvents.addEventListener(mesh, 'mouseout', function (event) {
         if(!holdcross)
         {
             crosshairs = crosshairs.filter(function(tremove) { 
-                return tremove !== crosshair
-            })
+                return tremove !== crosshair;
+            });
             scene.remove(crosshair);
             
         }
         
         text.element.style.opacity = 0;
-    }, false)
-}
+    }, false);
+};
     container = document.getElementById('vosem-container');
+    camera = new THREE.CombinedCamera(512,512,60,1,3000)
+    camera.position.z = 1000;
     scene = new THREE.Scene();
-    if (perspective) {
-        camera = new THREE.PerspectiveCamera(60, WIDTH / HEIGHT, 1, 3000);
-        camera.position.z = 1000;
-        if(background != "transparent")
-        scene.fog = new THREE.Fog(background, 800, 2000);
+
+    if(background == "transparent"){
+        scene.fog = new THREE.FogExp2(background, 0.0006);
+        renderer = new THREE.WebGLRenderer({ antialias: true, alpha:true });
+    } 
+    else{
+        scene.fog = new THREE.FogExp2(background, 0.0006);
+        renderer = new THREE.WebGLRenderer({ antialias: true});
     }
-    else {
-        camera = new THREE.OrthographicCamera(window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, -2000, 2000);
-        if(background != "transparent")
-        scene.fog = new THREE.Fog(background, 200, -600);
-    }
-    if(background == "transparent")
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha:true });
-    else
-    renderer = new THREE.WebGLRenderer({ antialias: true});
 
     domEvents = new THREEx.DomEvents(camera, renderer.domElement);
 
@@ -364,14 +351,17 @@ if(holdcross)
     container.appendChild(stats.dom);
 
     //controls
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.minAzimuthAngle = -Math.PI / 2;
-    controls.maxAzimuthAngle = Math.PI / 2;
-    controls.addEventListener('end', orbitcheck);
-    controls.addEventListener('change', moved);
-    controls.enableZoom = false;
-    controls.enablePan = false;
-    controls.update();
+    var initControls = function(){
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        controls.minAzimuthAngle = -Math.PI / 2;
+        controls.maxAzimuthAngle = Math.PI / 2;
+        controls.addEventListener('end', orbitcheck);
+        controls.addEventListener('change', moved);
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.update();
+    };
+    initControls();
 
     onWindowResize();
 
@@ -393,26 +383,30 @@ if(holdcross)
     $("#settings-icon").on("click", function(){ sidebtnclick("#settings-flyout","#settings-icon"); });
     $("#help-icon").on("click", function(){ sidebtnclick("#help-flyout"); });
     var sidebtnclick = function(flyout, icon=undefined){
-        var flyout = $(flyout)
+        var flyout = $(flyout);
         if(flyout.css("visibility") == "visible"){
-            if(icon!=undefined)$(icon).css({transform:"rotate(90deg)"});
+            if(icon!==undefined)$(icon).css({transform:"rotate(90deg)"});
             flyout.css({transition : 'ease-in .2s'});
             flyout.css({opacity: 0, transform:"translateX(12px) scaleY(0.9)", visibility:"hidden"});
             flyout_hidden = true;
-            if(flyout = $("#settings-icon")) $("#tutorial_move").attr("src", "");
+            if(flyout == $("#settings-icon")) $("#tutorial_move").attr("src", "");
         }
         else{
-            if(icon!=undefined)$(icon).css({transform:"rotate(0deg)"});
+            if(icon!==undefined)$(icon).css({transform:"rotate(0deg)"});
             flyout.css({transition : 'ease-out .2s'});
             flyout.css({opacity: 1, transform:"translateX(0px) scaleY(1)", visibility:"visible"});
             flyout_hidden = false;
-            if(flyout = $("#settings-icon")) $("#tutorial_move").attr("src", "/mp4/tutorial_move.mp4");
+            if(flyout == $("#settings-icon")) $("#tutorial_move").attr("src", "/mp4/tutorial_move.mp4");
         }
-    }
+    };
     $("#projbtn_o").on("click",function(){
         $("#projbtn_o").attr('class', 'projpick-select'); $("#projbtn_p").attr('class', 'projpick-unselect');
+        camera.zoom = 1.75;
+        camera.toOrthographic();
     });
     $("#projbtn_p").on("click",function(){
+        camera.zoom = 1;
+        camera.toPerspective();
         $("#projbtn_p").attr('class', 'projpick-select'); $("#projbtn_o").attr('class', 'projpick-unselect');
     });
 }
