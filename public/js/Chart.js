@@ -103,12 +103,12 @@ var cube = function(size) {
 
 };
 var cross = function(size, x, y, z) {
-
+    console.log("creating crosshair");
     var geometry = new THREE.Geometry();
     if (checkforview != "side")
         geometry.vertices.push(
             new THREE.Vector3(x, y, -(dimension / 2)),
-            new THREE.Vector3(x, y, dimension / 2)
+            new THREE.Vector3(x, y, dimension / 2),
         );
     if (checkforview != "top")
         geometry.vertices.push(
@@ -117,7 +117,7 @@ var cross = function(size, x, y, z) {
         );
     geometry.vertices.push(
         new THREE.Vector3(-(dimension / 2), y, z),
-        new THREE.Vector3(dimension / 2, y, z)
+        new THREE.Vector3(dimension / 2, y, z),
     );
     return geometry;
 
@@ -257,35 +257,34 @@ var AddPoint = function(label, x, y, z, scene, color) {
     this.textlabels.push(text);
     container.appendChild(text.element);
     }
-if(holdcross){
-        var geometryCube = cross(dimension, mesh.position.x, mesh.position.y, mesh.position.z);
-        geometryCube.computeLineDistances();
-        crosshair = new THREE.LineSegments(geometryCube, new THREE.LineBasicMaterial({ color: color, linewidth: 1, depthWrite: false, depthTest: false, renderOrder: 3 }));
-        crosshairs.push(crosshair);
-        scene.add(crosshair);
-}
+
     domEvents.addEventListener(mesh, 'mouseover', function (event) {
         if(!holdcross)
         {
-        var geometryCube = cross(dimension, mesh.position.x, mesh.position.y, mesh.position.z);
-        geometryCube.computeLineDistances();
-        crosshair = new THREE.LineSegments(geometryCube, new THREE.LineBasicMaterial({ color: color, linewidth: 1, depthWrite: false, depthTest: false, renderOrder: 3 }));
+        var crosshairG = cross(dimension, mesh.position.x, mesh.position.y, mesh.position.z);
+        crosshairG.computeLineDistances();
+        crosshair = new THREE.LineSegments(crosshairG, new THREE.LineBasicMaterial({ color: color, linewidth: 1, depthWrite: false, depthTest: false, renderOrder: 3 }));
         crosshairs.push(crosshair);
+        crosshair.scale.set(0.01,0.01,0.01);
+        crosshair.position.set(mesh.position.x, mesh.position.y, mesh.position.z);
         scene.add(crosshair);
+        new TWEEN.Tween(crosshair.scale).to({ x:1,y:1,z: 1 }, 300).easing(TWEEN.Easing.Exponential.Out).start();
+        new TWEEN.Tween(crosshair.position).to({ x:0.01,y:0.01,z: 0.01 }, 300).easing(TWEEN.Easing.Exponential.Out).start();
         }
         text.element.style.opacity = 1;
     }, false);
     domEvents.addEventListener(mesh, 'mouseout', function (event) {
+        text.element.style.opacity = 0;
         if(!holdcross)
         {
             crosshairs = crosshairs.filter(function(tremove) { 
                 return tremove !== crosshair;
             });
-            scene.remove(crosshair);
-            
+            new TWEEN.Tween(crosshair.scale).to({ x:0.01,y:0.01,z: 0.01 }, 300).easing(TWEEN.Easing.Exponential.Out).start();
+            //TODO Fix animation here
+            new TWEEN.Tween(crosshair.position).to({ x:mesh.position.x, y:mesh.position.y,z: mesh.position.z }, 300).easing(TWEEN.Easing.Exponential.Out).start()
+            .onComplete(function(){scene.remove(crosshair);});
         }
-        
-        text.element.style.opacity = 0;
     }, false);
 };
     container = document.getElementById('vosem-container');
@@ -401,6 +400,12 @@ if(holdcross){
              flatten = true; orbitcheck();}
          else {
              flatten = false; checkforview_override = checkforview; moved();}
+    })
+    $("#cb-showcrosshair").click(function(){
+         if($("#cb-showcrosshair:checked").length>0){ 
+             holdcross = true;}
+         else {
+             holdcross = false;}
     })
     $("#projbtn_o").on("click",function(){
         $("#projbtn_o").attr('class', 'projpick-select'); $("#projbtn_p").attr('class', 'projpick-unselect');
