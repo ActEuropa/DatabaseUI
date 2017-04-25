@@ -1,6 +1,6 @@
 if (!Detector.webgl) Detector.addGetWebGLMessage();
 
-var renderer, scene, camera, stats, crosshair, controls, frame;
+var renderer, scene, camera, stats, crosshair, controls, frame, fog;
 var bottom, back;
 var points_r = []; /* Point array to keep track of original location */
 var points = [];
@@ -300,13 +300,12 @@ if(holdcross)
     camera = new THREE.CombinedCamera(512,512,60,1,3000)
     camera.position.z = 1000;
     scene = new THREE.Scene();
-
+    fog = new THREE.FogExp2(background, 0.0006);
+    scene.fog = fog;
     if(background == "transparent"){
-        scene.fog = new THREE.FogExp2(background, 0.0006);
         renderer = new THREE.WebGLRenderer({ antialias: true, alpha:true });
     } 
     else{
-        scene.fog = new THREE.FogExp2(background, 0.0006);
         renderer = new THREE.WebGLRenderer({ antialias: true});
     }
 
@@ -399,6 +398,19 @@ if(holdcross)
             if(flyout == $("#settings-icon")) $("#tutorial_move").attr("src", "/mp4/tutorial_move.mp4");
         }
     };
+    $("#cb-fog").click(function(){
+         if($("#cb-fog:checked").length>0)
+         {
+             console.log("checked");
+             new TWEEN.Tween(fog).to({density: 0.0006}, 600).easing(TWEEN.Easing.Exponential.Out).start();
+         }
+         else
+         {
+             console.log("unchecked");
+             new TWEEN.Tween(fog).to({density: 0}, 600).easing(TWEEN.Easing.Exponential.Out).start();
+         }
+         
+    })
     $("#projbtn_o").on("click",function(){
         $("#projbtn_o").attr('class', 'projpick-select'); $("#projbtn_p").attr('class', 'projpick-unselect');
         camera.zoom = 1.75;

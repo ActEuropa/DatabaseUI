@@ -8,6 +8,9 @@
     opacity: 0;
     transition: 1s;
 }
+.text-label{
+    pointer-events: none;
+}
 .flyout_div{
     position:absolute;
     right:56px;
@@ -177,28 +180,28 @@ input:checked + .slider:before {transform: translateX(15px);}
         <div class="flyout_div" id="settings-flyout">
             <div class="flyout_item">
                 <label class="switch">
-                         <input type="checkbox">
+                         <input id="cb-showcrosshair" type="checkbox">
                          <div class="slider round"></div>
                      </label>
                 <span>Permanently show crosshairs</span>
             </div>
             <div class="flyout_item">
                 <label class="switch">
-                         <input type="checkbox" checked="true">
+                         <input id="cb-shownames" type="checkbox" checked="true">
                          <div class="slider"></div>
                      </label>
                 <span>Show names on hover</span>
             </div>
             <div class="flyout_item">
-                <label class="switch" checked="true">
-                         <input type="checkbox">
+                <label class="switch">
+                         <input id="cb-flatten" type="checkbox" checked="true">
                          <div class="slider"></div>
                      </label>
                 <span>Automatically flatten cube</span>
             </div>
             <div class="flyout_item">
                 <label class="switch">
-                         <input type="checkbox">
+                         <input id="cb-fog" type="checkbox" checked="true">
                          <div class="slider"></div>
                      </label>
                 <span>Fog effect</span>
