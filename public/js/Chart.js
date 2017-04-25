@@ -143,27 +143,24 @@ var animate = function(time) {
     controls.update;
 };
 
-var checkforview = undefined;
+
 var render = function() {
-    for (var i = 0; i < textlabels.length; i++) {
-        textlabels[i].updatePosition();
-    }
-    renderer.render(scene, camera);
+    for (var i = 0; i < textlabels.length; i++) { textlabels[i].updatePosition(); } renderer.render(scene, camera);
 };
+var checkforview = undefined;
+var checkforview_override = undefined;
+var flatten = true;
 var orbitcheck = function() {
     var azimuthal = controls.getAzimuthalAngle();
     console.log(azimuthal);
     var polar = controls.getPolarAngle();
-    if (polar > 1.45 && polar < 1.65 && azimuthal > -0.15 && azimuthal < 0.15) {
+    if (polar > 1.45 && polar < 1.65 && azimuthal > -0.15 && azimuthal < 0.15 && flatten) {
         checkforview = "side";
-
         for (i = 0; i < points.length; i++) {
-            new TWEEN.Tween(points[i].position).to({ z: 256 }, 1000).easing(TWEEN.Easing.Exponential.Out).start();
-        }
+            new TWEEN.Tween(points[i].position).to({ z: 256 }, 1000).easing(TWEEN.Easing.Exponential.Out).start(); }
         for (i = 0; i < crosshairs.length; i++) {
             new TWEEN.Tween(crosshairs[i].scale).to({ z: 0.0001 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
-            new TWEEN.Tween(crosshairs[i].position).to({ z: 256 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
-        }
+            new TWEEN.Tween(crosshairs[i].position).to({ z: 256 }, 600).easing(TWEEN.Easing.Exponential.Out).start();}
         new TWEEN.Tween(frame.scale).to({ z: 0.0001 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
         new TWEEN.Tween(back.scale).to({ x: 1.4, y: 1.4 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
         new TWEEN.Tween(back.material).to({ opacity: 0.5 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
@@ -171,7 +168,7 @@ var orbitcheck = function() {
         new TWEEN.Tween(back.position).to({ z: 256 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
         currentBGtween = new TWEEN.Tween(bottom.material).to({ opacity: 0 }, 100).start();
     }
-    else if (polar < 0.05) {
+    else if (polar < 0.05 && flatten) {
         checkforview = "top";
         for (i = 0; i < points.length; i++) {
             new TWEEN.Tween(points[i].position).to({ y: 256 }, 1000).easing(TWEEN.Easing.Exponential.Out).start();
@@ -197,8 +194,7 @@ var moved = function() {
     if (checkforview != undefined) {
         var polar = controls.getPolarAngle();
         var azimuthal = controls.getAzimuthalAngle();
-        if (checkforview == "side" && (polar < 1.45 || polar > 1.64 || azimuthal < -0.15 || azimuthal > 0.15)) {
-            checkforview = undefined;
+        if (checkforview == "side" && (polar < 1.45 || polar > 1.64 || azimuthal < -0.15 || azimuthal > 0.15) || checkforview_override == "side") {
             console.log("SIDE");
             for (i = 0; i < points.length; i++) {
                 var pos = points_r[i].position;
@@ -217,8 +213,7 @@ var moved = function() {
             new TWEEN.Tween(top.material).to({ opacity: 1 }, 100).start();
             
         }
-        else if (checkforview == "top" && polar > 0.05) {
-            checkforview = undefined;
+        else if (checkforview == "top" && polar > 0.05  || checkforview_override == "top") {
             for (i = 0; i < points.length; i++) {
                 var pos = points_r[i].position;
                 new TWEEN.Tween(points[i].position).to(pos, 1000).easing(TWEEN.Easing.Exponential.Out).start();
@@ -233,11 +228,9 @@ var moved = function() {
             new TWEEN.Tween(back.material).to({ opacity: 1 }, 100).start();
             new TWEEN.Tween(bottom.scale).to({ x: 1, y: 1 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
             new TWEEN.Tween(bottom.material).to({ opacity: 1 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
-            
         }
-        else if (polar < 3.09) {
-            console.log("BOTTOM VIEW");
-        }
+        checkforview = undefined;
+        checkforview_override = undefined;
     }
 };
 var AddPoint = function(label, x, y, z, scene, color) {
@@ -264,8 +257,7 @@ var AddPoint = function(label, x, y, z, scene, color) {
     this.textlabels.push(text);
     container.appendChild(text.element);
     }
-if(holdcross)
-{
+if(holdcross){
         var geometryCube = cross(dimension, mesh.position.x, mesh.position.y, mesh.position.z);
         geometryCube.computeLineDistances();
         crosshair = new THREE.LineSegments(geometryCube, new THREE.LineBasicMaterial({ color: color, linewidth: 1, depthWrite: false, depthTest: false, renderOrder: 3 }));
@@ -399,17 +391,16 @@ if(holdcross)
         }
     };
     $("#cb-fog").click(function(){
-         if($("#cb-fog:checked").length>0)
-         {
-             console.log("checked");
-             new TWEEN.Tween(fog).to({density: 0.0006}, 600).easing(TWEEN.Easing.Exponential.Out).start();
-         }
-         else
-         {
-             console.log("unchecked");
-             new TWEEN.Tween(fog).to({density: 0}, 600).easing(TWEEN.Easing.Exponential.Out).start();
-         }
-         
+         if($("#cb-fog:checked").length>0){ 
+             new TWEEN.Tween(fog).to({density: 0.0006}, 600).easing(TWEEN.Easing.Exponential.Out).start();}
+         else {
+             new TWEEN.Tween(fog).to({density: 0}, 600).easing(TWEEN.Easing.Exponential.Out).start(); }
+    })
+    $("#cb-flatten").click(function(){
+         if($("#cb-flatten:checked").length>0){ 
+             flatten = true; orbitcheck();}
+         else {
+             flatten = false; checkforview_override = checkforview; moved();}
     })
     $("#projbtn_o").on("click",function(){
         $("#projbtn_o").attr('class', 'projpick-select'); $("#projbtn_p").attr('class', 'projpick-unselect');
