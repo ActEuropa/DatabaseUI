@@ -2,22 +2,22 @@ var express = require('express')
 var subdomain = require('express-subdomain');
 var app = express()
 
+var getPersonData = function(name){
+    this.name = "test";
+};
+
 app.use(express.static('public'));
 
 app.get("/", function(req, res, next) {
     res.render("Pages/index.ejs");
 })
 app.get("/person/:name", function(req, res, next) {
-    console.log("Person=" + req.params.name)
     res.render('Pages/Person.ejs', {person_name: req.params.name});
 })
 app.get("/party/:country/:name", function(req, res, next) {
-    console.log("Country=" + req.params.country)
-    console.log("Party=" + req.params.name)
     res.render("Pages/PoliticalParty.ejs");
 })
 app.get("/country/:name", function(req, res, next) {
-    console.log("Country=" + req.params.name)
     res.render("Pages/CountryPage.ejs");
 })
 

@@ -17,14 +17,21 @@
 </head>
 
 <body>
+    <% include ../Partials/Header.html %>
 <div class="flexbox">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
+    </script>
+    <script src="/js/plugins.js"></script>
     <div class="country-BG">
        <div class="center country">
        		<span class="largetext">FRANCE</span>
        </div>
+       <% include ../Partials/Map.html %>
     </div>
     <div class="economy-BG">
-
+        
       	<div class="center">
               <span class="subcategory_header" >Economy / Society</span>
               <div class="subcategory_floatright" style="color:#aeaeae;"><span style="color:#fff;opacity:0.5;">Compare with: </span>
@@ -34,17 +41,13 @@
                             <option>World total</option>
                             <option>World average</option>
                         </select>
+                        
               </div>
         </div>
       	<div class="center graphlist" id="grapharea"></div>
         <br>
     </div>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
-    </script>
-    <script src="/js/plugins.js"></script>
     <script src="/js/3js/3xdom.js"></script>
     <script src="/js/3js/three.min.js"></script>
     <script src="/js/3js/combinedcamera.js"></script>

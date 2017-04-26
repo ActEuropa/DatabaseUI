@@ -84,7 +84,7 @@ select{
     border-style: none;
 }
 .flexbox{
-    margin: 12px auto;
+    margin: 0px auto;
     display:flex;
     justify-content: center;
     flex-wrap:wrap;
