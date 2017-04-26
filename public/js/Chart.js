@@ -195,7 +195,8 @@ var moved = function() {
         var polar = controls.getPolarAngle();
         var azimuthal = controls.getAzimuthalAngle();
         if (checkforview == "side" && (polar < 1.45 || polar > 1.64 || azimuthal < -0.15 || azimuthal > 0.15) || checkforview_override == "side") {
-            console.log("SIDE");
+            checkforview = undefined;
+            checkforview_override = undefined;
             for (i = 0; i < points.length; i++) {
                 var pos = points_r[i].position;
                 new TWEEN.Tween(points[i].position).to(pos, 1000).easing(TWEEN.Easing.Exponential.Out).start();
@@ -214,6 +215,8 @@ var moved = function() {
             
         }
         else if (checkforview == "top" && polar > 0.05  || checkforview_override == "top") {
+            checkforview = undefined;
+            checkforview_override = undefined;
             for (i = 0; i < points.length; i++) {
                 var pos = points_r[i].position;
                 new TWEEN.Tween(points[i].position).to(pos, 1000).easing(TWEEN.Easing.Exponential.Out).start();
@@ -229,8 +232,7 @@ var moved = function() {
             new TWEEN.Tween(bottom.scale).to({ x: 1, y: 1 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
             new TWEEN.Tween(bottom.material).to({ opacity: 1 }, 600).easing(TWEEN.Easing.Exponential.Out).start();
         }
-        checkforview = undefined;
-        checkforview_override = undefined;
+
     }
 };
 var AddPoint = function(label, x, y, z, scene, color) {
