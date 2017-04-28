@@ -57,11 +57,6 @@
     pointer-events: none; }
     .nice-select.disabled:after {
       border-color: #cccccc; }
-  .nice-select.wide {
-    width: 100%; }
-    .nice-select.wide .list {
-      left: 0 !important;
-      right: 0 !important; }
   .nice-select.right {
     float: right; }
     .nice-select.right .list {
@@ -99,9 +94,28 @@
             transform: scaleY(0.1) translateY(-21px);
     -webkit-transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.2s ease-out;
     transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.2s ease-out;
-    z-index: 9; }
+    z-index: 9; 
+    }
+    .nice-select.wide .list {
+      display:flex;
+      align-items: left;
+      flex-flow: column wrap;
+      align-content: stretch;
+      max-height:256px;
+      width:512px;
+      left:unset;
+      right:0;
+      }
+      @media screen and (max-width: 600px){
+        .nice-select.wide .list {width:300px;max-height:512px;}
+      }
+      @media screen and (max-width: 400px){
+        .nice-select.wide .list {width:200px;max-height:unset;}
+      }
+
     .nice-select .list:hover .option:not(:hover) {
       background-color: transparent !important; }
+
   .nice-select .option {
     cursor: pointer;
     font-weight: 400;

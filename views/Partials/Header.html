@@ -5,6 +5,11 @@
     z-index:1;
     position:relative;
 }
+#topbar{
+    position:absolute;
+    right:24px;
+    top:24px;
+}
 .navbar { 
     padding:0px;
     display:flex;
@@ -40,15 +45,32 @@ img.logo {
     padding: 0px 16px 0px 16px;
     color: white;
 	transition: 0.3s;
-
+}
+.language{
+    font-family: Montserrat, sans-serif;
+    font-size:0.9em;
+    opacity:1;
+    color: white;
+	transition: 0.3s;
+}
+.small{
+    font-size:0.9em;
 }
 .navbtn a{
         text-align: center;
+}
+.navbtn img{
+    max-width:24px;
+    max-height:24px;
 }
 .dark{
     color:#002F55;
 }
         </style>
+            <script>
+function setCookie(cname, cvalue) {document.cookie = cname + "=" + cvalue;} 
+function getCookie(cname) { var name = cname + "="; var decodedCookie = decodeURIComponent(document.cookie); var ca = decodedCookie.split(';');  for(var i = 0; i <ca.length; i++) { var c = ca[i];while (c.charAt(0) == ' ') {    c = c.substring(1);}if (c.indexOf(name) == 0) {    return c.substring(name.length, c.length);}}return "";} 
+    </script>
     <nav id="navcont">
         <div id="logo"><span style="color: #C73E12;">ACT</span><span>EUROPA</span></div>
         <ul class="navbar">
@@ -57,4 +79,33 @@ img.logo {
             <li><a class="navbtn" style="opacity:1;" href="http://data.acteuropa.eu/">POLITICAL DATA</a></li>
             <li><a class="navbtn" href="http://vote.acteuropa.eu/">VOTE EUROPA</a></li>
         </ul>
+        <nav id="topbar">
+           <a class="navbtn small">Log in</a>
+           <select class="language nice-select wide" onchange="setCookie('language',this.options[this.selectedIndex].value);">
+                <option>Bulgarian</option>
+                <option>Croatian</option>
+                <option>Czech</option>
+                <option>Danish</option>
+                <option>Dutch</option>
+                <option selected="true">English</option>
+                <option>Estonian</option>
+                <option>Finnish</option>
+                <option>French</option>
+                <option>German</option>
+                <option>Greek</option>
+                <option>Hungarian</option>
+                <option>Irish</option>
+                <option>Italian</option>
+                <option>Latvian</option>
+                <option>Lithuanian</option>
+                <option>Maltese</option>
+                <option>Polish</option>
+                <option>Portuguese</option>
+                <option>Romanian</option>
+                <option>Slovak</option>
+                <option>Slovenian</option>
+                <option>Spanish</option>
+                <option>Swedish</option>
+            </select>
+        </nav>
     </nav>

@@ -1,5 +1,4 @@
 if (!Detector.webgl) Detector.addGetWebGLMessage();
-
 var renderer, scene, camera, stats, crosshair, controls, frame, fog;
 var bottom, back;
 var points_r = []; /* Point array to keep track of original location */
@@ -271,7 +270,7 @@ var AddPoint = function(label, x, y, z, scene, color) {
         crosshair.position.set(mesh.position.x, mesh.position.y, mesh.position.z);
         scene.add(crosshair);
         new TWEEN.Tween(crosshair.scale).to({ x:1,y:1,z: 1 }, 300).easing(TWEEN.Easing.Exponential.Out).start();
-        new TWEEN.Tween(crosshair.position).to({ x:0.01,y:0.01,z: 0.01 }, 300).easing(TWEEN.Easing.Exponential.Out).start();
+        new TWEEN.Tween(crosshair.position).to({ x:0.001,y:0.001,z: 0.001 }, 300).easing(TWEEN.Easing.Exponential.Out).start();
         }
         text.element.style.opacity = 1;
     }, false);
@@ -282,7 +281,7 @@ var AddPoint = function(label, x, y, z, scene, color) {
             crosshairs = crosshairs.filter(function(tremove) { 
                 return tremove !== crosshair;
             });
-            new TWEEN.Tween(crosshair.scale).to({ x:0.01,y:0.01,z: 0.01 }, 300).easing(TWEEN.Easing.Exponential.Out).start();
+            new TWEEN.Tween(crosshair.scale).to({ x:0.001,y:0.001,z: 0.001 }, 300).easing(TWEEN.Easing.Exponential.Out).start();
             //TODO Fix animation here
             new TWEEN.Tween(crosshair.position).to({ x:mesh.position.x, y:mesh.position.y,z: mesh.position.z }, 300).easing(TWEEN.Easing.Exponential.Out).start()
             .onComplete(function(){scene.remove(crosshair);});
@@ -315,22 +314,51 @@ var AddPoint = function(label, x, y, z, scene, color) {
     scene.add(frame);
 
     var loader = new THREE.TextureLoader();
-    loader.load('../img/chart/Back.png', function (texture) {
-        var geometry = new THREE.PlaneGeometry(dimension, dimension);
-        var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5, transparent: true, depthWrite: false });
-        back = new THREE.Mesh(geometry, material);
-        back.position.z = -(dimension / 2);
-        scene.add(back);
-    });
-    loader.load('../img/chart/Bottom.png', function (texture) {
-        var geometry = new THREE.PlaneGeometry(dimension, dimension);
-        var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5, transparent: true, depthWrite: false });
-        bottom = new THREE.Mesh(geometry, material);
-        bottom.position.y = -(dimension / 2);
-        bottom.rotation.x = Math.PI / 2;
-        bottom.rotation.y = Math.PI;
-        scene.add(bottom);
-    });
+
+ //   loader.load('../img/chart/Back.png', function (texture) {
+ //       var geometry = new THREE.PlaneGeometry(dimension, dimension);
+ //     //  var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5, transparent: true, depthWrite: false });
+ //       var material = new THREEx.DynamicTexture(dimension,dimension);
+ //       material.drawText("TEXT",0,0,"red");
+ //       back = new THREE.Mesh(geometry, material);
+ //       back.position.z = -(dimension / 2);
+ //       scene.add(back);
+ //   });
+ //   loader.load('../img/chart/Bottom.png', function (texture) {
+ //       var geometry = new THREE.PlaneGeometry(dimension, dimension);
+ //       var material = new THREE.MeshBasicMaterial({ map: texture, overdraw: 0.5, transparent: true, depthWrite: false });
+ //       bottom = new THREE.Mesh(geometry, material);
+ //       bottom.position.y = -(dimension / 2);
+ //       bottom.rotation.x = Math.PI / 2;
+ //       bottom.rotation.y = Math.PI;
+ //       scene.add(bottom);
+ //   });
+
+	var bottomTex = new THREEx.DynamicTexture(512,512)
+	bottomTex.context.font	= "bolder 26px Montserrat";
+    bottomTex.drawText("PRO-EU", undefined, 488, 'black');
+    bottomTex.drawText("ANTI-EU", undefined, 52, 'black');
+
+	var bottomGeo = new THREE.PlaneGeometry(dimension, dimension);
+	var bottomMat = new THREE.MeshBasicMaterial({map: bottomTex.texture, overdraw: 0.5, transparent: true, depthWrite: false })
+	bottom	= new THREE.Mesh( bottomGeo, bottomMat );
+    bottom.position.y = -(dimension / 2);
+    bottom.rotation.x = Math.PI / 2;
+    bottom.rotation.y = Math.PI;
+    bottom.rotation.z = Math.PI;
+    scene.add(bottom);
+
+	var backTex = new THREEx.DynamicTexture(512,512)
+	backTex.context.font= "bold 26px Montserrat, sans-serif";
+    backTex.drawText("CONSERVATIVE", undefined, 488, 'black');
+    backTex.drawText("PROGRESSIST", undefined, 52, 'black');
+
+	var backGeo = new THREE.PlaneGeometry(dimension, dimension);
+	var back = new THREE.MeshBasicMaterial({map: backTex.texture, overdraw: 0.5, transparent: true, depthWrite: false })
+	back = new THREE.Mesh( backGeo, back );
+    back.position.z = -(dimension / 2);
+    scene.add(back);
+	
     if(background != "transparent")
         renderer.setClearColor(background);
     renderer.setPixelRatio(window.devicePixelRatio);

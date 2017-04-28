@@ -33,7 +33,6 @@ jQuery(document).ready(function () {
         headlineSelector: 'strong'
     });
 
-    
 });
 NewVosem(Candidates);
 function NewGraph(dataset) {
