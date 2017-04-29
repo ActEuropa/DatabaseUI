@@ -1,84 +1,136 @@
-    <style>
-#navcont {
-    background-color: #002F55;
-    padding:36px;
-    z-index:1;
-    position:relative;
-}
-#topbar{
-    position:absolute;
-    right:24px;
-    top:24px;
-}
-.navbar { 
-    padding:0px;
-    display:flex;
-    align-items: baseline;
-    margin: auto;
-    justify-content: center;
-    flex-wrap:wrap;
-    line-height: 1em;
-    margin-top:12px;
-}
-article {
-    width: 60%;
-    margin: 12px auto;
-    padding: 22px;
-    background-color: #d2d2d2;
-}
-img.logo {
-    width: 42px;
-    margin-bottom: -4px;
-    margin-right: 4px;
-}
-#logo {
-    font-family: Montserrat, sans-serif;
-    font-weight: bold;
-    font-size: 48px;
-    color: #DEB645;
-    text-align:center;
-    margin:0;
-}
-.navbtn{
-    font-family: Montserrat, sans-serif;
-    font-size:1.25em;
-    padding: 0px 16px 0px 16px;
-    color: white;
-	transition: 0.3s;
-}
-.language{
-    font-family: Montserrat, sans-serif;
-    font-size:0.9em;
-    opacity:1;
-    color: white;
-	transition: 0.3s;
-}
-.navbtn a{
+<style>
+    #navcont {
+        background-color: #002F55;
+        padding: 36px;
+        z-index: 1;
+        position: relative;
+    }
+    
+    #topbar {
+        position: absolute;
+        right: 24px;
+        top: 24px;
+    }
+    
+    .navbar {
+        padding: 0px;
+        display: flex;
+        align-items: baseline;
+        margin: auto;
+        justify-content: center;
+        flex-wrap: wrap;
+        line-height: 1em;
+        margin-top: 12px;
+    }
+    
+    article {
+        width: 60%;
+        margin: 12px auto;
+        padding: 22px;
+        background-color: #d2d2d2;
+    }
+    
+    img.logo {
+        width: 42px;
+        margin-bottom: -4px;
+        margin-right: 4px;
+    }
+    
+    #logo {
+        font-family: Montserrat, sans-serif;
+        font-weight: bold;
+        font-size: 48px;
+        color: #DEB645;
         text-align: center;
+        margin: 0;
+    }
+    
+    .navbtn {
+        font-family: Montserrat, sans-serif;
+        font-size: 1.25em;
+        padding: 0px 16px 0px 16px;
+        color: white;
+        transition: 0.3s;
+    }
+    
+    .language {
+        font-family: Montserrat, sans-serif;
+        font-size: 0.9em;
+        opacity: 1;
+        color: white;
+        transition: 0.3s;
+    }
+    
+    .navbtn a {
+        text-align: center;
+    }
+    
+    #loginflyout {
+        background:#eaeaea;
+        padding:24px;
+        border-radius:4px;
+        border:#C73E12 solid 1px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.95,0.95);
+        min-width:248px;
+        transition: ease-in-out 200ms;
+    }
+    #loginWrapper{
+        background-color: rgba(0,0,0,0.75);
+        position:fixed;
+        top:0;right:0;left:0;bottom:0;
+        visibility: hidden;
+        opacity:0;
+        transition: ease-in-out 200ms;
+    }
+    input {
+        background: #eaeaea;
+        border-width: thin;
+        border-color: #002f55;
+        font-family: Vollkorn, serif;
+        padding: 12px;
+        margin: 2px 0px;
+        box-sizing: border-box;
+        width: 100%;
+        
+        border-style: solid;
+        transition: background 200ms, color 200ms, border-color 200ms;
 }
-.navbtn img{
-    max-width:24px;
-    max-height:24px;
+input:hover { background: white;}
+input:focus { background: white; border-color: #C73E12;}
+
+input[type=submit], button {
+     background: #002f55;
+     color: #DEB645;
+     font-family: Montserrat, sans-serif;
+     font-weight: bold;
 }
-.dark{
-    color:#002F55;
-}
-        </style>
-            <script>
-function setCookie(cname, cvalue) {document.cookie = cname + "=" + cvalue + ";path=/";} 
-function getCookie(cname) { var name = cname + "="; var decodedCookie = decodeURIComponent(document.cookie); var ca = decodedCookie.split(';');  for(var i = 0; i <ca.length; i++) { var c = ca[i];while (c.charAt(0) == ' ') {    c = c.substring(1);}if (c.indexOf(name) == 0) {    return c.substring(name.length, c.length);}}return "";} 
-    </script>
-    <nav id="navcont">
-        <div id="logo"><span style="color: #C73E12;">ACT</span><span>EUROPA</span></div>
-        <ul class="navbar">
-            <li><a class="navbtn" <%if(headerIndex==0){%>style="opacity:1;"<%}%> href="/"><%= __('BLOG')%></a></li>
-            <li><a class="navbtn" <%if(headerIndex==1){%>style="opacity:1;"<%}%> href="/manifesto"><%= __('MANIFESTO')%></a></li>
-            <li><a class="navbtn" <%if(headerIndex==2){%>style="opacity:1;"<%}%> href="/data"><%= __('DATABASE')%></a></li>
-            <li><a class="navbtn" <%if(headerIndex==3){%>style="opacity:1;"<%}%> href="http://vote.acteuropa.eu/"><%= __('VOTEEUROPA')%></a></li>
-        </ul>
-        <nav id="topbar">
-            <a class="navbtn" style="font-size:0.9em; vertical-align:baseline;"><%= __('Log in')%></a>
-            <select style="background-color:transparent;text-align:right;color:white;font-size:0.9em;margin:0;padding:0;" class="language nice-select wide" onchange="setCookie('lang',this.options[this.selectedIndex].value);location.reload();">
+input[type=submit],button:hover { background: #002f55;; color: #9f310e;}
+input[type=submit],button:focus { background: #002f55;; color: #DEB645;}
+
+</style>
+<script>
+    function setCookie(cname, cvalue) { document.cookie = cname + "=" + cvalue + ";path=/"; }
+    function getCookie(cname) { var name = cname + "="; var decodedCookie = decodeURIComponent(document.cookie); var ca = decodedCookie.split(';'); for (var i = 0; i < ca.length; i++) { var c = ca[i]; while (c.charAt(0) == ' ') { c = c.substring(1); } if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); } } return ""; }
+</script>
+<nav id="navcont">
+    <div id="logo"><span style="color: #C73E12;">ACT</span><span>EUROPA</span></div>
+    <ul class="navbar">
+        <li><a class="navbtn" <%if(headerIndex==0){%>style="opacity:1;"<%}%> href="/"><%= __('BLOG')%></a></li>
+        <li><a class="navbtn" <%if(headerIndex==1){%>style="opacity:1;"<%}%> href="/manifesto"><%= __('MANIFESTO')%></a></li>
+        <li><a class="navbtn" <%if(headerIndex==2){%>style="opacity:1;"<%}%> href="/data"><%= __('DATABASE')%></a></li>
+        <li><a class="navbtn" <%if(headerIndex==3){%>style="opacity:1;"<%}%> href="http://vote.acteuropa.eu/"><%= __('VOTEEUROPA')%></a></li>
+    </ul>
+    <nav id="topbar">
+        <div style="display:inline;">
+            <a id="login-btn" class="navbtn" style="font-size:0.9em; vertical-align:baseline;" onclick="showlogin()">
+                <%= __('Log in')%>
+            </a>
+        </div>
+        <select style="background-color:transparent;text-align:right;color:white;font-size:0.9em;margin:0;padding:0;" class="language nice-select wide"
+            onchange="setCookie('lang',this.options[this.selectedIndex].value);location.reload();">
                 <option value="bg" <%if(lang=='bg'){%>selected<%}%>>български</option>
                 <option value="cr" <%if(lang=='cr'){%>selected<%}%>>hrvatski</option>
                 <option value="cs" <%if(lang=='cs'){%>selected<%}%>>Čeština</option>
@@ -104,6 +156,31 @@ function getCookie(cname) { var name = cname + "="; var decodedCookie = decodeUR
                 <option value="es" <%if(lang=='es'){%>selected<%}%>>Español</option>
                 <option value="sv" <%if(lang=='sv'){%>selected<%}%>>Svenska</option>
             </select>
-           
-        </nav>
     </nav>
+    <div id="loginWrapper">
+        <div onclick="hidelogin()" style="position:fixed;left:0;right:0;top:0;bottom:0;"></div>
+        <form id="loginflyout" action="/login" method="POST">
+           <div>
+               <input type="text" name="username" placeholder="username"/>
+           </div>
+           <div>
+               <input type="password" name="password" placeholder="password"/>
+           </div>
+           <div>
+               <input type="submit" value="<%= __('Log in')%>"/>
+           </div>
+       </form>
+    </div>
+    <script>
+        function showlogin(){
+            document.getElementById("loginWrapper").style.visibility = "visible"
+            document.getElementById("loginWrapper").style.opacity = 1;
+            document.getElementById("loginflyout").style.transform = "translate(-50%, -50%) scale(1,1)";
+        }
+        function hidelogin(){
+            document.getElementById("loginWrapper").style.opacity = 0;
+            document.getElementById("loginflyout").style.transform = "translate(-50%, -50%) scale(0.95,0.95)";
+            document.getElementById("loginWrapper").style.visibility = "hidden"
+        }
+    </script>
+</nav>
