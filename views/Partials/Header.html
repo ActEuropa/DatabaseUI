@@ -65,16 +65,16 @@ img.logo {
 }
         </style>
             <script>
-function setCookie(cname, cvalue) {document.cookie = cname + "=" + cvalue;} 
+function setCookie(cname, cvalue) {document.cookie = cname + "=" + cvalue + ";path=/";} 
 function getCookie(cname) { var name = cname + "="; var decodedCookie = decodeURIComponent(document.cookie); var ca = decodedCookie.split(';');  for(var i = 0; i <ca.length; i++) { var c = ca[i];while (c.charAt(0) == ' ') {    c = c.substring(1);}if (c.indexOf(name) == 0) {    return c.substring(name.length, c.length);}}return "";} 
     </script>
     <nav id="navcont">
         <div id="logo"><span style="color: #C73E12;">ACT</span><span>EUROPA</span></div>
         <ul class="navbar">
-            <li><a class="navbtn" href="http://acteuropa.eu/"><%= __('BLOG')%></a></li>
-            <li><a class="navbtn" href="http://acteuropa.eu/manifesto"><%= __('MANIFESTO')%></a></li>
-            <li><a class="navbtn" style="opacity:1;" href="http://data.acteuropa.eu/"><%= __('DATABASE')%></a></li>
-            <li><a class="navbtn" href="http://vote.acteuropa.eu/"><%= __('VOTEEUROPA')%></a></li>
+            <li><a class="navbtn" <%if(headerIndex==0){%>style="opacity:1;"<%}%> href="/"><%= __('BLOG')%></a></li>
+            <li><a class="navbtn" <%if(headerIndex==1){%>style="opacity:1;"<%}%> href="/manifesto"><%= __('MANIFESTO')%></a></li>
+            <li><a class="navbtn" <%if(headerIndex==2){%>style="opacity:1;"<%}%> href="/data"><%= __('DATABASE')%></a></li>
+            <li><a class="navbtn" <%if(headerIndex==3){%>style="opacity:1;"<%}%> href="http://vote.acteuropa.eu/"><%= __('VOTEEUROPA')%></a></li>
         </ul>
         <nav id="topbar">
             <a class="navbtn" style="font-size:0.9em; vertical-align:baseline;"><%= __('Log in')%></a>

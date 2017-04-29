@@ -26,23 +26,32 @@ var getPersonData = function(name){
 ///////////////////////////
 //Home page
 app.get("/", function(req, res, next) {
-    res.render("Pages/index.ejs", {lang: i18n.getLocale(req)});
+    res.render("Pages/Home.ejs", {lang: i18n.getLocale(req), headerIndex: 0});
+})
+//Manifesto page
+app.get("/manifesto", function(req, res, next) {
+    res.render("Pages/Manifesto.ejs", {lang: i18n.getLocale(req), headerIndex: 1});
+})
+
+//Database page
+app.get("/data", function(req, res, next) {
+    res.render("Pages/Data.ejs", {lang: i18n.getLocale(req), headerIndex: 2});
 })
 //Person page
 app.get("/person/:name", function(req, res, next) {
-    res.render('Pages/Person.ejs', {person_name: req.params.name});
+    res.render('Pages/Person.ejs', {lang: i18n.getLocale(req), person_name: req.params.name,  headerIndex: 2});
 })
 //Country page
 app.get("/country/:name", function(req, res, next) {
-    res.render("Pages/CountryPage.ejs");
+    res.render("Pages/CountryPage.ejs", {lang: i18n.getLocale(req), headerIndex: 2});
 })
 //Political party page
 app.get("/party/:country/:name", function(req, res, next) {
-    res.render("Pages/PoliticalParty.ejs");
+    res.render("Pages/PoliticalParty.ejs", {lang: i18n.getLocale(req), headerIndex: 2});
 })
 //404 page
 app.use(function (req, res, next) {
-  res.status(404).sendFile("public/html/404.html", { root : __dirname})
+  res.status(404).render("errors/404.ejs", { root : __dirname, lang: i18n.getLocale(req)})
 })
 
 ///////////////////////////
