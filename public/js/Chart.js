@@ -336,8 +336,8 @@ var AddPoint = function(label, x, y, z, scene, color) {
 
 	var bottomTex = new THREEx.DynamicTexture(512,512)
 	bottomTex.context.font	= "bolder 26px Montserrat";
-    bottomTex.drawText("PRO-EU", undefined, 488, 'black');
-    bottomTex.drawText("ANTI-EU", undefined, 52, 'black');
+    bottomTex.drawText($("#pro-eu-label").text(), undefined, 488, 'black');
+    bottomTex.drawText($("#anti-eu-label").text(), undefined, 52, 'black');
 
 	var bottomGeo = new THREE.PlaneGeometry(dimension, dimension);
 	var bottomMat = new THREE.MeshBasicMaterial({map: bottomTex.texture, overdraw: 0.5, transparent: true, depthWrite: false })
@@ -350,8 +350,8 @@ var AddPoint = function(label, x, y, z, scene, color) {
 
 	var backTex = new THREEx.DynamicTexture(512,512)
 	backTex.context.font= "bold 26px Montserrat, sans-serif";
-    backTex.drawText("CONSERVATIVE", undefined, 488, 'black');
-    backTex.drawText("PROGRESSIST", undefined, 52, 'black');
+    backTex.drawText($("#conservative-label").text(), undefined, 488, 'black');
+    backTex.drawText($("#progressive-label").text(), undefined, 52, 'black');
 
 	var backGeo = new THREE.PlaneGeometry(dimension, dimension);
 	var back = new THREE.MeshBasicMaterial({map: backTex.texture, overdraw: 0.5, transparent: true, depthWrite: false })

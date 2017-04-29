@@ -25,16 +25,16 @@
     <% include ../Partials/Header.html %>
     <div class="flexbox">
         <div id="flexfilter">
-            <span class="sectionHeader">FEATURED</span><br/>
+            <span class="sectionHeader"><%= __('FEATURED')%></span><br/>
             <div class="btndiv"><a class="plainbtn">French presidental election, 2017</a></div>
             <div class="btndiv"><a class="plainbtn">Dutch general election, 2017</a></div>
             <div class="btndiv"><a class="plainbtn">German federal election, 2017</a></div>
             <div class="btndiv"><a class="plainbtn">Norwegian parlementary election, 2017</a></div>
-            <span class="sectionHeader">ALL DATA</span><br/>
+            <span class="sectionHeader"><%= __('ALL DATA')%></span><br/>
             <table class="filter">
                 <tbody>
                     <tr>
-                        <td style="padding-right:12px;">Country: </td>
+                        <td style="padding-right:12px;"><%= __('Country')%>: </td>
                         <td style="color:#002F55;">
                             <select>
                             <option>France</option>
@@ -43,7 +43,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="padding-right:12px;">Range:</td>
+                        <td style="padding-right:12px;"><%= __('Range')%>:</td>
                         <td style="color:#002F55;">
                             <select>
                             <option>2017</option>
@@ -121,7 +121,7 @@
         <% include ../Partials/Chart.html %>
     </div>
     <div class="center">
-        <span class="sectionHeader">SELECTED DATA</span>
+        <span class="sectionHeader"><%= __('SELECTED DATA')%></span>
         <div class="datalist">
             <div class="profile"><table>
                     <tbody>
@@ -196,7 +196,7 @@
         </div>
     </div>
     <div class="center">
-        <span class="sectionHeader">SELECTED COUNTRY</span>
+        <span class="sectionHeader"><%= __('SELECTED COUNTRY')%></span>
     </div>
     <div class="country-BG">
        <div class="center country">

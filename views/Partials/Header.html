@@ -53,9 +53,6 @@ img.logo {
     color: white;
 	transition: 0.3s;
 }
-.small{
-    font-size:0.9em;
-}
 .navbtn a{
         text-align: center;
 }
@@ -74,38 +71,39 @@ function getCookie(cname) { var name = cname + "="; var decodedCookie = decodeUR
     <nav id="navcont">
         <div id="logo"><span style="color: #C73E12;">ACT</span><span>EUROPA</span></div>
         <ul class="navbar">
-            <li><a class="navbtn" href="http://acteuropa.eu/">BLOG</a></li>
-            <li><a class="navbtn" href="http://acteuropa.eu/manifesto">MANIFESTO</a></li>
-            <li><a class="navbtn" style="opacity:1;" href="http://data.acteuropa.eu/">POLITICAL DATA</a></li>
-            <li><a class="navbtn" href="http://vote.acteuropa.eu/">VOTE EUROPA</a></li>
+            <li><a class="navbtn" href="http://acteuropa.eu/"><%= __('BLOG')%></a></li>
+            <li><a class="navbtn" href="http://acteuropa.eu/manifesto"><%= __('MANIFESTO')%></a></li>
+            <li><a class="navbtn" style="opacity:1;" href="http://data.acteuropa.eu/"><%= __('DATABASE')%></a></li>
+            <li><a class="navbtn" href="http://vote.acteuropa.eu/"><%= __('VOTEEUROPA')%></a></li>
         </ul>
         <nav id="topbar">
-           <a class="navbtn small">Log in</a>
-           <select class="language nice-select wide" onchange="setCookie('language',this.options[this.selectedIndex].value);">
-                <option>Bulgarian</option>
-                <option>Croatian</option>
-                <option>Czech</option>
-                <option>Danish</option>
-                <option>Dutch</option>
-                <option selected="true">English</option>
-                <option>Estonian</option>
-                <option>Finnish</option>
-                <option>French</option>
-                <option>German</option>
-                <option>Greek</option>
-                <option>Hungarian</option>
-                <option>Irish</option>
-                <option>Italian</option>
-                <option>Latvian</option>
-                <option>Lithuanian</option>
-                <option>Maltese</option>
-                <option>Polish</option>
-                <option>Portuguese</option>
-                <option>Romanian</option>
-                <option>Slovak</option>
-                <option>Slovenian</option>
-                <option>Spanish</option>
-                <option>Swedish</option>
+            <a class="navbtn" style="font-size:0.9em; vertical-align:baseline;"><%= __('Log in')%></a>
+            <select style="background-color:transparent;text-align:right;color:white;font-size:0.9em;margin:0;padding:0;" class="language nice-select wide" onchange="setCookie('lang',this.options[this.selectedIndex].value);location.reload();">
+                <option value="bg" <%if(lang=='bg'){%>selected<%}%>>български</option>
+                <option value="cr" <%if(lang=='cr'){%>selected<%}%>>hrvatski</option>
+                <option value="cs" <%if(lang=='cs'){%>selected<%}%>>Čeština</option>
+                <option value="da" <%if(lang=='da'){%>selected<%}%>>Dansk</option>
+                <option value="nl" <%if(lang=='nl'){%>selected<%}%>>Nederlands</option>
+                <option value="en" <%if(lang=='en'){%>selected<%}%>>English</option>
+                <option value="et" <%if(lang=='et'){%>selected<%}%>>Eesti keel</option>
+                <option value="fi" <%if(lang=='fi'){%>selected<%}%>>Suomi</option>
+                <option value="fr" <%if(lang=='fr'){%>selected<%}%>>Français</option>
+                <option value="de" <%if(lang=='de'){%>selected<%}%>>Deutsche</option>
+                <option value="el" <%if(lang=='el'){%>selected<%}%>>Ελληνικά</option>
+                <option value="hu" <%if(lang=='hu'){%>selected<%}%>>Magyar</option>
+                <option value="ga" <%if(lang=='ga'){%>selected<%}%>>Gaeilge</option>
+                <option value="it" <%if(lang=='it'){%>selected<%}%>>Italiano</option>
+                <option value="lv" <%if(lang=='lv'){%>selected<%}%>>Latviešu valoda</option>
+                <option value="lt" <%if(lang=='lt'){%>selected<%}%>>Lithuanian</option>
+                <option value="mt" <%if(lang=='mt'){%>selected<%}%>>Malti</option>
+                <option value="pl" <%if(lang=='pl'){%>selected<%}%>>Polskie</option>
+                <option value="pt" <%if(lang=='pt'){%>selected<%}%>>Português</option>
+                <option value="ro" <%if(lang=='ro'){%>selected<%}%>>Română</option>
+                <option value="sk" <%if(lang=='sk'){%>selected<%}%>>Slovenský jazyk</option>
+                <option value="sl" <%if(lang=='sl'){%>selected<%}%>>Slovenski jezik</option>
+                <option value="es" <%if(lang=='es'){%>selected<%}%>>Español</option>
+                <option value="sv" <%if(lang=='sv'){%>selected<%}%>>Svenska</option>
             </select>
+           
         </nav>
     </nav>
