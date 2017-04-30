@@ -43,14 +43,14 @@ a{
 a:hover{ opacity:0.6;}
 a:active{ opacity:0.8; }
 
-h1 {
+/*h1 {
     font-family: Montserrat, sans-serif;
     margin: 0px;
 }
 h2 {
     margin: 22px 0px 8px ;
     color:black;
-}
+}*/
 h2:after {
     content:' ';
     display:block;
@@ -58,7 +58,7 @@ h2:after {
     margin: 4px 0px 24px 0px;
     opacity: 0.1;
  }
-h3 {
+/*h3 {
     margin: 0px;
     color: black;
 }
@@ -66,7 +66,7 @@ h6{
     font-size:0.8em;
     margin:0px;
     line-height:12px;
-}
+}*/
 /* POLITICAL DATA PAGE */
 .option {
     opacity: 0.8;
@@ -144,14 +144,14 @@ select{
   /*This is just to a fix a very odd glitch when you're scrolled down */
   padding-bottom:2px;
 }
-ul {
+ul.s{
   list-style: none;
   margin: 0;
   padding: 0;
 }
-li {
+li.s {
     font-size:0.9em;
-    line-height:0px;
+    line-height:12px;
 }
 .listitem{
     margin-top:12px;
