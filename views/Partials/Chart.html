@@ -158,7 +158,6 @@ input:checked + .slider:before {transform: translateX(15px);}
   to{transform: rotateX(360deg) rotateY(360deg) rotateZ(0deg);
   } }
     </style>
-    <script src="/js/3js/Dynamictexture.js"></script>
     <div id="cubeloader_wrap">
         <div class="cubeloader">
             <div class="cube-face  cube-face-front"></div>
@@ -176,14 +175,14 @@ input:checked + .slider:before {transform: translateX(15px);}
             <span id="pro-eu-label"><%= __('PRO-EU')%></span>
             <span id="anti-eu-label"><%= __('ANTI-EU')%></span>
         </div>
-        <img class="icon-btn" src="/img/icons/HELP.svg" id="help-icon" >
+        <img class="icon-btn" src="/database/img/icons/HELP.svg" id="help-icon" >
         <div class="flyout_div" id="help-flyout" style="font-size:12px;line-height:14px;">
                 <h3>Etlunexa chart</h3><br>
                 This chart displays political positioning in a three dimensional cube, where each point represents a person. <br> It's name comes from the old norse &quot;ætlun&quot; (opinion) and the ancient greek &quot;hexa&quot; (six). So this chart displays opinions from all across europe on six different axis.
                 <p style="color:#002F55;opacity:1;">Sliding to a specific side flattens the chart:</p>;
-                <video id="tutorial_move" autoplay loop width="120" height="80"><source  src="/mp4/tutorial_move.mp4"></video>
+                <video id="tutorial_move" autoplay loop width="120" height="80"><source  src="/database/mp4/tutorial_move.mp4"></video>
         </div>
-        <img class="icon-btn" src="/img/icons/SETTINGS.svg" id="settings-icon" >
+        <img class="icon-btn" src="/database/img/icons/SETTINGS.svg" id="settings-icon" >
         <div class="flyout_div" id="settings-flyout">
             <div class="flyout_item">
                 <label class="switch">
@@ -224,3 +223,16 @@ input:checked + .slider:before {transform: translateX(15px);}
         </div>
     </div>
 </div>
+    <script src="/database/js/3js/Dynamictexture.js"></script>
+    <script src="/database/js/plugins.js"></script>
+    <script src="/database/js/3js/3xdom.js"></script>
+    <script src="/database/js/3js/three.min.js"></script>
+    <script src="/database/js/3js/combinedcamera.js"></script>
+    <script src="/database/js/3js/tween.js"></script>
+    <script src="/database/js/3js/controls/OrbitControls.js"></script>
+    <script src="/database/js/3js/Detector.js"></script>
+    <script src="/database/js/3js/libs/stats.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="/database/js/metricsgraphics.min.js"></script>
+    <script src="/database/js/Chart.js"></script>
+    <script src="/database/js/main.js"></script>

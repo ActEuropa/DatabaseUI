@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= post[lang].title %>- ActEuropa blog</title>
+    <meta name="description" content="<%= post[lang].subtitle %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/metricsgraphics.css">
+    <link rel="stylesheet" href="/css/nice-select.css">
+    <link rel="stylesheet" href="/css/blog.css">
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+    <% include ../../Partials/Favicons+Fonts.html %>
+</head>
+<body>
+        <% include ../../Partials/Header.html %>
+        <div class="center">
+        <h1><%= post[lang].title %></h1>
+        <h3><%= post[lang].subtitle %></h3>
+        <h4 class="publishDate"><%= post.date.toDateString()  %></h4>
+        <img class="heroImage" src="<%= post.heroimage %>"></img>
+        <%- post[lang].article %>
+        </div>
+        <% include ../../Partials/Footer.html %>
+</body>
+</html>

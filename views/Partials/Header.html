@@ -78,7 +78,7 @@
         opacity:0;
         transition: ease-in-out 200ms;
     }
-    input {
+    input, textarea {
         background: #eaeaea;
         border-width: thin;
         border-color: #002f55;
@@ -91,8 +91,8 @@
         border-style: solid;
         transition: background 200ms, color 200ms, border-color 200ms;
 }
-input:hover { background: white;}
-input:focus { background: white; border-color: #C73E12;}
+input:hover,textarea:hover { background: white;}
+input:focus,textarea:focus { background: white; border-color: #C73E12;}
 
 input[type=submit], button {
      background: #002f55;
@@ -108,6 +108,7 @@ input[type=submit],button:focus { background: #002f55;; color: #DEB645;}
     function setCookie(cname, cvalue) { document.cookie = cname + "=" + cvalue + ";path=/"; }
     function getCookie(cname) { var name = cname + "="; var decodedCookie = decodeURIComponent(document.cookie); var ca = decodedCookie.split(';'); for (var i = 0; i < ca.length; i++) { var c = ca[i]; while (c.charAt(0) == ' ') { c = c.substring(1); } if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); } } return ""; }
 </script>
+
 <nav id="navcont">
     <div id="logo"><span style="color: #C73E12;">ACT</span><span>EUROPA</span></div>
     <ul class="navbar">

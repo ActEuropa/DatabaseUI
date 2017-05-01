@@ -7,23 +7,16 @@
     <title>ActEuropa</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/metricsgraphics.css">
-    <link rel="stylesheet" href="/css/nice-select.css">
+    <link rel="stylesheet" href="/common/css/normalize.css">
+    <link rel="stylesheet" href="/common/css/main.css">
+    <link rel="stylesheet" href="/common/css/metricsgraphics.css">
+    <link rel="stylesheet" href="/common/css/nice-select.css">
     <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Vollkorn" rel="stylesheet">
-    <link id="favicon" href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#002f55">
-    <meta name="theme-color" content="#002f55">
+    <% include ../../Partials/Favicons+Fonts.html %>
 </head>
 
 <body>
-    <% include ../Partials/Header.html %>
+    <% include ../../Partials/Header.html %>
     <div class="person_BG">
         <img class="bgImg" src="http://o.aolcdn.com/dims-shared/dims3/GLOB/crop/5568x2784+0+464/resize/630x315!/format/jpg/quality/85/http%3A%2F%2Fo.aolcdn.com%2Fhss%2Fstorage%2Fmidas%2F28daa5437035cabbd3c0ec51c5bac3b4%2F204691099%2F000_IZ6GJ.jpg"/>
         <div class="bgOverlay"></div>
@@ -113,12 +106,12 @@
                         </li>
                   </ul>
                 <div>
-        <% include ../Partials/Chart.html %>
+        <% include ../../Partials/Chart.html %>
         </div>
                 </div>
         </div>
     </div>
-    <% include ../Partials/Footer.html %>
+    <% include ../../Partials/Footer.html %>
     <script src="/js/plugins.js"></script>
     <script src="/js/3js/3xdom.js"></script>
     <script src="/js/3js/three.min.js"></script>

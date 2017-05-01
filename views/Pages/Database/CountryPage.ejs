@@ -7,17 +7,16 @@
     <title>ActEuropa</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/css/normalize.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/metricsgraphics.css">
-    <link rel="stylesheet" href="/css/nice-select.css">
+    <link rel="stylesheet" href="/common/css/normalize.css">
+    <link rel="stylesheet" href="/common/css/main.css">
+    <link rel="stylesheet" href="/common/css/metricsgraphics.css">
+    <link rel="stylesheet" href="/common/css/nice-select.css">
     <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Vollkorn" rel="stylesheet">
-    <link id="favicon" href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <% include ../../Partials/Favicons+Fonts.html %>
 </head>
 
 <body>
-    <% include ../Partials/Header.html %>
+    <% include ../../Partials/Header.html %>
 <div class="flexbox">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
@@ -28,7 +27,7 @@
        <div class="center country">
        		<span class="largetext">FRANCE</span>
        </div>
-       <% include ../Partials/Map.html %>
+       <% include ../../Partials/Map.html %>
     </div>
     <div class="economy-BG">
         
@@ -47,7 +46,7 @@
         <br>
     </div>
     </div>
-    <% include ../Partials/Footer.html %>
+    <% include ../../Partials/Footer.html %>
     <script src="/js/3js/3xdom.js"></script>
     <script src="/js/3js/three.min.js"></script>
     <script src="/js/3js/combinedcamera.js"></script>

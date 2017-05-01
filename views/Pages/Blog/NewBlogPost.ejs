@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>New article - ActEuropa blog</title>
+    <meta name="description" content="New blog post">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/metricsgraphics.css">
+    <link rel="stylesheet" href="/css/nice-select.css">
+    <link rel="stylesheet" href="/css/blog.css">
+    <link rel="stylesheet" type="text/css" href="/content-tools/content-tools.min.css">
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+    <% include ../../Partials/Favicons+Fonts.html %>
+</head>
+<body>
+        <% include ../../Partials/Header.html %>
+        <div class="center">
+          <span class="sectionHeader"><%= __('NEW ARTICLE')%></span><br>
+          <textarea class="js-auto-size" id="titleinput" placeholder="title" style="box-sizing: border-box;min-height:0px;overflow-x: hidden;"></textarea>
+          <textarea class="js-auto-size" id="subtitleinput" placeholder="title" style="box-sizing: border-box;min-height: 0px;overflow-x: hidden;"></textarea>
+    <script src="/content-tools/content-tools.min.js"></script>
+    <script src="/content-tools/editor.js"></script>
+    <div data-editable data-name="main-content">
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in magna nec arcu sollicitudin vestibulum id ac dui. Donec ut nibh et dolor facilisis faucibus a eget ex. Quisque vitae arcu turpis. Fusce ligula eros, efficitur ut vestibulum a, hendrerit vitae augue. Integer aliquam id nunc eu blandit. Vivamus et laoreet lacus. Praesent eu euismod sapien, vitae euismod lacus. Proin dignissim tempus dui consequat consectetur. Curabitur pretium turpis nec consequat accumsan. Morbi venenatis lacus at magna lacinia, non convallis orci tincidunt. Sed commodo rhoncus dolor, ut fringilla leo iaculis et. Nulla mauris ex, venenatis eget purus sit amet, sagittis rhoncus ex. Sed auctor accumsan finibus. In sollicitudin non ipsum eget pulvinar. 
+</p><p>Morbi vel porttitor enim. Ut porta ut sem nec pellentesque. Sed sit amet vulputate nisi. Nulla ut lacus facilisis, blandit ante ac, scelerisque mauris. Ut molestie at est nec pretium. Vestibulum blandit imperdiet arcu in tempor. Suspendisse vehicula enim nec ipsum maximus, sit amet malesuada ipsum rutrum. Ut varius, libero et accumsan commodo, felis diam mattis turpis, in sollicitudin dolor sapien sed dolor. Duis faucibus vestibulum tincidunt. Integer sit amet augue mi. 
+</p><p>Proin volutpat eu nisl a ultrices. Fusce lobortis porta elit vulputate viverra. Sed egestas fringilla odio nec egestas. Praesent eget rutrum eros, sit amet efficitur neque. Donec fermentum non eros non tempor. Nulla et enim eu magna euismod egestas. Nullam sagittis quis nibh ut tristique. Vivamus a lectus placerat, molestie dolor vitae, pretium orci. Cras quis mauris nec diam viverra dictum. Aenean sapien dolor, fermentum eget elementum a, condimentum eget massa. Ut sodales, metus ac blandit volutpat, enim libero eleifend eros, id ullamcorper tortor ante faucibus ligula. Nulla enim eros, sagittis ut nisi interdum, lobortis pulvinar lectus. Donec mollis erat et elementum malesuada. Donec nulla odio, eleifend id orci vel, suscipit eleifend ex. Quisque ligula elit, ultricies eu imperdiet ut, scelerisque non lectus. </p>
+</div>
+        </div>
+        <% include ../../Partials/Footer.html %>
+        <script>
+          var editor = ContentTools.EditorApp.get();
+          editor.init('*[data-editable]', 'data-name');
+          ContentTools.StylePalette.add([
+    new ContentTools.Style('Author', 'author', ['p'])
+]);
+autosize(document.querySelectorAll('textarea'));
+
+
+        </script>
+</body>
+</html>

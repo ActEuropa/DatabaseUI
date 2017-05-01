@@ -34,6 +34,9 @@
 	"VOTEEUROPA": "VOTEEUROPA",
 	"Log in": "Log in",
     
+    "NEW ARTICLE": "NEW ARTICLE",
+        "Title":"Title",
+        "Subtitle":"Subtitle",
     "FEATURED": "FEATURED",
     "ALL DATA": "ALL DATA",
     "SELECTED DATA": "SELECTED DATA",
