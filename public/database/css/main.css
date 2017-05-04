@@ -175,6 +175,12 @@ li.s {
     width:auto;
     transition:100ms;
 }
+.profile a{
+    opacity:1;
+}
+.profile a:hover{
+    opacity:1;
+}
 .profile:hover{
     background-color: #F2F2F2;
 }
