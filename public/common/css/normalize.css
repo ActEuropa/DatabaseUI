@@ -530,3 +530,31 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+
+/*////////////////////////////////////////////////////////
+//                                                      //
+//                    CUSTOM STUFF                      //
+//                                                      //
+////////////////////////////////////////////////////////*/
+
+blockquote{
+    font-family: Vollkorn;
+    font-style: italic;
+    font-weight:lighter;
+    font-size: 1.25em;
+    margin-left:12px;
+    opacity:0.8;
+}
+blockquote:before{
+    content:"“";
+    font-size:2em;
+    font-family: "Times New Roman", serif;
+    line-height:0;
+}
+blockquote:after{
+    content:"”";
+    font-size:2em;
+    font-family: "Times New Roman", serif;
+    line-height:0;
+}
