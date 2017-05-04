@@ -4,8 +4,25 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>404: Nothing here</title>
+    <link rel="stylesheet" href="/common/css/normalize.css">
+    <link rel="stylesheet" href="/blog/css/main.css">
+    <link rel="stylesheet" href="/common/css/metricsgraphics.css">
+    <link rel="stylesheet" href="/common/css/nice-select.css">
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+    <% include ../../Partials/Favicons+Fonts.html %>
 </head>
-<body style="background-color:#EAEAEA;position:absolute;left:0;top:0;bottom:0;right:0;display: flex; align-items: center; justify-content: center; ">
-   <img src="/img/404.png"></img>
+<body>
+   <% include ../../Partials/Header.html %>
+   <div class="center">
+       <img style="max-height:180px;max-width:180px; margin-top:72px;" src="/common/img/404.png"></img>
+   <h1 style="font-size:8em;">404</h1>
+   <h4 style="font-size:2em;margin:0;">Sorry, but it looks like this page doesn't exist...</h4>
+   <br><br>
+   <span>Did you follow a link on an external website? You could send them a notice for future users!</span>
+   </div>
+   <br><br><br>
+   <div>
+   <% include ../../Partials/Footer.html %>
+   </div>
 </body>
 </html>

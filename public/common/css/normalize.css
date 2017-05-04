@@ -90,6 +90,8 @@ textarea {
 
 body {
     margin: 0;
+    background-color:#eaeaea;
+    width:100%;
 }
 
 /* ==========================================================================
@@ -219,9 +221,12 @@ code,
 kbd,
 pre,
 samp {
-    font-family: monospace, serif;
+    font-family: consolas, monospace, serif;
     _font-family: 'courier new', monospace;
     font-size: 1em;
+    background-color:#d2d2d2;
+    padding:4px;
+    border-radius:4px;
 }
 
 /**

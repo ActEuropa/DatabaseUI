@@ -31,7 +31,7 @@ databaseInit(app, i18n);
 
 //404 page
 app.use(function (req, res, next) {
-  res.status(404).render("errors/404.ejs", { root : __dirname, lang: i18n.getLocale(req)})
+  res.status(404).render("Pages/Errors/404.ejs", { root : __dirname, lang: i18n.getLocale(req), headerIndex: -1})
 })
 
 ///////////////////////////
