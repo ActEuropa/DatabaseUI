@@ -73,3 +73,9 @@ body{
             text-align:center;
             margin:auto;
         }
+.sidebar{
+    flex-basis:300px;
+    min-width:300px;
+    height:100%;
+    margin-left:12px;
+}

@@ -19,10 +19,14 @@
         .blogItem{
             background:white;
             box-shadow: 0 1px 2px rgba(0,0,0,0.15);
-            
+            flex-basis:720px;
+            max-width:720px;
+            min-width:400px;
             padding:12px;
             transition:all 200ms;
-            margin-top:18px;
+            margin-bottom:18px;
+            flex-shrink:1;
+            
         }
         .cover{
             background-size:cover;
@@ -34,6 +38,8 @@
         .content{
             margin-top:24px;
             margin-bottom:24px;
+            margin-right:12px;
+            margin-left:12px;
         }
         .content a{opacity:1;}
         .content a:hover{opacity:1;}
@@ -70,8 +76,22 @@
             max-height:1em;
             margin-right:4px;
         }
+        @media screen and (max-width: 760px) {
+            .blogItem{
+                min-width: unset;
+            }
+            .flexbox{
+                flex-wrap:wrap-reverse;
+            }
+            .sidebar{
+                max-width:unset;
+                margin-left:0;
+                flex-basis:unset;
+            }
+        }
     </style>
-    <div class="center content">
+    <div class="flexbox content">
+    <div>
     <% for(var i=0; i<posts.length; i++) { %>
         <a style="text-decoration:none;" href='<%= posts[i].url %>'>
         <div class="blogItem">
@@ -82,6 +102,20 @@
         </div>
         </a>
     <% } %>
+    </div>
+    <div class="sidebar">
+        <span class="sectionHeader">ANNOUNCEMENT</span><br>
+        <p>This is our new website. Here you will find, not only really interesting blog posts (to the left), but if you click also this amazing <a href="/data">database</a> of European politicians and people. There's lots of cool stuff over there, including a three dimensional interactive light flattenable political positioning and compassing cube.</p>
+        <span class="sectionHeader">FOLLOW US</span><br>
+        <p>
+            <ul>
+                <li><a href="http://facebook.com/ActEuropa">Facebook</a></li>
+                <li><a href="http://twitter.com/ActEuropa">Twitter</a></li>
+                <li><a href="http://random">Medium</a></li>
+                <li><a href="http://discord.gg/gdibn5">Join our discord server</a></li>
+            </ul>
+        </p>
+    </div>
     </div>
     <% include ../../Partials/Footer.html %>
 </body>

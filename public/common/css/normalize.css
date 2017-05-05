@@ -558,3 +558,16 @@ blockquote:after{
     font-family: "Times New Roman", serif;
     line-height:0;
 }
+.flexbox{
+    margin: 0px auto;
+    display:flex;
+    justify-content: center;
+}
+.sectionHeader{
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    font-size: 1.25em;
+    color: #C73E12;
+    display: inline-block;
+    padding-top:8px;
+}

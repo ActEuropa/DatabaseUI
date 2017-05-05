@@ -52,20 +52,7 @@ select{
     background-color: #eaeaea;
     border-style: none;
 }
-.flexbox{
-    margin: 0px auto;
-    display:flex;
-    justify-content: center;
-    flex-wrap:wrap;
-}
-.sectionHeader{
-    font-family: Montserrat, sans-serif;
-    font-weight: bold;
-    font-size: 1.25em;
-    color: #C73E12;
-    display: inline-block;
-    padding-top:8px;
-}
+
 .plainbtn{
     font-family: Vollkorn, serif;
     opacity: 1;
