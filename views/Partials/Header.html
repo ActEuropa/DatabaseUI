@@ -107,7 +107,22 @@ input[type=submit], button {
 }
 input[type=submit],button:hover { background: #002f55;; color: #9f310e;}
 input[type=submit],button:focus { background: #002f55;; color: #DEB645;}
-
+#BreakingNewsBanner{
+    background-color:#e10000;
+    padding:12px;
+    color:white;
+    font-family: Montserrat, sans-serif;
+    font-weight:400;
+    text-align: center;
+    transition:all 200ms;
+    cursor: pointer;
+}
+#BreakingNewsBanner:hover{
+    background-color:#cc0000;
+}
+#BreakingNewsBanner:active{
+    background-color:#b20000;
+}
 </style>
 <script>
     function setCookie(cname, cvalue) { document.cookie = cname + "=" + cvalue + ";path=/"; }
@@ -183,3 +198,9 @@ input[type=submit],button:focus { background: #002f55;; color: #DEB645;}
         }
     </script>
 </nav>
+<div id="BreakingNewsBanner">
+    <div class="center">
+        <strong>BREAKING NEWS:&nbsp;&nbsp;&nbsp;</strong>
+        <span style="opacity:0.75;">Emmanuel Macron elected president of France</span>
+    </div>
+</div>
