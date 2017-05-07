@@ -543,12 +543,13 @@ blockquote{
     font-style: italic;
     font-weight:lighter;
     font-size: 1.25em;
-    margin-left:14px;
-    opacity:0.8;
-
-    text-align:left;
-
-    clear:both;
+    margin-left:0;
+    padding:12px;
+    text-align:center;
+    background-color: rgba(255,255,255,0.5);
+}
+blockquote div{
+    display:inline-block;
 }
 blockquote p:before{
     content:"“";
@@ -563,16 +564,29 @@ blockquote p:after{
     line-height:0;
 }
 blockquote p{
+    color:#002f55;
     margin-bottom:6px;
+    text-align:center;
 }
-blockquote cite{
+blockquote .author{
     display:block;
     text-align:right;
     margin-right:24px;
     opacity:0.75;
+    font-style:normal;
+    font-weight: bold;
 }
-blockquote cite:before{
-    content:"—";
+blockquote .author:before{
+    content:"— ";
+}
+blockquote .author-info{
+    font-size:0.75em;
+    opacity:1;
+    display:block;
+    text-align:right;
+    margin-right:24px;
+    font-style:normal;
+    line-height:0.75em;
 }
 .flexbox{
     margin: 0px auto;
