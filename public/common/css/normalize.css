@@ -543,20 +543,36 @@ blockquote{
     font-style: italic;
     font-weight:lighter;
     font-size: 1.25em;
-    margin-left:12px;
+    margin-left:14px;
     opacity:0.8;
+
+    text-align:left;
+
+    clear:both;
 }
-blockquote:before{
+blockquote p:before{
     content:"“";
-    font-size:2em;
+    font-size:1.5em;
     font-family: "Times New Roman", serif;
     line-height:0;
 }
-blockquote:after{
+blockquote p:after{
     content:"”";
-    font-size:2em;
+    font-size:1.5em;
     font-family: "Times New Roman", serif;
     line-height:0;
+}
+blockquote p{
+    margin-bottom:6px;
+}
+blockquote cite{
+    display:block;
+    text-align:right;
+    margin-right:24px;
+    opacity:0.75;
+}
+blockquote cite:before{
+    content:"—";
 }
 .flexbox{
     margin: 0px auto;
