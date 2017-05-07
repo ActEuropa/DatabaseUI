@@ -571,3 +571,14 @@ blockquote:after{
     display: inline-block;
     padding-top:8px;
 }
+.smicon{
+    opacity:0.34;
+    margin-right:8px;
+}
+.smicon img{
+    max-height:20px;
+    max-width:22px;
+}
+.smicon{transition:all 200ms;}
+.smicon:hover{opacity:0.75;}
+.smicon:active{opacity:1;}
