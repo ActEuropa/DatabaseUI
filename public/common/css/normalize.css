@@ -543,50 +543,39 @@ blockquote{
     font-style: italic;
     font-weight:lighter;
     font-size: 1.25em;
-    margin-left:0;
-    padding:12px;
+    margin:0;
+    padding:24px;
     text-align:center;
-    background-color: rgba(255,255,255,0.5);
+    background-color: #f2f0f0;
+    color:#002f55;
+    text-align:center;
 }
-blockquote div{
-    display:inline-block;
-}
-blockquote p:before{
+blockquote:before{
     content:"“";
     font-size:1.5em;
     font-family: "Times New Roman", serif;
     line-height:0;
 }
-blockquote p:after{
+blockquote:after{
     content:"”";
     font-size:1.5em;
     font-family: "Times New Roman", serif;
     line-height:0;
 }
-blockquote p{
-    color:#002f55;
-    margin-bottom:6px;
-    text-align:center;
-}
-blockquote .author{
+
+blockquote + p>cite{
+    background-color: #f2f0f0;
+    color:rgba(0,0,0,0.75);
     display:block;
     text-align:right;
-    margin-right:24px;
-    opacity:0.75;
+    padding-right:24px;
+    padding-bottom:12px;
+    margin-top:-26px;
     font-style:normal;
     font-weight: bold;
 }
-blockquote .author:before{
-    content:"— ";
-}
-blockquote .author-info{
-    font-size:0.75em;
-    opacity:1;
-    display:block;
-    text-align:right;
-    margin-right:24px;
-    font-style:normal;
-    line-height:0.75em;
+blockquote + p > cite:before{
+    content:"—";
 }
 .flexbox{
     margin: 0px auto;

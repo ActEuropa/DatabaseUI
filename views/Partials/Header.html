@@ -54,7 +54,9 @@
 }
 .navbtn:hover{ opacity:0.6;}
 .navbtn:active{ opacity:0.8; }
-    
+.dark{color:#002f55; opacity:0.75;}
+.dark:hover{opacity:0.85;}
+.dark:active{opacity:1;}
     .language {
         font-family: Montserrat, sans-serif;
         font-size: 0.9em;
@@ -83,7 +85,7 @@
         opacity:0;
         transition: ease-in-out 200ms;
     }
-    input, textarea {
+    .loginfield, textarea {
         background: #eaeaea;
         border-width: thin;
         border-color: #002f55;
@@ -96,17 +98,17 @@
         border-style: solid;
         transition: background 200ms, color 200ms, border-color 200ms;
 }
-input:hover,textarea:hover { background: white;}
-input:focus,textarea:focus { background: white; border-color: #C73E12;}
+.loginfield:hover,textarea:hover { background: white;}
+.loginfield:focus,textarea:focus { background: white; border-color: #C73E12;}
 
-input[type=submit], button {
+.loginbtn {
      background: #002f55;
      color: #DEB645;
      font-family: Montserrat, sans-serif;
      font-weight: bold;
 }
-input[type=submit],button:hover { background: #002f55;; color: #9f310e;}
-input[type=submit],button:focus { background: #002f55;; color: #DEB645;}
+.loginbtn:hover { background: #002f55;; color: #9f310e;}
+.loginbtn:active { background: #002f55;; color: #DEB645;}
 #BreakingNewsBanner{
     background-color:#c73e12;
     padding:12px;
@@ -175,13 +177,13 @@ input[type=submit],button:focus { background: #002f55;; color: #DEB645;}
         <div onclick="hidelogin()" style="position:fixed;left:0;right:0;top:0;bottom:0;"></div>
         <form id="loginflyout" action="/login" method="POST">
            <div>
-               <input type="text" name="username" placeholder="username"/>
+               <input class="loginfield" type="text" name="username" placeholder="username"/>
            </div>
            <div>
-               <input type="password" name="password" placeholder="password"/>
+               <input class="loginfield" type="password" name="password" placeholder="password"/>
            </div>
            <div>
-               <input type="submit" value="<%= __('Log in')%>"/>
+               <input class="loginbtn" type="submit" value="<%= __('Log in')%>"/>
            </div>
        </form>
     </div>

@@ -8,12 +8,25 @@
     <meta name="description" content="New blog post">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/common/css/normalize.css">
-    <link rel="stylesheet" href="/common/css/main.css">
     <link rel="stylesheet" href="/common/css/metricsgraphics.css">
     <link rel="stylesheet" href="/common/css/nice-select.css">
-    <link rel="stylesheet" href="/blog/blog.css">
-    <link rel="stylesheet" type="text/css" href="/content-tools/content-tools.min.css">
-    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" href="/common/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/blog/css/main.css">
+        <link rel="stylesheet" href="/blog/css/medium-editor.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-classapplier.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.8/handlebars.min.js"></script>
+    <script src="/blog/js/jquery-sortable-min.js"></script>
+    <script src="/blog/js/vendor/jquery.ui.widget.js"></script>
+    <script src="/blog/js/jquery.iframe-transport.js"></script>
+    <script src="/blog/js/jquery.fileupload.js"></script>
+    
+    <script src="/blog/js/medium-editor-plugins.js"></script>
+
+
     <% include ../../Partials/Favicons+Fonts.html %>
 </head>
 <body>
@@ -22,24 +35,98 @@
           <span class="sectionHeader"><%= __('NEW ARTICLE')%></span><br>
           <textarea class="js-auto-size" id="titleinput" placeholder="title" style="box-sizing: border-box;min-height:0px;overflow-x: hidden;"></textarea>
           <textarea class="js-auto-size" id="subtitleinput" placeholder="title" style="box-sizing: border-box;min-height: 0px;overflow-x: hidden;"></textarea>
-    <script src="/content-tools/content-tools.min.js"></script>
-    <script src="/content-tools/editor.js"></script>
-    <div data-editable data-name="main-content">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in magna nec arcu sollicitudin vestibulum id ac dui. Donec ut nibh et dolor facilisis faucibus a eget ex. Quisque vitae arcu turpis. Fusce ligula eros, efficitur ut vestibulum a, hendrerit vitae augue. Integer aliquam id nunc eu blandit. Vivamus et laoreet lacus. Praesent eu euismod sapien, vitae euismod lacus. Proin dignissim tempus dui consequat consectetur. Curabitur pretium turpis nec consequat accumsan. Morbi venenatis lacus at magna lacinia, non convallis orci tincidunt. Sed commodo rhoncus dolor, ut fringilla leo iaculis et. Nulla mauris ex, venenatis eget purus sit amet, sagittis rhoncus ex. Sed auctor accumsan finibus. In sollicitudin non ipsum eget pulvinar. 
-</p><p>Morbi vel porttitor enim. Ut porta ut sem nec pellentesque. Sed sit amet vulputate nisi. Nulla ut lacus facilisis, blandit ante ac, scelerisque mauris. Ut molestie at est nec pretium. Vestibulum blandit imperdiet arcu in tempor. Suspendisse vehicula enim nec ipsum maximus, sit amet malesuada ipsum rutrum. Ut varius, libero et accumsan commodo, felis diam mattis turpis, in sollicitudin dolor sapien sed dolor. Duis faucibus vestibulum tincidunt. Integer sit amet augue mi. 
-</p><p>Proin volutpat eu nisl a ultrices. Fusce lobortis porta elit vulputate viverra. Sed egestas fringilla odio nec egestas. Praesent eget rutrum eros, sit amet efficitur neque. Donec fermentum non eros non tempor. Nulla et enim eu magna euismod egestas. Nullam sagittis quis nibh ut tristique. Vivamus a lectus placerat, molestie dolor vitae, pretium orci. Cras quis mauris nec diam viverra dictum. Aenean sapien dolor, fermentum eget elementum a, condimentum eget massa. Ut sodales, metus ac blandit volutpat, enim libero eleifend eros, id ullamcorper tortor ante faucibus ligula. Nulla enim eros, sagittis ut nisi interdum, lobortis pulvinar lectus. Donec mollis erat et elementum malesuada. Donec nulla odio, eleifend id orci vel, suscipit eleifend ex. Quisque ligula elit, ultricies eu imperdiet ut, scelerisque non lectus. </p>
-</div>
+
+    <div class="editable"></div><br>
         </div>
         <% include ../../Partials/Footer.html %>
         <script>
-          var editor = ContentTools.EditorApp.get();
-          editor.init('*[data-editable]', 'data-name');
-          ContentTools.StylePalette.add([
-    new ContentTools.Style('Author', 'author', ['p'])
-]);
-autosize(document.querySelectorAll('textarea'));
+        rangy.init();
+        var HighlighterButton = MediumEditor.extensions.button.extend({
+            name: 'highlighter',
+            tagNames: ['mark'],
+            contentDefault: '\<b>H\</b>',
+            contentFA: '\<i class="fa fa-paint-brush">\</i>',
+            aria: 'Highlight',
+            action: 'highlight',
+            init: function () {
+                MediumEditor.extensions.button.prototype.init.call(this);
+                this.classApplier = rangy.createClassApplier('highlight', {
+                    elementTagName: 'mark',
+                    normalize: true
+                });
+            },
+            handleClick: function (event) {
+                this.classApplier.toggleSelection();
+                this.base.checkContentChanged();
+            }
+        });
+        var CiteButton = MediumEditor.extensions.button.extend({
+            name: 'cite',
+            tagNames: ['cite'],
+            contentFA: '\<i class="fa fa-book">\</i>',
+            aria: 'Cite',
+            action: 'cite',
+            init: function () {
+                MediumEditor.extensions.button.prototype.init.call(this);
+                this.classApplier = rangy.createClassApplier('cite', {
+                    elementTagName: 'cite',
+                    normalize: true
+                });
+            },
+            handleClick: function (event) {
+                this.classApplier.toggleSelection();
+                this.base.checkContentChanged();
+            }
+        });
+        var editor = new MediumEditor('.editable',
+        { buttonLabels:'fontawesome',
+            toolbar:{
+            buttons: ['bold', 'italic', 'underline', 'strikethrough', 'subscript','superscript','anchor',
+            'highlighter','quote','cite','pre','orderedlist','unorderedlist','justifyLeft','justifyCenter','justifyRight','justifyFull','h1','h2','h3','h4', 'removeFormat','html']
+          },
+          extensions: {
+            'highlighter': new HighlighterButton(),
+            'cite': new CiteButton()
+        }});
+        
+        $(function () {
+            $('.editable').mediumInsert({
+                editor: editor,
+                addons: {
+                    images: {
+                        uploadScript: null,
+                        deleteScript: null,
+                        captionPlaceholder: 'Type caption for image',
+                        styles: {
+                            slideshow: {
+                                label: '<span class="fa fa-play"></span>',
+                                added: function ($el) {
+                                    $el
+                                        .data('cycle-center-vert', true)
+                                        .cycle({
+                                            slides: 'figure'
+                                        });
+                                },
+                                removed: function ($el) {
+                                    $el.cycle('destroy');
+                                }
+                            }
+                        },
+                        actions: null
+                    }
+                }
+            });
+        });
 
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+        ga('create', 'UA-44692164-1', 'auto');
+        ga('send', 'pageview');
+
+        autosize(document.querySelectorAll('textarea'));
         </script>
 </body>
 </html>
