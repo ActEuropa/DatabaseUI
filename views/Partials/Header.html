@@ -85,7 +85,7 @@
         opacity:0;
         transition: ease-in-out 200ms;
     }
-    .loginfield, textarea {
+    .loginfield, textarea, .styledinput {
         background: #eaeaea;
         border-width: thin;
         border-color: #002f55;
@@ -94,12 +94,18 @@
         margin: 2px 0px;
         box-sizing: border-box;
         width: 100%;
-        
         border-style: solid;
         transition: background 200ms, color 200ms, border-color 200ms;
 }
-.loginfield:hover,textarea:hover { background: white;}
-.loginfield:focus,textarea:focus { background: white; border-color: #C73E12;}
+.styledinput{
+    width:auto;
+    padding:8px;
+}
+.styledinput.noborder{
+    border-width:0;
+}
+.loginfield:hover,textarea:hover,.styledinput:hover { background: white;}
+.loginfield:focus,textarea:focus,.styledinput:focus { background: white; border-color: #C73E12;}
 
 .loginbtn {
      background: #002f55;
@@ -121,6 +127,8 @@
     text-decoration: none;
     line-height: 2em;
     opacity:1;
+    z-index:1;
+    position:relative;
 }
 #br-banner:hover{
     background-color:#b33710;
@@ -208,7 +216,7 @@
 </nav>
 <a id="br-banner" style="display:none;">
     <div class="center">
-        <strong>BREAKING NEWS:&nbsp;&nbsp;&nbsp;</strong>
+        <strong><%= __('BREAKING NEWS')%>:&nbsp;&nbsp;&nbsp;</strong>
         <span id="br-span" style="opacity:0.75;"></span>
     </div>
 </a>
