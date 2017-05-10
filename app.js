@@ -29,9 +29,14 @@ blogInit(app, Poet, i18n);
 require("./app_database.js");
 databaseInit(app, i18n);
 
-//404 page
+///////////////////////////
+//       Error pages     //
+///////////////////////////
 app.use(function (req, res, next) {
-  res.status(404).render("Pages/Errors/404.ejs", { root : __dirname, lang: i18n.getLocale(req), headerIndex: -1})
+  res.status(404).render("Pages/Common/404.ejs", { root : __dirname, lang: i18n.getLocale(req), headerIndex: -1})
+})
+app.use(function (req, res, next) {
+  res.status(500).render("Pages/Common/500.ejs", { root : __dirname, lang: i18n.getLocale(req), headerIndex: -1})
 })
 
 ///////////////////////////

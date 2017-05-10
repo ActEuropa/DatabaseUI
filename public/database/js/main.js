@@ -27,12 +27,10 @@ jQuery(document).ready(function () {
     NewGraph({title: "NATIONAL DEBT", file:"../data/DEBT.tsv", column:"unit,sector,na_item,geo\\time",rows:["MIO_EUR,S13,GD,"+cc,"MIO_EUR,S13,GD,EA18"],id:"g-debt",type:"€",multiplier:1000000});
     NewGraph({title: "UNEMPLOYMENT", file:"../data/UNEMPLOYMENT.tsv", column:"age,unit,sex,geo\\time",rows:["TOTAL,PC_ACT,T,"+cc,"TOTAL,PC_ACT,T,EU28"],id:"g-unemployment",min:0,max:100,type:"%"});
     NewGraph({title: "POPULATION", file:"../data/POPULATION.tsv", column:"indic_de,geo\\time",rows:["JAN,"+cc],id:"g-population",type:""});
- 
     $('#sticky-list').stickySectionHeaders({
         stickyClass: 'sticky',
         headlineSelector: 'strong'
     });
-
 });
 NewVosem(Candidates);
 function NewGraph(dataset) {

@@ -4,6 +4,12 @@ blogInit = function (app, Poet, i18n) {
             postsPerPage: 5,
             metaFormat: 'json'
         });
+
+        poet.addTemplate({
+            ext: 'json',
+            fn : function (options) {}
+        }).init();
+
         poet.watch(function () {
             console.log("Reloaded poet")
         }).init();
@@ -28,5 +34,8 @@ blogInit = function (app, Poet, i18n) {
         });
         app.get("/manifesto", function (req, res, next) {
             res.render("Pages/Blog/Manifesto.ejs", { lang: i18n.getLocale(req), headerIndex: 1 });
+        });
+        app.get("/CreateError/500", function (req, res, next) {
+            res.render("Pages/Blog/Manifesto.ejs", { lang: i18n.getLocale(req) });
         });
     }

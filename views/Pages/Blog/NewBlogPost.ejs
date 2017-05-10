@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/common/css/nice-select.css">
     <link rel="stylesheet" href="/common/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/blog/css/main.css">
-        <link rel="stylesheet" href="/blog/css/medium-editor.css">
+    <link rel="stylesheet" href="/blog/css/medium-editor.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-core.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.3.0/rangy-classapplier.min.js"></script>
 
@@ -32,11 +32,17 @@
 <body>
         <% include ../../Partials/Header.html %>
         <div class="center">
+          <br>
           <span class="sectionHeader"><%= __('NEW ARTICLE')%></span><br>
-          <textarea class="js-auto-size" id="titleinput" placeholder="title" style="box-sizing: border-box;min-height:0px;overflow-x: hidden;"></textarea>
-          <textarea class="js-auto-size" id="subtitleinput" placeholder="title" style="box-sizing: border-box;min-height: 0px;overflow-x: hidden;"></textarea>
+          <p>Post URL:<textarea rows="1"></textarea></p>
+          <textarea rows="1" class="js-auto-size" id="titleinput" placeholder="title" style="box-sizing: border-box;min-height:0px;overflow-x: hidden;"></textarea>
+          <textarea rows="1" class="js-auto-size" id="subtitleinput" placeholder="title" style="box-sizing: border-box;min-height: 0px;overflow-x: hidden;"></textarea>
 
-    <div class="editable"></div><br>
+          <div class="editable"></div><br>
+          <div style="text-align:right;">
+          <button class="sendbutton">Save to drafts</button>
+          <button class="sendbutton">Publish</button>
+          </div>
         </div>
         <% include ../../Partials/Footer.html %>
         <script>
@@ -117,15 +123,6 @@
                 }
             });
         });
-
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-44692164-1', 'auto');
-        ga('send', 'pageview');
-
         autosize(document.querySelectorAll('textarea'));
         </script>
 </body>

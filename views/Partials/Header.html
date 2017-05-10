@@ -109,7 +109,7 @@
 }
 .loginbtn:hover { background: #002f55;; color: #9f310e;}
 .loginbtn:active { background: #002f55;; color: #DEB645;}
-#BreakingNewsBanner{
+#br-banner{
     background-color:#c73e12;
     padding:12px;
     color:white;
@@ -118,13 +118,15 @@
     text-align: center;
     transition:all 200ms;
     cursor: pointer;
+    text-decoration: none;
 }
-#BreakingNewsBanner:hover{
+#br-banner:hover{
     background-color:#b33710;
 }
-#BreakingNewsBanner:active{
+#br-banner:active{
     background-color:#9f310e;
 }
+
 </style>
 <script>
     function setCookie(cname, cvalue) { document.cookie = cname + "=" + cvalue + ";path=/"; }
@@ -200,9 +202,29 @@
         }
     </script>
 </nav>
-<div id="BreakingNewsBanner">
+<a id="br-banner" style="display:none;">
     <div class="center">
         <strong>BREAKING NEWS:&nbsp;&nbsp;&nbsp;</strong>
-        <span style="opacity:0.75;">Emmanuel Macron elected president of France</span>
+        <span id="br-span" style="opacity:0.75;"></span>
     </div>
-</div>
+</a>
+<script>
+    var xht=new XMLHttpRequest();
+xht.open("GET", '/common/Breaking-News.json');
+xht.onreadystatechange = function() {
+    if (xht.readyState == XMLHttpRequest.DONE) {
+        if(xht.status == 200){
+            var res = JSON.parse(xht.responseText);
+            if(res.show == true)
+            {
+                if(res["<%= lang %>"] != undefined){ document.getElementById("br-span").innerHTML = res["<%= lang %>"]; }
+                else{ document.getElementById("br-span").innerHTML = res.en; }
+                document.getElementById("br-banner").style.display = "unset";
+                document.getElementById("br-banner").setAttribute("href",res.url);
+            }
+            
+        }
+    }
+}
+xht.send(null);
+</script>
