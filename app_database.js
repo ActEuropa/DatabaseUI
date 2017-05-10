@@ -16,6 +16,10 @@ databaseInit = function (app, i18n) {
             res.render("Pages/Database/PoliticalParty.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
         })
 
+        app.get("/data/person/new", function (req, res, next) {
+            res.render("Pages/Database/NewData.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
+        })
+
         var getPersonData = function (name) {
             this.name = "test";
         }

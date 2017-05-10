@@ -354,7 +354,7 @@ li.s {
 }
 .rightColumn_bottom{
     background-color:#F2F0F0;
-    width:100%;
+   /* width:100%;*/
     margin-left:-24px;
     padding-top:12px;
     padding-left:24px;
@@ -366,6 +366,9 @@ li.s {
     position: relative;
     overflow: hidden;
     box-shadow: 0 0px 20px 10px rgba(0,0,0,0.3);
+}
+.profile_img_wrap.no-shadow{
+    box-shadow: unset;
 }
 .profile_img {
   position:absolute; 

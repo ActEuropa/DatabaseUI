@@ -8,6 +8,7 @@
   outline: none;
   padding-right: 24px;
   position: relative;
+  z-index:10;
   text-align: left !important;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -102,9 +103,14 @@
       flex-flow: column wrap;
       align-content: stretch;
       max-height:256px;
-      width:512px;
+      width:548px;
       left:unset;
       right:0;
+      
+      }
+      .nice-select.wide.left .list  {
+        right:unset;
+        left:0;
       }
       @media screen and (max-width: 600px){
         .nice-select.wide .list {width:300px;max-height:512px;}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ActEuropa</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/common/css/normalize.css">
+    <link rel="stylesheet" href="/database/css/main.css">
+    <link rel="stylesheet" href="/common/css/metricsgraphics.css">
+    <link rel="stylesheet" href="/common/css/nice-select.css">
+    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+    <% include ../../Partials/Favicons+Fonts.html %>
+</head>
+
+<body>
+    <% include ../../Partials/Header.html %>
+        <style>
+            .transparent {
+                background-color: transparent;
+            }
+
+            .block {
+                background-color: rgba(255, 255, 255, 0.75);
+                padding: 18px;
+                margin-top: 12px;
+                border: solid rgba(0, 0, 0, 0.36) 1px;
+            }
+
+            .block:hover {
+                border: solid rgba(0, 0, 0, 0.5) 1px;
+            }
+        </style>
+        <div class="center">
+            <h1 style="font-family:Montserrat, sans-serif;color:#002f55;">Create new person</h1>
+            <span class="sectionHeader">Personal details</span><br>
+                <strong>Profile photo</strong>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="profile_img_wrap no-shadow">
+                                <img class="profile_img" src="/" style="background-color:#aeaeae;">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="circular--portrait" style="width:128px;height:128px;margin-left:24px;background-color:#aeaeae;">
+                                <img src="/" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <button>Upload image</button><br><br>
+                <table style="width:100%;">
+                    <tr>
+                        <td><strong>Full name:&nbsp;&nbsp;&nbsp;</strong></td>
+                        <td style="width:75%;"><textarea rows="1"></textarea><br></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biography (short):&nbsp;&nbsp;&nbsp;</strong></td>
+                        <td style="width:75%;"><textarea rows="2" data-localized="true"></textarea><br></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Biography (long):&nbsp;&nbsp;&nbsp;</strong></td>
+                        <td style="width:75%;"><textarea rows="4" data-localized="true"></textarea><br></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Birth date:&nbsp;&nbsp;&nbsp;</strong></td>
+                        <td><input type="date" class="styledinput noborder" placeholder="dd/mm/yyyy"><br></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Death date:&nbsp;&nbsp;</strong></td>
+                        <td><input type="date" class="styledinput noborder" placeholder="dd/mm/yyyy"><br></td>
+                    </tr>
+                </table>
+                <strong>Nationalities:&nbsp;&nbsp;</strong>
+                <select class="nice-select wide left">
+                <option><%= __('Austria') %></option>
+                <option><%= __('Belgium') %></option>
+                <option><%= __('Bulgaria') %></option>
+                <option><%= __('Croatia') %></option>
+                <option><%= __('Cyprus') %></option>
+                <option><%= __('Czech Republic') %></option>
+                <option><%= __('Denmark') %></option>
+                <option><%= __('Estnoia') %></option>
+                <option><%= __('Finland') %></option>
+                <option><%= __('France') %></option>
+                <option><%= __('Germany') %></option>
+                <option><%= __('Greece') %></option>
+                <option><%= __('Hungary') %></option>
+                <option><%= __('Ireland') %></option>
+                <option><%= __('Italy') %></option>
+                <option><%= __('Latvia') %></option>
+                <option><%= __('Lithuania') %></option>
+                <option><%= __('Luxembourg') %></option>
+                <option><%= __('Malta') %></option>
+                <option><%= __('Netherlands') %></option>
+                <option><%= __('Poland') %></option>
+                <option><%= __('Portugal') %></option>
+                <option><%= __('Romania') %></option>
+                <option><%= __('Slovakia') %></option>
+                <option><%= __('Slovenia') %></option>
+                <option><%= __('Spain') %></option>
+                <option><%= __('Sweden') %></option>
+                <option><%= __('United Kingdom') %></option>
+            </select>
+                <button> + Add another</button><br>
+                <br>
+                <hr>
+                <span class="sectionHeader">Positions</span><br>
+                <div class="block">
+                    <textarea class="transparent" placeholder="Title*" rows="1"></textarea>
+                    <textarea class="transparent" placeholder="Description*" rows="1"></textarea>
+                    <table>
+                        <tr>
+                            <td><strong>From:&nbsp;&nbsp;&nbsp;</strong></td>
+                            <td><input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy"><br></td>
+                        </tr>
+                        <tr>
+                            <td><strong>To:&nbsp;&nbsp;</strong></td>
+                            <td><input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy"><br></td>
+                        </tr>
+                    </table>
+                    <textarea class="transparent" placeholder="Parlement" rows="1"></textarea>
+                    <textarea class="transparent" placeholder="Parlement seat number" rows="1"></textarea>
+                </div>
+                <button> + Add another</button><br>
+                <br>
+                <hr>
+                <span class="sectionHeader">Political memberships</span><br>
+                <div class="block">
+                    <textarea class="transparent" placeholder="Political party*" rows="1"></textarea>
+                    <table>
+                        <tr>
+                            <td><strong>From:&nbsp;&nbsp;&nbsp;</strong></td>
+                            <td><input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy"><br></td>
+                        </tr>
+                        <tr>
+                            <td><strong>To:&nbsp;&nbsp;</strong></td>
+                            <td><input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy"><br></td>
+                        </tr>
+                    </table>
+                    <textarea class="transparent" placeholder="Role within the party" rows="1"></textarea>
+                </div>
+                <button> + Add another</button><br>
+                <br>
+                <hr>
+                <span class="sectionHeader">Political positioning</span><br>
+                <span style="position:relative;float:left;">Economically interventionist</span>
+                <span style="position:relative;float:right;">Economically liberal</span>
+                <input type="range" style="width:100%;" min="0" max="100" value="50">
+                <span style="position:relative;float:left;">Socially conservative</span>
+                <span style="position:relative;float:right;">Socially progressive</span>
+                <input type="range" style="width:100%;" min="0" max="100" value="50">
+                <span style="position:relative;float:left;">Anti-EU</span>
+                <span style="position:relative;float:right;">Pro-EU</span>
+                <input type="range" style="width:100%;" min="0" max="100" value="50">
+                <br>
+                <hr>
+                <span class="sectionHeader">Social media</span><br>
+                <table style="width:100%;">
+                    <tr>
+                        <td>Wikipedia:</td>
+                        <td>
+                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Facebook:</td>
+                        <td>
+                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Twitter:</td>
+                        <td>
+                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>YouTube:</td>
+                        <td>
+                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Instagram:</td>
+                        <td>
+                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Medium:</td>
+                        <td>
+                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <hr>
+                <span class="sectionHeader">Notable quotes</span><br>
+                <div class="block">
+                    <textarea rows="1" class="transparent" placeholder="Quote (without quotation marks)"></textarea>
+                    <textarea rows="1" class="transparent" placeholder="Location"></textarea>
+                    <textarea rows="1" class="transparent" placeholder="Context"></textarea>
+                    <strong>Date:&nbsp;&nbsp;</strong>
+                    <input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy"><br>
+
+                    <strong>Sources:</strong>
+                    <input type="url" class="styledinput transparent" style="width:100%;" placeholder="URL">
+                    <button> + Add another</button><br>
+                </div>
+                <button> + Add another</button><br>
+            </div>
+            <br><br>
+            <% include ../../Partials/Footer.html %>
+</body>
+
+</html>
