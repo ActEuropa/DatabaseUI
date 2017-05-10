@@ -33,15 +33,15 @@ databaseInit(app, i18n);
 //       Error pages     //
 ///////////////////////////
 app.use(function (req, res, next) {
-  res.status(404).render("Pages/Common/404.ejs", { root : __dirname, lang: i18n.getLocale(req), headerIndex: -1})
-})
+  res.status(404).render("Pages/Common/404.ejs", { root : __dirname, lang: i18n.getLocale(req), headerIndex: -1});
+});
 app.use(function (req, res, next) {
-  res.status(500).render("Pages/Common/500.ejs", { root : __dirname, lang: i18n.getLocale(req), headerIndex: -1})
+  res.status(500).render("Pages/Common/500.ejs", { root : __dirname, lang: i18n.getLocale(req), headerIndex: -1});
 })
 
 ///////////////////////////
 //       Run server      //
 ///////////////////////////
 app.listen((process.env.PORT || 80)), function () {
-  console.log('ActEuropa database listening on port 80!')
+  console.log('ActEuropa database listening on port 80!');
 }
