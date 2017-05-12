@@ -601,3 +601,22 @@ blockquote + p > cite:before{
 .smicon{transition:all 200ms;}
 .smicon:hover{opacity:0.75;}
 .smicon:active{opacity:1;}
+  .sendbutton{
+    background-color: transparent;
+    border: none;
+    border-right: 1px solid #194366;
+    border-bottom:1px solid #194366;
+    box-sizing: border-box;
+    background-color: #002f55;
+    color: #deb645;
+    height: 48px;
+    min-width: 60px;
+    margin-bottom:16px;
+    font-family:Montserrat,sans-serif;
+    padding:0 24px;
+        -webkit-transition: background-color .2s ease-in, color .2s ease-in;
+            transition: background-color .2s ease-in, color .2s ease-in;
+  }
+      .medium-editor-toolbar li button:hover, .sendbutton:hover {
+      background-color: #00203b;
+      color: #deb645; 

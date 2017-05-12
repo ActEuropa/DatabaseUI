@@ -76,12 +76,3 @@
 
 .medium-editor-placeholder:after {
   color: #194366; }
-
-  .sendbutton{
-    background-color: #002f55;
-    color: #deb645;
-    height: 48px;
-    margin-bottom:16px;
-    font-family:Montserrat,sans-serif;
-    padding:0 24px;
-  }

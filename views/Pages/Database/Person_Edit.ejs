@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/common/css/metricsgraphics.css">
     <link rel="stylesheet" href="/common/css/nice-select.css">
     <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <% include ../../Partials/Favicons+Fonts.html %>
 </head>
 
@@ -37,75 +38,77 @@
             <h1 style="font-family:Montserrat, sans-serif;color:#002f55;">Create new person</h1>
             <span class="sectionHeader">Personal details</span><br>
                 <strong>Profile photo</strong>
-                <table>
+                <table id="previews">
                     <tr>
                         <td>
                             <div class="profile_img_wrap no-shadow">
-                                <img class="profile_img" src="/" style="background-color:#aeaeae;">
+                                <img id="rectangle-preview" class="profile_img" src="/" style="background-color:#aeaeae;">
                             </div>
                         </td>
                         <td>
                             <div class="circular--portrait" style="width:128px;height:128px;margin-left:24px;background-color:#aeaeae;">
-                                <img src="/" />
+                                <img id="circle-preview" src="/" />
                             </div>
                         </td>
                     </tr>
                 </table>
-                <button>Upload image</button><br><br>
+                Profile image: <input id="profile-img-input" type="file">&nbsp;&nbsp;&nbsp;<span id="preview-size" style="font-size:0.8em;opacity:0.5;"></span><br><br>
                 <table style="width:100%;">
                     <tr>
                         <td><strong>Full name:&nbsp;&nbsp;&nbsp;</strong></td>
-                        <td style="width:75%;"><textarea rows="1"></textarea><br></td>
+                        <td style="width:75%;"><textarea id="fullname" rows="1"></textarea><br></td>
                     </tr>
                     <tr>
                         <td><strong>Biography (short):&nbsp;&nbsp;&nbsp;</strong></td>
-                        <td style="width:75%;"><textarea rows="2" data-localized="true"></textarea><br></td>
+                        <td style="width:75%;"><textarea id="bio_short" rows="2" data-localized="true"></textarea><br></td>
                     </tr>
                     <tr>
                         <td><strong>Biography (long):&nbsp;&nbsp;&nbsp;</strong></td>
-                        <td style="width:75%;"><textarea rows="4" data-localized="true"></textarea><br></td>
+                        <td style="width:75%;"><textarea id="bio_long" rows="4" data-localized="true"></textarea><br></td>
                     </tr>
                     <tr>
                         <td><strong>Birth date:&nbsp;&nbsp;&nbsp;</strong></td>
-                        <td><input type="date" class="styledinput noborder" placeholder="dd/mm/yyyy"><br></td>
+                        <td><input id="birth_date" type="date" class="styledinput noborder" placeholder="dd/mm/yyyy"><br></td>
                     </tr>
                     <tr>
                         <td><strong>Death date:&nbsp;&nbsp;</strong></td>
-                        <td><input type="date" class="styledinput noborder" placeholder="dd/mm/yyyy"><br></td>
+                        <td><input id="death_date" type="date" class="styledinput noborder" placeholder="dd/mm/yyyy"><br></td>
                     </tr>
                 </table>
                 <strong>Nationalities:&nbsp;&nbsp;</strong>
+                <span id="nationalities">
                 <select class="nice-select wide left">
-                <option><%= __('Austria') %></option>
-                <option><%= __('Belgium') %></option>
-                <option><%= __('Bulgaria') %></option>
-                <option><%= __('Croatia') %></option>
-                <option><%= __('Cyprus') %></option>
-                <option><%= __('Czech Republic') %></option>
-                <option><%= __('Denmark') %></option>
-                <option><%= __('Estnoia') %></option>
-                <option><%= __('Finland') %></option>
-                <option><%= __('France') %></option>
-                <option><%= __('Germany') %></option>
-                <option><%= __('Greece') %></option>
-                <option><%= __('Hungary') %></option>
-                <option><%= __('Ireland') %></option>
-                <option><%= __('Italy') %></option>
-                <option><%= __('Latvia') %></option>
-                <option><%= __('Lithuania') %></option>
-                <option><%= __('Luxembourg') %></option>
-                <option><%= __('Malta') %></option>
-                <option><%= __('Netherlands') %></option>
-                <option><%= __('Poland') %></option>
-                <option><%= __('Portugal') %></option>
-                <option><%= __('Romania') %></option>
-                <option><%= __('Slovakia') %></option>
-                <option><%= __('Slovenia') %></option>
-                <option><%= __('Spain') %></option>
-                <option><%= __('Sweden') %></option>
-                <option><%= __('United Kingdom') %></option>
-            </select>
-                <button> + Add another</button><br>
+                    <option><%= __('Austria') %></option>
+                    <option><%= __('Belgium') %></option>
+                    <option><%= __('Bulgaria') %></option>
+                    <option><%= __('Croatia') %></option>
+                    <option><%= __('Cyprus') %></option>
+                    <option><%= __('Czech Republic') %></option>
+                    <option><%= __('Denmark') %></option>
+                    <option><%= __('Estnoia') %></option>
+                    <option><%= __('Finland') %></option>
+                    <option><%= __('France') %></option>
+                    <option><%= __('Germany') %></option>
+                    <option><%= __('Greece') %></option>
+                    <option><%= __('Hungary') %></option>
+                    <option><%= __('Ireland') %></option>
+                    <option><%= __('Italy') %></option>
+                    <option><%= __('Latvia') %></option>
+                    <option><%= __('Lithuania') %></option>
+                    <option><%= __('Luxembourg') %></option>
+                    <option><%= __('Malta') %></option>
+                    <option><%= __('Netherlands') %></option>
+                    <option><%= __('Poland') %></option>
+                    <option><%= __('Portugal') %></option>
+                    <option><%= __('Romania') %></option>
+                    <option><%= __('Slovakia') %></option>
+                    <option><%= __('Slovenia') %></option>
+                    <option><%= __('Spain') %></option>
+                    <option><%= __('Sweden') %></option>
+                    <option><%= __('United Kingdom') %></option>
+                </select>
+                </span>
+                <button id="add-nationality"> + Add</button><button id="remove-nationality" style="display:none;"> - Remove</button><br>
                 <br>
                 <hr>
                 <span class="sectionHeader">Positions</span><br>
@@ -212,9 +215,28 @@
                     <button> + Add another</button><br>
                 </div>
                 <button> + Add another</button><br>
+                <button id="send" class="sendbutton" style="float:right;">UPLOAD TO DATABASE</button>
             </div>
             <br><br>
             <% include ../../Partials/Footer.html %>
+            <script>
+                $("#profile-img-input").change(function(){
+                    var files = $(this)[0].files;
+                    if (files.length > 0) {
+                        var file = files[0]
+                    $('#rectangle-preview').attr('src', window.URL.createObjectURL(file));
+                    $('#circle-preview').attr('src', window.URL.createObjectURL(file));
+                    $('#preview-size').html(file.size +' bytes');
+                    }})
+                $("#add-nationality").click(function(e){ 
+                    console.log("ADD STUFF")
+                })
+                $("#remove-nationality").click(function(e){ $(this).before($(this).prev().clone()) })
+
+                $("#send").click(function(e){
+
+                })
+            </script>
 </body>
 
 </html>

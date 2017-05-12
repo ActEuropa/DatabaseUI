@@ -10,7 +10,7 @@ var app = express()
 
 app.use(cookieParser());
 app.use(express.static('public'));
-i18n.configure({ locales:["en","cr","cs","da","nl","en","et","fi","fr","bg","de","el","hu","ga","it","lv","lt","mt","pl","pt","ro","sk","sl","es","sv"], 
+i18n.configure({ locales:["en","cr","cs","da","nl","et","fi","fr","bg","de","el","hu","ga","it","lv","lt","mt","pl","pt","ro","sk","sl","es","sv"], 
 directory: __dirname + '/locales', 
 defaultLocale: 'en', 
 cookie: 'lang',
