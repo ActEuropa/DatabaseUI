@@ -69,6 +69,7 @@ databaseInit = function (app, i18n) {
         major: Boolean,
         img_profile: String,
         img_cover: String,
+        socialmedia_urls: [String],
         tags: Schema.Types.ObjectId,
         official_positioning:{
             SocialFreedom: Number,
@@ -117,6 +118,7 @@ databaseInit = function (app, i18n) {
         bio_long: {type: String, intl:true},
         governments:[{ //Array for the unlikely event in which a european country changes constitution
             established: Date,
+            socialmedia_urls: [String],
             members:[{
                 name: String,
                 id: String, //if ever the person exists in the database
