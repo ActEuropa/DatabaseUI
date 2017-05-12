@@ -44,7 +44,8 @@ databaseInit = function (app, i18n) {
             location: String,
             date: String,
             source_urls: [String],
-            context: String
+            context: String,
+            score: Number //For future use
         }],
         positioning:{
             SocialFreedom: Number,
@@ -54,17 +55,21 @@ databaseInit = function (app, i18n) {
         }
     });
     var tagSchema = new Schema({
-        name: []
+        text: {type: String, intl:true},
+        description: {type: String, intl:true}
     })
     var partySchema = new Schema({
-        name: String,
+        name: {type: String, intl:true},
         abreviation: String,
-        bio_short: String,
-        bio_long: String,
+        bio_short: {type: String, intl:true},
+        bio_long: {type: String, intl:true},
         dateofbirth: Date,
         dateofdeath: Date,
         nationality: String,
         major: Boolean,
+        img_profile: String,
+        img_cover: String,
+        tags: Schema.Types.ObjectId,
         official_positioning:{
             SocialFreedom: Number,
             EconomicFreedom: Number,
@@ -78,7 +83,53 @@ databaseInit = function (app, i18n) {
             Authoritarianism: Number
         }
     });
-
+    var parlementSchema = new Schema({
+        name: {type: String, intl:true},
+        type: Number,
+        bio_short: {type: String, intl:true},
+        bio_long: {type: String, intl:true},
+        country: String,
+        location: String,
+        img_inside: String,
+        img_outside: String,
+        svg: String //The seat numbers should be embeded in the SVG
+    });
+    var electionSchema = new Schema({
+        name: {type: String, intl:true},
+        candidates: [Schema.Types.ObjectId],
+        country: String,
+        from: Date,
+        to: Date,
+        published: Date,
+        type: Number,
+        polls:[{
+            institute_name: {type: String, intl:true},
+            institute_url: String,
+            summary: {type: String, intl:true},
+            method_url: String,
+            values:[{candidate: [Schema.Types.ObjectId], value: Number}]
+        }]
+    });
+    var countrySchema = new Schema({
+        iso_3166_2: String,
+        name: {type: String, intl:true},
+        bio_short: {type: String, intl:true},
+        bio_long: {type: String, intl:true},
+        governments:[{ //Array for the unlikely event in which a european country changes constitution
+            established: Date,
+            members:[{
+                name: String,
+                id: String, //if ever the person exists in the database
+                role: {type: String, intl:true},
+                type: Number,
+                hierarchy: String, //the direct hierarchy of the person
+                from: Date,
+                to: Date
+           }]
+        }]
+        //The rest of the data we've got about countries, like flags or statistics don't need to be linked to the database.
+        //as they can just exist as plain files.
+    });
     ///////////////////////////
     //  Rendering functions  //
     ///////////////////////////
