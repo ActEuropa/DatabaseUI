@@ -103,7 +103,7 @@ databaseInit = function (app, i18n) {
         res.render("Pages/Database/Person_Edit.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
     })
     app.get("/data/person/new/Test", function (req, res, next) {
-        createLoremIpsum();
+        createTestPerson();
     })
 
     function createTestPerson(){
