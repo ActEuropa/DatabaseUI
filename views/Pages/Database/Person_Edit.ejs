@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/database/css/main.css">
     <link rel="stylesheet" href="/common/css/metricsgraphics.css">
     <link rel="stylesheet" href="/common/css/nice-select.css">
-    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <% include ../../Partials/Favicons+Fonts.html %>
 </head>
@@ -112,7 +111,8 @@
                 <br>
                 <hr>
                 <span class="sectionHeader">Positions</span><br>
-                <div class="block">
+                <div id="positions">
+                <div class="block block-position">
                     <textarea class="transparent" placeholder="Title*" rows="1"></textarea>
                     <textarea class="transparent" placeholder="Description*" rows="1"></textarea>
                     <table>
@@ -128,11 +128,13 @@
                     <textarea class="transparent" placeholder="Parlement" rows="1"></textarea>
                     <textarea class="transparent" placeholder="Parlement seat number" rows="1"></textarea>
                 </div>
-                <button> + Add another</button><br>
+                </div>
+                <button id="add-position"> + Add another</button><button id="remove-position" style="display:none;"> - Remove</button><br>
                 <br>
                 <hr>
                 <span class="sectionHeader">Political memberships</span><br>
-                <div class="block">
+                <div id="memberships">
+                <div class="block block-membership">
                     <textarea class="transparent" placeholder="Political party*" rows="1"></textarea>
                     <table>
                         <tr>
@@ -146,7 +148,8 @@
                     </table>
                     <textarea class="transparent" placeholder="Role within the party" rows="1"></textarea>
                 </div>
-                <button> + Add another</button><br>
+                </div>
+                <button id="add-membership"> + Add another</button><button id="remove-membership" style="display:none;"> - Remove</button><br>
                 <br>
                 <hr>
                 <span class="sectionHeader">Political positioning</span><br>
@@ -162,44 +165,7 @@
                 <br>
                 <hr>
                 <span class="sectionHeader">Social media</span><br>
-                <table style="width:100%;">
-                    <tr>
-                        <td>Wikipedia:</td>
-                        <td>
-                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Facebook:</td>
-                        <td>
-                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Twitter:</td>
-                        <td>
-                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>YouTube:</td>
-                        <td>
-                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Instagram:</td>
-                        <td>
-                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Medium:</td>
-                        <td>
-                            <input type="url" class="styledinput" style="width:100%;" placeholder="URL">
-                        </td>
-                    </tr>
-                </table>
+
                 <br>
                 <hr>
                 <span class="sectionHeader">Notable quotes</span><br>
@@ -219,24 +185,7 @@
             </div>
             <br><br>
             <% include ../../Partials/Footer.html %>
-            <script>
-                $("#profile-img-input").change(function(){
-                    var files = $(this)[0].files;
-                    if (files.length > 0) {
-                        var file = files[0]
-                    $('#rectangle-preview').attr('src', window.URL.createObjectURL(file));
-                    $('#circle-preview').attr('src', window.URL.createObjectURL(file));
-                    $('#preview-size').html(file.size +' bytes');
-                    }})
-                $("#add-nationality").click(function(e){ 
-                    console.log("ADD STUFF")
-                })
-                $("#remove-nationality").click(function(e){ $(this).before($(this).prev().clone()) })
-
-                $("#send").click(function(e){
-
-                })
-            </script>
+            <script src="/database/js/Manage.js"></script>
 </body>
 
 </html>

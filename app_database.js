@@ -159,7 +159,7 @@ databaseInit = function (app, i18n) {
         createTestPerson();
     })
 
-    function createTestPerson(){
+    function AddToDatabase(json){
         var Person = mongoose.model('Person', personSchema);
         var p = new Person;
         p.name = "Lorem Ipsum"
