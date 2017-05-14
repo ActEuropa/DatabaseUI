@@ -48,10 +48,10 @@ databaseInit = function (app, i18n) {
             score: Number //For future use
         }],
         positioning:{
-            SocialFreedom: Number,
-            EconomicFreedom: Number,
-            Europeanism: Number,
-            Authoritarianism: Number
+            soc: Number,
+            eco: Number,
+            eu: Number,
+            auth: Number
         }
     });
     var tagSchema = new Schema({

@@ -106,11 +106,13 @@
       width:548px;
       left:unset;
       right:0;
-      
       }
       .nice-select.wide.left .list  {
         right:unset;
         left:0;
+      }
+      .nice-select.wide.extra .list  {
+        max-height:300px;
       }
       @media screen and (max-width: 600px){
         .nice-select.wide .list {width:300px;max-height:512px;}
