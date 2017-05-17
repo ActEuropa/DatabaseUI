@@ -57,45 +57,46 @@
 .dark{color:#002f55; opacity:0.75;}
 .dark:hover{opacity:0.85;}
 .dark:active{opacity:1;}
-    .language {
-        font-family: Montserrat, sans-serif;
-        font-size: 0.9em;
-        opacity: 1;
-        color: white;
-        transition: 0.3s;
-    }
-    
-    #loginflyout {
-        background:#eaeaea;
-        padding:24px;
-        border-radius:4px;
-        border:#C73E12 solid 1px;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.95,0.95);
-        min-width:248px;
-        transition: ease-in-out 200ms;
-    }
-    #loginWrapper{
-        background-color: rgba(0,0,0,0.75);
-        position:fixed;
-        top:0;right:0;left:0;bottom:0;
-        visibility: hidden;
-        opacity:0;
-        transition: ease-in-out 200ms;
-    }
-    .loginfield, textarea, .styledinput {
-        background: #eaeaea;
-        border-width: thin;
-        border-color: #002f55;
-        font-family: Vollkorn, serif;
-        padding: 12px;
-        margin: 2px 0px;
-        box-sizing: border-box;
-        width: 100%;
-        border-style: solid;
-        transition: background 200ms, color 200ms, border-color 200ms;
+
+.language {
+    font-family: Montserrat, sans-serif;
+    font-size: 0.9em;
+    opacity: 1;
+    color:white;
+    background-color:#002f55;
+}
+
+#loginflyout {
+    background:#eaeaea;
+    padding:24px;
+    border-radius:4px;
+    border:#C73E12 solid 1px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95,0.95);
+    min-width:248px;
+    transition: ease-in-out 200ms;
+}
+#loginWrapper{
+    background-color: rgba(0,0,0,0.75);
+    position:fixed;
+    top:0;right:0;left:0;bottom:0;
+    visibility: hidden;
+    opacity:0;
+    transition: ease-in-out 200ms;
+}
+.loginfield, textarea, .styledinput {
+    background-color: #eaeaea;
+    border-width: thin;
+    border-color: #002f55;
+    font-family: Vollkorn, serif;
+    padding: 12px;
+    margin: 2px 0px;
+    box-sizing: border-box;
+    width: 100%;
+    border-style: solid;
+    transition: background-color 200ms, color 200ms, border-color 200ms;
 }
 .styledinput{
     width:auto;
@@ -159,8 +160,7 @@
                 <%= __('Log in')%>
             </a>
         </div>
-        <select style="background-color:transparent;text-align:right;color:white;font-size:0.9em;margin:0;padding:0;" class="language"
-            onchange="setCookie('lang',this.options[this.selectedIndex].value);location.reload();">
+        <select class="language" onchange="setCookie('lang',this.options[this.selectedIndex].value);location.reload();">
                 <option value="bg" <%if(lang=='bg'){%>selected<%}%>>български</option>
                 <option value="cr" <%if(lang=='cr'){%>selected<%}%>>hrvatski</option>
                 <option value="cs" <%if(lang=='cs'){%>selected<%}%>>Čeština</option>

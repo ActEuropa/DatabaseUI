@@ -21,7 +21,6 @@ var Candidates = [p1, p2, p3, p4];
 
 //Sticky headers + Graphs:
 jQuery(document).ready(function () {
-    $('select').niceSelect();
     var cc = "ES";
     NewGraph({title: "GDP", file:"../data/GDP.tsv", column:"unit,s_adj,na_item,geo\\time",rows:["CP_MNAC,NSA,B1GQ,"+cc],id:"g-gdp",multiplier:1000000,type:"€"});
     NewGraph({title: "NATIONAL DEBT", file:"../data/DEBT.tsv", column:"unit,sector,na_item,geo\\time",rows:["MIO_EUR,S13,GD,"+cc,"MIO_EUR,S13,GD,EA18"],id:"g-debt",type:"€",multiplier:1000000});

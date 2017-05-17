@@ -1,3 +1,14 @@
+$('.input-tags').selectize({
+    delimiter: ',',
+    persist: false,
+    create: function(input) {
+        return {
+            value: input,
+            text: input
+        }
+    }
+});
+
 $("#profile-img-input").change(function () {
     var files = $(this)[0].files;
     if (files.length > 0) {

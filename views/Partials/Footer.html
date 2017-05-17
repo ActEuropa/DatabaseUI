@@ -1,37 +1,27 @@
 <nav id="navcont">
-    <table>
-        <div id="logo" style="text-align:left;font-size:24px;display:flex;">
-            <div>
-                <span style="color: #C73E12;">ACT</span><span>EUROPA</span><span style="color: #C73E12;"></span>
-            </div>
-            <div>
-                <div style="margin-left:24px;">
+    <span id="logo" style="font-size:24px"><span style="color: #C73E12;">ACT</span><span>EUROPA</span><span style="color: #C73E12;"></span></span>
+    <span style="margin-left:24px;">
                     <a class="smicon" target="_blank" title="Facebook" href="https://www.facebook.com/ActEuropa-1833768660239476"><img src="/common/img/sm-light/social_fb.svg"></a>
                     <a class="smicon" target="_blank" title="Twitter" href="https://twitter.com/ActEuropa"><img src="/common/img/sm-light/social_tw.svg"></a>
                     <a class="smicon" target="_blank" title="YouTube" href="https://www.youtube.com/user/acteuropa"><img src="/common/img/sm-light/social_yt.svg"></a>
                     <a class="smicon" target="_blank" title="Reddit" href="https://www.reddit.com/r/acteuropa/"><img src="/common/img/sm-light/social_re.svg"></a>
                     <a class="smicon" target="_blank" title="Discord" href="https://discord.gg/A2WtqVn"><img src="/common/img/sm-light/social_di.svg"></a>
-                </div>
-            </div>
-            <div style="flex-grow:3;">
-                <div style="float:right;line-height:16px;font-size:14px;font-weight:400;text-align:right;">
-                    <p><a class="navbtn" style="font-size:14px;">Contact us</a></p>
-                    <p><a class="navbtn" style="font-size:14px;">Admin panel</a></p>
-                </div>
-            </div>
+                </span>
+        <div style="float:right;font-size:14px;font-weight:400;text-align:right;">
+            <a class="navbtn" style="font-size:14px;">Admin panel</a>
         </div>
-    </table>
-    <script src="/common/js/plugins.js"></script>
-    <script>
-jQuery(document).ready(function () {
-      $('select').selectize({
-          onDropdownOpen: function (dd) {
-              console.log(this);
-              dd.stop().hide().slideDown({ duration: 400, easing: "easeOutQuint"});},
-          onDropdownClose: function (dd) {
-              console.log(this);
-              dd.stop().show().slideUp({ duration: 400, easing: "easeOutQuint"});}
-      });
-    });
-    </script>
 </nav>
+<script src="/common/js/plugins.js"></script>
+<script>
+    jQuery(document).ready(function () {
+        $('select').selectize({
+            onDropdownOpen: function (dd) {
+                dd.stop(true, true).hide().slideDown({ duration: 400, easing: "easeOutQuint" });
+            },
+            onDropdownClose: function (dd) {
+                dd.stop(true, true).show().fadeOut({ duration: 400, queue: false }).slideUp({ duration: 400, easing: "easeOutQuint" });
+            }
+        });
+    });
+
+</script>

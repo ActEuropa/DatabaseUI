@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="/database/css/main.css">
     <link rel="stylesheet" href="/common/css/metricsgraphics.css">
     <link rel="stylesheet" href="/common/font-awesome/css/font-awesome.min.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <% include ../../Partials/Favicons+Fonts.html %>
 </head>
 
@@ -150,7 +148,8 @@
                 <strong>Nationalities:&nbsp;&nbsp;</strong>
                 <span id="nationalities">
                 <div style="display:inline-block;">
-                <select class="nice-select wide extra left">
+                <input type="text" class="input-tags">
+                <!--select class="input-tags">
                     <option value="at"><%= __('Austria') %></option>
                     <option value="be"><%= __('Belgium') %></option>
                     <option value="bg"><%= __('Bulgaria') %></option>
@@ -179,7 +178,7 @@
                     <option value="es"><%= __('Spain') %></option>
                     <option value="se"><%= __('Sweden') %></option>
                     <option value="en"><%= __('United Kingdom') %></option>
-                </select>
+                </select-->
                 </div>
                 </span>
                 <button id="add-nationality" class="arbtn"><i class="fa fa-plus"></i></button><button id="remove-nationality" class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
