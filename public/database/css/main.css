@@ -346,9 +346,6 @@ li.s {
     padding-top:50px;
     color:white;
 }
-.rightColumn_top span{
-    opacity:0.6;
-}
 .rightColumn_top strong{
     font-weight: 400;
 }
@@ -507,4 +504,14 @@ opacity:1;
     clear: both;
     content: "";
     display:block;
+}
+.vosem-wrapper canvas:active{
+    cursor: move;
+}
+.quoteblock{
+    background:#f2f0f0;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+}
+.quoteblock p{
+    font-family:Montserrat, sans-serif;font-size:0.8em;text-align:right;padding: 0px 16px 12px;
 }

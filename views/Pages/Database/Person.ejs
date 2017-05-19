@@ -25,12 +25,12 @@
             <div class="leftColumn">
                 <div class="leftColumn_content">
                     <div class="profile_img_wrap">
-                        <img class="profile_img" src="http://cdn-lejdd.ladmedia.fr/var/europe1/storage/images/lejdd/politique/emmanuel-macron-veut-une-europe-a-deux-vitesses-735082/34258097-2-fre-FR/Emmanuel-Macron-veut-une-Europe-a-deux-vitesses.jpg">
+                        <img class="profile_img" src="http://i.imgur.com/PjNjCt5.jpg">
                     </div>
                     <h2 class="serifheader">Currently</h2>
                     <a class="position currentpos">
                         <div>
-                            <h1 class="miniheader">President elect of France</h1>
+                            <h1 class="miniheader">President of France</h1>
                             <h3 class="minisubheader">Since 7 May 2016</h3>
                         </div>
                     </a>
@@ -66,14 +66,14 @@
                     <h1 class="personh1">
                         <%= person_name %>
                     </h1>
-                    <div style="margin-top:-6px;">
-                        <a><img width="32" src="/common/sm-light/img/social_fb.svg"></a>
-                        <a><img width="32" src="/common/sm-light/img/social_tw.svg"></a>
-                        <a><img width="32" src="/common/sm-light/img/social_yt.svg"></a>
-                        <a><img width="32" src="/common/sm-light/img/social_g+.svg"></a>
-                    </div>
+                <span>
+                    <a title="Facebook" class="smicon" href="https://www.facebook.com/ActEuropa-1833768660239476" target="_blank"><img src="/common/img/sm-light/social_fb.svg"></a>
+                    <a title="Twitter" class="smicon" href="https://twitter.com/ActEuropa" target="_blank"><img src="/common/img/sm-light/social_tw.svg"></a>
+                    <a title="YouTube" class="smicon" href="https://www.youtube.com/user/acteuropa" target="_blank"><img src="/common/img/sm-light/social_yt.svg"></a>
+                    <a title="Wikipedia" class="smicon" target="_blank"><img src="/common/img/sm-light/info_wiki.svg"></a>
+                </span><br>
                     <strong>39 years old (21/12/1977)</strong><br>
-                    <span>France</span>
+                    <span><img class="flag" src="/common/img/flags/Flag_of_France.svg">France</span>
                 </div>
                 <div class="rightColumn_bottom">
                     <ul class="political_party_ul">
@@ -121,6 +121,7 @@
                         <% include ../../Partials/Chart.html %>
                     </div>
                     <div class="bio">
+                        <p class="sectionHeader">Biography</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut iaculis sit amet sapien et ullamcorper.
                             Cras a varius augue. Nunc congue velit tellus. Integer faucibus tellus dolor, vitae vestibulum
                             magna tristique ac. Nulla vel odio lacinia, luctus erat ac, ornare sapien. Fusce eleifend facilisis
@@ -142,22 +143,32 @@
                             nisi venenatis id. Curabitur varius, leo et lacinia pharetra, urna neque mattis nisi, non tincidunt
                             mi dolor ut ipsum.
                         </p>
-                    </div>
+                        <p class="sectionHeader">Quotes</p>
+                        <div class="quoteblock">
+                            <blockquote>To avoid the trap of Europe fragmenting on the economy, security, and identity, we have to return to the original promises of the European project: peace, prosperity and freedom. We should have a real, adult, democratic debate about the Europe we want.</blockquote>
+                            <p>Interview with "Le Monde" (12/02/13)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                        </div> <br>
+                        <div class="quoteblock">
+                            <blockquote>Europe's younger generation has only experienced austerity.</blockquote>
+                            <p>Political meeting (14/11/16)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                        </div> <br>
+                        <div class="quoteblock">
+                            <blockquote>I want France to become the European hub for R&amp;D.</blockquote>
+                            <p>2nd round televised debate (27/04/17)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                        </div> <br>
+                        <div class="quoteblock">
+                            <blockquote>The status quo leads to self-destruction.</blockquote>
+                            <p>Interview with "The Guardian" (19/01/17)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                        </div><br>
+                        <div class="quoteblock">
+                            <blockquote>France is back.</blockquote>
+                            <p>Presidential victory speech (03/05/17)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                        </div>
                 </div>
             </div>
         </div>
+        </div>
         <% include ../../Partials/Footer.html %>
-            <script src="/js/plugins.js"></script>
-            <script src="/js/3js/3xdom.js"></script>
-            <script src="/js/3js/three.min.js"></script>
-            <script src="/js/3js/combinedcamera.js"></script>
-            <script src="/js/3js/tween.js"></script>
-            <script src="/js/3js/controls/OrbitControls.js"></script>
-            <script src="/js/3js/Detector.js"></script>
-            <script src="/js/3js/libs/stats.min.js"></script>
-            <script src="https://d3js.org/d3.v4.min.js"></script>
-            <script src="/js/metricsgraphics.min.js"></script>
-            <script src="/js/Chart.js"></script>
             <script>
                 function Person(FirstName, LastName, DateOfBirth, Liberal_sc, Libertarian_sc, ProEU_sc, Bio, Beliefs, Party, Country, Color) {
                     this.FirstName = FirstName;

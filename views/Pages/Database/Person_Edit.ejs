@@ -21,61 +21,83 @@
                 background-color: transparent;
             }
 
-            .discretetext{
-                font-size:0.8em;opacity:0.75;
+            .discretetext {
+                font-size: 0.8em;
+                opacity: 0.75;
             }
 
             .block {
                 background-color: rgba(255, 255, 255, 0.5);
                 padding: 18px;
                 margin-top: 12px;
-                border: solid rgba(0, 0, 0, 0.36) 1px;
+                border: dashed rgba(0, 0, 0, 0.36) 1px;
+                transition: border 200ms;
             }
 
             .block:hover {
                 border: solid rgba(0, 0, 0, 0.5) 1px;
             }
 
-            [data-localized]{
+            [data-localized] {
                 border-width: 3px;
                 border-style: dashed;
             }
-            .inputprops{
-                height: 24px;
-                margin-top:-6px;
-                float:right;
+
+            .inputprops {
+                display:inline-block;
+                height: 20px;
                 font-family: Montserrat, sans-serif;
-                font-size:12px;
+                font-size: 12px;
                 font-weight: bold;
                 text-transform: uppercase;
+                margin-left:6px;
             }
-            .inputprops a.selected{
-                opacity:1;
-                color:#c73e12;
+
+            .inputprops a.selected {
+                opacity: 1;
+                color: #c73e12;
             }
-            textarea{
-                resize:none;
+
+            textarea {
+                resize: none;
             }
-            button.arbtn{
-                background:transparent;
-                color:#002f55;
-                opacity:0.5;
+
+            button.arbtn {
+                background: transparent;
+                color: #002f55;
+                opacity: 0.5;
                 border: none;
             }
-            button.arbtn:hover{opacity:0.75;}
-            button.arbtn:active{opacity:1;}
-            .range_val{font-family:Montserrat,sans-serif;position:relative;margin:auto;width:50%;text-align:center;}
+
+            button.arbtn:hover {
+                opacity: 0.75;
+            }
+
+            button.arbtn:active {
+                opacity: 1;
+            }
+
+            .range_val {
+                font-family: Montserrat, sans-serif;
+                position: relative;
+                margin: auto;
+                width: 50%;
+                text-align: center;
+            }
+            .sectionHeader{
+                font-size:1.4em;
+            }
         </style>
         <div class="center">
             <h1 style="font-family:Montserrat, sans-serif;color:#002f55;">Create new person</h1>
-            <span class="sectionHeader" style="color:#002f55;">Status:&nbsp;&nbsp;&nbsp;</span>  
-            <span>
-                <select id="visibilitySelector" class="nice-select" autocomplete="off">
+            <span class="sectionHeader" style="color:#002f55;">Status:&nbsp;&nbsp;&nbsp;</span>
+
+            <select id="visibilitySelector" class="nice-select" autocomplete="off">
                 <option value="visible">Visible</option>
                 <option value="hidden">Unreferenced</option>
                 <option value="cs">Disabled</option>
             </select>
-            </span><br>
+            <br>
             <span class="sectionHeader" style="color:#002f55;">Editing language:&nbsp;&nbsp;&nbsp;</span>
             <span>
                 <select id="currentlang" class="nice-select wide left" autocomplete="off">
@@ -104,52 +126,51 @@
                     <option value="es">Español</option>
                     <option value="se">Svenska</option>
                </select>
-            </span><br>
-            <span class="discretetext">Text fields that change depending on the language have <strong>thick dashed borders</strong>. The languages in use for each field are displayed beneath it.</span><br>          
+            </span>
+            <br>
+            <span class="discretetext">Text fields that change depending on the language have <strong>thick dashed borders</strong>. The languages in use for each field are displayed beneath it.</span><br>
             <span class="sectionHeader">Personal details</span><br>
-                <strong>Profile photo</strong>
-                <table id="previews">
-                    <tr>
-                        <td>
-                            <div class="profile_img_wrap no-shadow">
-                                <img id="rectangle-preview" class="profile_img" src="/" style="background-color:#aeaeae;">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="circular--portrait" style="width:128px;height:128px;margin-left:24px;background-color:#aeaeae;">
-                                <img id="circle-preview" src="/" />
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <input id="profile-img-input" type="file" autocomplete="off">&nbsp;&nbsp;&nbsp;<span id="preview-size" style="font-size:0.8em;opacity:0.5;"></span><br><br>
-                <table style="width:100%;">
-                    <tr>
-                        <td><strong>Full name:&nbsp;&nbsp;&nbsp;</strong></td>
-                        <td style="width:75%;"><textarea id="fullname" rows="1" autocomplete="off"></textarea><br></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Biography (short):&nbsp;&nbsp;&nbsp;</strong></td>
-                        <td style="width:75%;"><textarea id="bio_short" rows="2" data-localized="true" autocomplete="off"></textarea><div class="inputprops" id="bio_short_props"></div><br></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Biography (long):&nbsp;&nbsp;&nbsp;</strong></td>
-                        <td style="width:75%;"><textarea id="bio_long" rows="4" data-localized="true" autocomplete="off"></textarea><br><div class="inputprops" id="bio_long_props"></div></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Birth date:&nbsp;&nbsp;&nbsp;</strong></td>
-                        <td><input id="birth_date" type="date" class="styledinput noborder" placeholder="dd/mm/yyyy" autocomplete="off"><br></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Death date:&nbsp;&nbsp;</strong></td>
-                        <td><input id="death_date" type="date" class="styledinput noborder" placeholder="dd/mm/yyyy" autocomplete="off"><br></td>
-                    </tr>
-                </table>
-                <strong>Nationalities:&nbsp;&nbsp;</strong>
-                <span id="nationalities">
-                <div style="display:inline-block;">
-                <input type="text" class="input-tags">
-                <!--select class="input-tags">
+            <strong>Profile photo</strong>
+            <table id="previews">
+                <tr>
+                    <td>
+                        <div class="profile_img_wrap no-shadow">
+                            <img id="rectangle-preview" class="profile_img" src="/" style="background-color:#aeaeae;">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="circular--portrait" style="width:128px;height:128px;margin-left:24px;background-color:#aeaeae;">
+                            <img id="circle-preview" src="/" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <input id="profile-img-input" type="file" autocomplete="off">&nbsp;&nbsp;&nbsp;<span id="preview-size" style="font-size:0.8em;opacity:0.5;"></span><br><br>
+            <strong>Full name:</strong>
+            <textarea id="fullname" rows="1" autocomplete="off"></textarea>
+            <br><br>
+            
+            <strong>Biography (short):</strong><div class="inputprops" id="bio_short_props"></div>
+            <textarea id="bio_short" rows="2" data-localized="true" autocomplete="off"></textarea>
+            <br><br>
+
+            <strong>Biography (long):</strong><div class="inputprops" id="bio_long_props"></div>
+            <textarea id="bio_long" rows="4" data-localized="true" autocomplete="off"></textarea>
+            <br><br>
+            
+
+            <strong>Birth date:&nbsp;&nbsp;&nbsp;</strong>
+            <input id="birth_date" type="date" class="styledinput noborder" placeholder="dd/mm/yyyy" autocomplete="off">
+            <br>
+
+
+            <strong>Death date:&nbsp;&nbsp;</strong>
+            <input id="death_date" type="date" class="styledinput noborder" placeholder="dd/mm/yyyy" autocomplete="off">
+            <br><br>
+
+            <strong>Nationalities:&nbsp;&nbsp;</strong>
+            <input type="text" class="input-tags" style="width:100%;">
+            <!--select class="input-tags">
                     <option value="at"><%= __('Austria') %></option>
                     <option value="be"><%= __('Belgium') %></option>
                     <option value="bg"><%= __('Bulgaria') %></option>
@@ -179,13 +200,10 @@
                     <option value="se"><%= __('Sweden') %></option>
                     <option value="en"><%= __('United Kingdom') %></option>
                 </select-->
-                </div>
-                </span>
-                <button id="add-nationality" class="arbtn"><i class="fa fa-plus"></i></button><button id="remove-nationality" class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
-                <br>
-                <hr>
-                <span class="sectionHeader">Positions</span><br>
-                <div id="positions">
+            <br>
+            <hr>
+            <span class="sectionHeader">Positions</span><br>
+            <div id="positions">
                 <div class="block block-position">
                     <textarea class="transparent" placeholder="Title*" data-localized="true" rows="1" autocomplete="off"></textarea>
                     <textarea class="transparent" placeholder="Description*" data-localized="true" rows="1" autocomplete="off"></textarea>
@@ -199,15 +217,16 @@
                             <td><input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy" autocomplete="off"><br></td>
                         </tr>
                     </table>
-                    <textarea class="transparent" placeholder="Parlement" rows="1" autocomplete="off"></textarea>
-                    <textarea class="transparent" placeholder="Parlement seat number" rows="1" autocomplete="off"></textarea>
+                    <textarea class="transparent" placeholder="Parlement" rows="1" autocomplete="off" style="width:89.5%;"></textarea>
+                    <textarea class="transparent" placeholder="Seat" rows="1" autocomplete="off" style="width:10%;"></textarea>
                 </div>
-                </div>
-                <button id="add-position" class="arbtn"><i class="fa fa-plus"></i></button><button id="remove-position" class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
-                <br>
-                <hr>
-                <span class="sectionHeader">Political memberships</span><br>
-                <div id="memberships">
+            </div>
+            <button id="add-position" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-position" class="arbtn"
+                style="display:none;"><i class="fa fa-minus"></i></button><br>
+            <br>
+            <hr>
+            <span class="sectionHeader">Political memberships</span><br>
+            <div id="memberships">
                 <div class="block block-membership">
                     <textarea class="transparent" placeholder="Political party*" rows="1" autocomplete="off"></textarea>
                     <table>
@@ -222,45 +241,47 @@
                     </table>
                     <textarea class="transparent" placeholder="Role within the party" rows="1" autocomplete="off"></textarea>
                 </div>
-                </div>
-                <button id="add-membership" class="arbtn"><i class="fa fa-plus"></i></button><button id="remove-membership" class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
-                <br>
-                <hr>
+            </div>
+            <button id="add-membership" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-membership" class="arbtn"
+                style="display:none;"><i class="fa fa-minus"></i></button><br>
+            <br>
+            <hr>
 
-                <span class="sectionHeader">Political positioning</span><br>
+            <span class="sectionHeader">Political positioning</span><br>
 
-                <span style="position:relative;float:left;">Economically interventionist</span>
-                <span style="position:relative;float:right;">Economically liberal</span>
-                <div id="eco_range_val" class="range_val">50</div>
-                <input id="eco_range" type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50">
+            <span style="position:relative;float:left;">Economically interventionist</span>
+            <span style="position:relative;float:right;">Economically liberal</span>
+            <div id="eco_range_val" class="range_val">50</div>
+            <input id="eco_range" type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50">
 
-                <span style="position:relative;float:left;">Socially conservative</span>
-                <span style="position:relative;float:right;">Socially progressive</span>
-                <div id="soc_range_val" class="range_val">50</div>
-                <input id="soc_range" type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50">
+            <span style="position:relative;float:left;">Socially conservative</span>
+            <span style="position:relative;float:right;">Socially progressive</span>
+            <div id="soc_range_val" class="range_val">50</div>
+            <input id="soc_range" type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50">
 
-                <span style="position:relative;float:left;">Anti-EU</span>
-                <span style="position:relative;float:right;">Pro-EU</span>
-                <div id="eu_range_val" class="range_val">50</div>
-                <input id="eu_range" type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50">
+            <span style="position:relative;float:left;">Anti-EU</span>
+            <span style="position:relative;float:right;">Pro-EU</span>
+            <div id="eu_range_val" class="range_val">50</div>
+            <input id="eu_range" type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50">
 
-                <span style="position:relative;float:left;">Authoritarian</span>
-                <span style="position:relative;float:right;">Libertarian</span>
-                <div id="auth_range_val" class="range_val">50</div>
-                <input id="auth_range" type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50">
+            <span style="position:relative;float:left;">Authoritarian</span>
+            <span style="position:relative;float:right;">Libertarian</span>
+            <div id="auth_range_val" class="range_val">50</div>
+            <input id="auth_range" type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50">
 
-                <br>
-                <hr>
-                <span class="sectionHeader">Social media</span><br>
-                <span class="discretetext">If a link is not recognised as social media, it will display as the person's official website.</span>
-                <div id="socialmedias">
-                   <div><input type="url" class="styledinput" style="width:100%;" placeholder="URL"></div>
-                </div>
-                <button id="add-socialmedia" class="arbtn"><i class="fa fa-plus"></i></button><button id="remove-socialmedia" class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
-                <br>
-                <hr>
-                <span class="sectionHeader">Notable quotes</span><br>
-                <div id="quotes">
+            <br>
+            <hr>
+            <span class="sectionHeader">Social media</span><br>
+            <span class="discretetext">If a link is not recognised as social media, it will display as the person's official website.</span>
+            <div id="socialmedias">
+                <div><input type="url" class="styledinput" style="width:100%;" placeholder="URL"></div>
+            </div>
+            <button id="add-socialmedia" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-socialmedia"
+                class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
+            <br>
+            <hr>
+            <span class="sectionHeader">Notable quotes</span><br>
+            <div id="quotes">
                 <div class="block">
                     <textarea rows="1" class="transparent" placeholder="Quote (without quotation marks)"></textarea>
                     <textarea rows="1" class="transparent" placeholder="Location"></textarea>
@@ -272,12 +293,13 @@
                     <input type="url" class="styledinput transparent" style="width:100%;" placeholder="URL">
                     <button class="arbtn"><i class="fa fa-plus"></i></button><br>
                 </div>
-                </div>
-                <button id="add-quote" class="arbtn"><i class="fa fa-plus"></i></button><button id="remove-quote" class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
-                <button id="send" class="sendbutton" style="float:right;">VIEW JSON</button>
             </div>
-            <br><br>
-            <% include ../../Partials/Footer.html %>
+            <button id="add-quote" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-quote" class="arbtn"
+                style="display:none;"><i class="fa fa-minus"></i></button><br>
+            <button id="send" class="sendbutton" style="float:right;">VIEW JSON</button>
+        </div>
+        <br><br>
+        <% include ../../Partials/Footer.html %>
             <script src="/database/js/Manage.js"></script>
 </body>
 

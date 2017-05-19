@@ -543,6 +543,7 @@ blockquote{
     font-style: italic;
     font-weight:lighter;
     font-size: 1.25em;
+    line-height:1.4em;
     margin:0;
     padding:24px;
     text-align:center;
@@ -619,4 +620,9 @@ blockquote + p > cite:before{
   }
       .medium-editor-toolbar li button:hover, .sendbutton:hover {
       background-color: #00203b;
-      color: #deb645; 
+      color: #deb645;
+      }
+      .flag{
+          max-height:14px;
+          margin-right:6px;
+      }

@@ -18,10 +18,6 @@ $("#profile-img-input").change(function () {
         $('#preview-size').html(file.size + ' bytes');
     }
 })
-var nationalitylist = $("#nationalities");
-$("#add-nationality").click(function (e) { nationalitylist=$("#nationalities"); AddNewItem(nationalitylist, "#remove-nationality", true); $("nationalitylist") })
-$("#remove-nationality").click(function (e) { nationalitylist= $("#nationalities"); RemoveItem(nationalitylist, "#remove-nationality", true); })
-
 var positionlist = $("#positions");
 $("#add-position").click(function (e) { AddNewItem(positionlist, "#remove-position"); })
 $("#remove-position").click(function (e) { RemoveItem(positionlist, "#remove-position"); })
