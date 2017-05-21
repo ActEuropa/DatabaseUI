@@ -12,7 +12,7 @@ var WIDTH = 528,
 var dimension = 512;
 var container;
 
-function NewVosem(Candidates, foreground = 0x002F55, background = 0xeaeaea, showlabels = true, holdcross = false) {
+function NewVosem(Candidates, foreground = 0x002F55, background = 0xeaeaea, showlabels = true, holdcross = false, WIDTH = 528, HEIGHT = 528) {
     var createTextLabel = function() {
         var div = document.createElement('div');
         div.className = 'text-label';

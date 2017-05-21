@@ -538,6 +538,11 @@ table {
 //                                                      //
 ////////////////////////////////////////////////////////*/
 
+.clearfix {
+    display: inline-block;
+    width: 100%;
+}
+
 blockquote{
     font-family: Vollkorn;
     font-style: italic;

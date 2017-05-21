@@ -1,3 +1,10 @@
+### PERSON NOTES:
+for the person page layout to make more sense, move everything strictly related to politics to the left side, below the profile photo, including the cube and political parties. All the biographical information can then go to the right, with a fancy timeline describing the career. It will be clearer than a list of boxes.
+
+
+
+The current job can go straight below the name
+
 This is the front and back end of our main website. It is comprised of three main blocks:
 
 # Common

@@ -321,25 +321,24 @@ li.s {
     display: flex;
     align-content: flex-start;
     padding-left: 0px;
-    padding-right: 40px;
-    justify-content: flex-end;
+    justify-content: center;
 }
 .leftColumn{
-    width: calc((100vw - 1000px) / 2 + 300px);
     padding-left: 0;
-    padding-right: 40px;
     justify-content: flex-end;
+    max-width: 300px;
+    width: 300px;
 }
 .leftColumn_content{
-    width:260px;
     float:right;
     line-height: 24px;
 }
 .rightColumn{
-    width: calc((100vw - 1000px) / 2 + 700px);
     justify-content: flex-start;
     padding-right: 0;
     padding-left: 24px;
+    width:700px;
+    max-width:700px;
 }
 .rightColumn_top{
     height:300px;
@@ -350,8 +349,6 @@ li.s {
     font-weight: 400;
 }
 .rightColumn_bottom{
-    background-color:#F2F0F0;
-   /* width:100%;*/
     margin-left:-24px;
     padding-top:12px;
     padding-left:24px;
@@ -362,7 +359,7 @@ li.s {
     display: block;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0px 20px 10px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 30px 5px rgba(0,0,0,0.3);
 }
 .profile_img_wrap.no-shadow{
     box-shadow: unset;
@@ -377,15 +374,22 @@ li.s {
 }
 .position{
 opacity:1;
+margin-top:-29px;
+font-weight:400;
 }
-
+.position > h1{
+    font-size:0.75em;
+    font-weight:400;
+}
 .position div{
     padding: 12px;
     border:solid 1px grey;
     box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     transition: all 0.2s ease-in-out;
-    margin-bottom:24px;
-    
+}
+.currentpos h1{
+    font-size: 0.9em;
+    font-weight:bold;
 }
 .currentpos div{
     border:solid 1px #c77c63
@@ -401,19 +405,22 @@ opacity:1;
     border:solid 1px #c73e12;
 }
 .miniheader{
-    text-align:center;
     line-height:18px;
     font-size:0.8em;
-    padding: 0 12px;
+    padding: 0 6px;
+    margin:0;
+    font-weight:400;
 }
 .partyname{
     margin:0;
 }
 .minisubheader{
-    text-align:center;
     font-size:0.75em;
     color:grey;
     font-weight:normal;
+    padding: 0 6px;
+    margin:0;
+    margin-top:-4px;
 }
 .currentpos div .miniheader{
     line-height:20px;
@@ -424,7 +431,7 @@ opacity:1;
 .person_BG{
     height:350px;
     width:100%;
-    background:blue;
+    background:#002f55;
     position:absolute;
     z-index:-1;
     overflow:hidden;
@@ -434,6 +441,7 @@ opacity:1;
     color:white;
     font-size:3em;
     margin-bottom:24px;
+    line-height:1em;
 }
 .flagIcon{
     width:30px;
@@ -443,22 +451,27 @@ opacity:1;
 }
 .bgImg{
     width:100%;
+    height:100%;
+    background-image: url("http://i.imgur.com/PjNjCt5.jpg");
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) blur(6px);
+    opacity: 0.75;
 }
 .bgOverlay{
     width:100%; 
-    height:350px;
+    height:100%;
     position:absolute;
     top:0;
     left:0;
     right:0;
-    background:black;
+    background:#00172a;
     opacity:0.5;
     z-index:1;
 }
 .political_party_ul{
     margin-bottom:12px;
     padding-left:0;
-    display:block;
 }
 .political_party_ul:after{
     clear: both;
@@ -484,8 +497,10 @@ opacity:1;
 .political_party_btn img{
     max-height:40px;
     max-width:82px;
+    height:100%;
     padding:12px;
     vertical-align:center;
+    object-fit: contain;
 }
 .political_party_btn a{opacity:1;}
 .political_party_btn a:hover{opacity:1}
@@ -493,12 +508,14 @@ opacity:1;
     padding:0 18px 0 0;
     text-align:left;
 }
-.bio{
-    clear:both;
+.lowerzone{
     font-size:1em;
     line-height:1.2em;
-    max-width:600px;
-    float:left;
+    max-width:1024px;
+    margin:auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .vosem-wrapper{
     clear: both;
@@ -514,4 +531,166 @@ opacity:1;
 }
 .quoteblock p{
     font-family:Montserrat, sans-serif;font-size:0.8em;text-align:right;padding: 0px 16px 12px;
+}
+.bio{
+    flex-basis: 480px;
+    flex-shrink: 1.5;
+}
+
+.muted {
+    color: #999999;
+}
+.hr-light {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #999999;
+    margin: 1em 0;
+    padding: 0;
+}
+/*simple grid based off http://css-tricks.com/dont-overthink-it-grids/*/
+.grid:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+[class*='col-'] {
+    float: left;
+}
+[class*='col-']:last-of-type {
+    padding-right: 0;
+}
+
+.col-sand-right {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+
+}
+.timeline-event {
+    cursor: pointer;
+    -webkit-transition: all 250ms;
+    -moz-transition: all 250ms;
+    -ms-transition: all 250ms;
+    -o-transition: all 250ms;
+    position:absolute;
+    width: auto;
+}
+.timeline-event:before {
+    top: 1px;
+    content: ' ';
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
+.timeline-event:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background-color: rgba(234,234,234,0.75);
+    z-index: 9999;
+}
+/*timeline containers*/
+.right-timeline {
+    min-height: 1px;
+    position: relative;
+}
+.right-timeline .timeline-event {
+    border-left-width: 2px;
+    border-left-style: solid;
+    text-align: left;
+    float: left;
+}
+.right-timeline .timeline-event p,
+.right-timeline .timeline-event figure {
+    float: left;
+}
+.right-timeline .timeline-event.selected {
+    text-align: left !important;
+    float: none !important;
+    overflow: hidden;
+}
+.right-timeline .timeline-event.selected p,
+.right-timeline .timeline-event.selected figure {
+    float: none !important;
+}
+.center-timeline {
+    min-height: 1px;
+    border-radius: 3px;
+}
+#currentdate{
+    position: absolute;
+    border-bottom: 1px dashed rgba(0,0,0,0.3);
+    height:1px;
+    left:0;
+    right:88px;
+    pointer-events: none;
+    opacity:0.4;
+    margin:auto;
+}
+#currentdate span{
+    float:right;
+    margin-top: -10px;
+    margin-right: -80px;
+}
+.timeline-grid:hover #currentdate{
+    opacity:1;
+}
+.widthtester{
+    position: absolute;
+    visibility: hidden;
+    height: auto;
+    width: auto;
+    white-space: nowrap;
+}
+.criminalrec{
+    background-color: rgba(192,62,18,0.25);
+}
+.criminalrecitem{
+    padding:12px;
+}
+.criminalrecitem h4{
+    color:#002f55;
+    margin:0;
+    margin-bottom:4px;
+}
+.criminalrecitem span{
+    color:#002F55;
+    opacity:0.75;
+    font-size:0.8em;
+}
+.warningSpan{
+    padding:12px;
+    font-size:1em;
+    background-color: #002F55;
+    font-weight:bold;
+    color:#C73E12;
+    font-family:Montserrat,sans-serif;
+}
+@media screen and (max-width: 700px) {
+  .columnWrapper {
+    display:block;
+    clear:both;
+  }
+  .profile_img_wrap{
+      width:150px;
+      height: 225px;
+  }
+  .person_BG{
+      height:450px;
+  }
+  .leftColumn_content{
+      float:none;
+      margin-left:18px;
+  }
+  .rightColumn_top{
+      padding-top:0;
+      height:200px;
+  }
+  .rightColumn{
+      width:auto;
+  }
+  .lowerzone{
+      margin:12px;
+  }
 }

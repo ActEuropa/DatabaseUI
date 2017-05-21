@@ -17,8 +17,7 @@
 <body>
     <% include ../../Partials/Header.html %>
         <div class="person_BG">
-            <img class="bgImg" src="http://o.aolcdn.com/dims-shared/dims3/GLOB/crop/5568x2784+0+464/resize/630x315!/format/jpg/quality/85/http%3A%2F%2Fo.aolcdn.com%2Fhss%2Fstorage%2Fmidas%2F28daa5437035cabbd3c0ec51c5bac3b4%2F204691099%2F000_IZ6GJ.jpg"
-            />
+            <div class="bgImg"></div>
             <div class="bgOverlay"></div>
         </div>
         <div class="columnWrapper">
@@ -27,38 +26,7 @@
                     <div class="profile_img_wrap">
                         <img class="profile_img" src="http://i.imgur.com/PjNjCt5.jpg">
                     </div>
-                    <h2 class="serifheader">Currently</h2>
-                    <a class="position currentpos">
-                        <div>
-                            <h1 class="miniheader">President of France</h1>
-                            <h3 class="minisubheader">Since 7 May 2016</h3>
-                        </div>
-                    </a>
-                    <h2 class="serifheader">Previously</h2>
-                    <a class="position">
-                        <div>
-                            <h1 class="miniheader">Candidate at the 2017 presidential election</h1>
-                            <h3 class="minisubheader">30 August 2016 - 7 May 2017</h3>
-                        </div>
-                    </a>
-                    <a class="position">
-                        <div>
-                            <h1 class="miniheader">Minister of the Economy, Industry and Digital Affairs</h1>
-                            <h3 class="minisubheader">26 August 2014 – 30 August 2016</h3>
-                        </div>
-                    </a>
-                    <a class="position">
-                        <div>
-                            <h1 class="miniheader">Investment banker at Rotshild &amp; Cie</h1>
-                            <h3 class="minisubheader">2008 – 2012</h3>
-                        </div>
-                    </a>
-                    <a class="position">
-                        <div>
-                            <h1 class="miniheader">Finance inspector at the IGF</h1>
-                            <h3 class="minisubheader">2004 – 2008</h3>
-                        </div>
-                    </a>
+
                 </div>
             </div>
             <div class="rightColumn">
@@ -66,7 +34,7 @@
                     <h1 class="personh1">
                         <%= person_name %>
                     </h1>
-                <span>
+                    <span>
                     <a title="Facebook" class="smicon" href="https://www.facebook.com/ActEuropa-1833768660239476" target="_blank"><img src="/common/img/sm-light/social_fb.svg"></a>
                     <a title="Twitter" class="smicon" href="https://twitter.com/ActEuropa" target="_blank"><img src="/common/img/sm-light/social_tw.svg"></a>
                     <a title="YouTube" class="smicon" href="https://www.youtube.com/user/acteuropa" target="_blank"><img src="/common/img/sm-light/social_yt.svg"></a>
@@ -76,6 +44,7 @@
                     <span><img class="flag" src="/common/img/flags/Flag_of_France.svg">France</span>
                 </div>
                 <div class="rightColumn_bottom">
+
                     <ul class="political_party_ul">
                         <li class="political_party_btn">
                             <a>
@@ -117,58 +86,149 @@
                             </a>
                         </li>
                     </ul>
-                    <div class="vosem-wrapper">
-                        <% include ../../Partials/Chart.html %>
-                    </div>
-                    <div class="bio">
-                        <p class="sectionHeader">Biography</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut iaculis sit amet sapien et ullamcorper.
-                            Cras a varius augue. Nunc congue velit tellus. Integer faucibus tellus dolor, vitae vestibulum
-                            magna tristique ac. Nulla vel odio lacinia, luctus erat ac, ornare sapien. Fusce eleifend facilisis
-                            tellus, quis condimentum ante elementum sed. Donec lacinia felis sagittis commodo vestibulum.
-                            Fusce venenatis metus urna, suscipit egestas augue varius eu. Phasellus ante diam, fermentum
-                            sed iaculis sed, ultrices vitae erat.
-                        </p>
-                        <p>Donec tempor molestie ligula, in mollis orci placerat a. Ut id arcu ut eros iaculis dictum non id
-                            risus. Phasellus ac eros purus. Nam sagittis leo sed suscipit consectetur. Donec malesuada orci
-                            non tortor hendrerit, eu euismod enim pharetra. Phasellus blandit venenatis urna eu fermentum.
-                            Nunc efficitur felis eu magna fermentum, at semper turpis cursus. Aliquam blandit non risus ac
-                            eleifend. Ut quis massa eu erat varius congue.
-                        </p>
-                        <p>Aliquam a tempus arcu. Phasellus quis dui in dui tincidunt posuere. Duis iaculis augue est, feugiat
-                            sagittis diam tempor id. Nunc dapibus neque arcu, a lacinia nisi dictum et. Nam porttitor sit
-                            amet tellus lobortis porta. Sed ac nisi ut turpis tristique mattis. Fusce vitae sodales quam.
-                            Suspendisse potenti. Mauris et nisi ligula. Ut sodales purus justo. Mauris scelerisque libero
-                            nec nulla euismod, ac ultricies enim eleifend. Nulla condimentum congue turpis, nec vehicula
-                            nisi venenatis id. Curabitur varius, leo et lacinia pharetra, urna neque mattis nisi, non tincidunt
-                            mi dolor ut ipsum.
-                        </p>
-                        <p class="sectionHeader">Quotes</p>
-                        <div class="quoteblock">
-                            <blockquote>To avoid the trap of Europe fragmenting on the economy, security, and identity, we have to return to the original promises of the European project: peace, prosperity and freedom. We should have a real, adult, democratic debate about the Europe we want.</blockquote>
-                            <p>Interview with "Le Monde" (12/02/13)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
-                        </div> <br>
-                        <div class="quoteblock">
-                            <blockquote>Europe's younger generation has only experienced austerity.</blockquote>
-                            <p>Political meeting (14/11/16)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
-                        </div> <br>
-                        <div class="quoteblock">
-                            <blockquote>I want France to become the European hub for R&amp;D.</blockquote>
-                            <p>2nd round televised debate (27/04/17)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
-                        </div> <br>
-                        <div class="quoteblock">
-                            <blockquote>The status quo leads to self-destruction.</blockquote>
-                            <p>Interview with "The Guardian" (19/01/17)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
-                        </div><br>
-                        <div class="quoteblock">
-                            <blockquote>France is back.</blockquote>
-                            <p>Presidential victory speech (03/05/17)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
-                        </div>
+
                 </div>
             </div>
         </div>
+        <div class="lowerzone" style="clear:both;">
+            <div>
+                <h2 class="serifheader">Political position</h2>
+                <div class="vosem-wrapper">
+                    <% include ../../Partials/Chart.html %>
+                </div>
+            </div>
+            <div class="bio">
+                <h2 class="serifheader">Biography</h2>
+                <div class="criminalrec">
+                    <div class="warningSpan">CRIMINAL RECORD</div>
+                    <div class="criminalrecitem">
+                        <h4>Affaire bygmalion</h4>
+                        <span>En 2010, Nicolas Sarkozy est mis en examen pour diffamation.</span>
+                    </div>
+                    <div class="criminalrecitem">
+                        <h4>Affaire Bettencourt</h4>
+                        <span>En 2008, Nicolas Sarkozy est soupconé d'avoir extorqué de l'argent à Lilliane Bettencourt.</span>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut iaculis sit amet sapien et ullamcorper. Cras
+                    a varius augue. Nunc congue velit tellus. Integer faucibus tellus dolor, vitae vestibulum magna tristique
+                    ac. Nulla vel odio lacinia, luctus erat ac, ornare sapien. Fusce eleifend facilisis tellus, quis condimentum
+                    ante elementum sed. Donec lacinia felis sagittis commodo vestibulum. Fusce venenatis metus urna, suscipit
+                    egestas augue varius eu. Phasellus ante diam, fermentum sed iaculis sed, ultrices vitae erat.
+                </p>
+                <p>Donec tempor molestie ligula, in mollis orci placerat a. Ut id arcu ut eros iaculis dictum non id risus.
+                    Phasellus ac eros purus. Nam sagittis leo sed suscipit consectetur. Donec malesuada orci non tortor hendrerit,
+                    eu euismod enim pharetra. Phasellus blandit venenatis urna eu fermentum. Nunc efficitur felis eu magna
+                    fermentum, at semper turpis cursus. Aliquam blandit non risus ac eleifend. Ut quis massa eu erat varius
+                    congue.
+                </p>
+                <p>Aliquam a tempus arcu. Phasellus quis dui in dui tincidunt posuere. Duis iaculis augue est, feugiat sagittis
+                    diam tempor id. Nunc dapibus neque arcu, a lacinia nisi dictum et. Nam porttitor sit amet tellus lobortis
+                    porta. Sed ac nisi ut turpis tristique mattis. Fusce vitae sodales quam. Suspendisse potenti. Mauris
+                    et nisi ligula. Ut sodales purus justo. Mauris scelerisque libero nec nulla euismod, ac ultricies enim
+                    eleifend. Nulla condimentum congue turpis, nec vehicula nisi venenatis id. Curabitur varius, leo et lacinia
+                    pharetra, urna neque mattis nisi, non tincidunt mi dolor ut ipsum.
+                </p>
+            </div>
+            <div style="flex-basis:500px;flex-grow:3;">
+                <h2 class="serifheader">Timeline</h2>
+                <div id="timeline-grid" class="grid clearfix" style="overflow-x:auto;overflow-y:hidden;">
+                    <div style="position:relative;"><div id="currentdate"><span>12/09/2015</span></div></div>
+                    <h1 class="miniheader widthtester"></h1>
+                    <div ><div class="right-timeline col-sand-right" data-bind="template:{name:'event', foreach:rightEvents}"></div></div>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/labella/1.1.2/labella.min.js"></script>
+                <script id="event" type="text/html">
+                    <div class="timeline-event" data-bind="style:{'top':top()+'px', 'left':side+'px', 'height':height()+'px', 'borderLeftColor':color,'borderRightColor':color}, css:{'selected':selected},click:toggleSelected">
+                    <div class="position" data-bind="style:{'color':color,'borderRightColor':color}">
+                        <h1 class="miniheader" data-bind="text:title, style:{'font-size':fontsize, 'font-weight':fontweight}" style="display:inline;">President of France</h1>
+                        <h3 class="minisubheader"><span data-bind="text:fromStart()"></span> - <span data-bind="text:fromEnd()"></span></h3>
+                    </div>
+                </script>
+                <script type="text/html" id="ipsum">
+                </script>
+            </div>
+             <div>
+                <h2 class="serifheader">Currently</h2>
+                <a class="position currentpos">
+                    <div>
+                        <h1 class="miniheader">President of France</h1>
+                        <h3 class="minisubheader">Since 7 May 2016</h3>
+                    </div>
+                </a>
+                <h2 class="serifheader">Previously</h2>
+                <a class="position">
+                    <div>
+                        <h1 class="miniheader">Candidate at the 2017 presidential election</h1>
+                        <h3 class="minisubheader">30 August 2016 - 7 May 2017</h3>
+                    </div>
+                </a>
+                <a class="position">
+                    <div>
+                        <h1 class="miniheader">Minister of the Economy, Industry and Digital Affairs</h1>
+                        <h3 class="minisubheader">26 August 2014 – 30 August 2016</h3>
+                    </div>
+                </a>
+                <a class="position">
+                    <div>
+                        <h1 class="miniheader">Investment banker at Rotshild &amp; Cie</h1>
+                        <h3 class="minisubheader">2008 – 2012</h3>
+                    </div>
+                </a>
+                <a class="position">
+                    <div>
+                        <h1 class="miniheader">Finance inspector at the IGF</h1>
+                        <h3 class="minisubheader">2004 – 2008</h3>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <p class="sectionHeader">Quotes</p>
+                <div class="quoteblock">
+                    <blockquote>To avoid the trap of Europe fragmenting on the economy, security, and identity, we have to return to
+                        the original promises of the European project: peace, prosperity and freedom. We should have a real,
+                        adult, democratic debate about the Europe we want.</blockquote>
+                    <p>Interview with "Le Monde" (12/02/13)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                </div> <br>
+                <div class="quoteblock">
+                    <blockquote>Europe's younger generation has only experienced austerity.</blockquote>
+                    <p>Political meeting (14/11/16)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                </div> <br>
+                <div class="quoteblock">
+                    <blockquote>I want France to become the European hub for R&amp;D.</blockquote>
+                    <p>2nd round televised debate (27/04/17)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                </div> <br>
+                <div class="quoteblock">
+                    <blockquote>The status quo leads to self-destruction.</blockquote>
+                    <p>Interview with "The Guardian" (19/01/17)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                </div><br>
+                <div class="quoteblock">
+                    <blockquote>France is back.</blockquote>
+                    <p>Presidential victory speech (03/05/17)&nbsp;&nbsp;-&nbsp;&nbsp;<a>SOURCES</a></p>
+                </div>
+            </div>
         </div>
         <% include ../../Partials/Footer.html %>
+            <script src="/database/js/vendor/moment.min.js"></script>
+            <script src="/database/js/vendor/knockout.js"></script>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+            <script src="/database/js/vendor/jquery.scrollTo.min.js"></script>
+            <script src="/database/js/Timeline.js"></script>
+            <script>
+                //This array is here so that it can be rendered by the EJS engine as the page is being sent (to prevent pointless AJAX calls)
+                var events = [
+                    new Event("President of France", moment("2017-05-14"), undefined, { description: 'ipsum' }),
+                    new Event("Candidate at the 2016 presidential election", moment("2016-11-16"), moment("2017-05-08"), { description: 'ipsum' }),
+                    new Event("President of 'En Marche!'", moment("2016-03-06"), moment("2017-05-08"), {description: 'ipsum' }),
+                    new Event("Minister of Economy, Industry, and Digital affairs", moment("2014-08-26"), moment("2016-08-30"), {description: 'ipsum' }),
+                    new Event("Joint secretary of the French presidential cabinet", moment("2012-05-15"), moment("2014-07-15"), {description: 'ipsum' }),
+                    new Event("Intermediary job for testing", moment("2013"), moment("2015"), {description: 'ipsum' }),
+                    new Event("Investment banker at Rothschild Inc.", moment("2008-09"), moment("2012-05"), {description: 'ipsum' })
+                ];
+                var vm = new ViewModel();
+                ko.applyBindings(vm);
+            </script>
+            
             <script>
                 function Person(FirstName, LastName, DateOfBirth, Liberal_sc, Libertarian_sc, ProEU_sc, Bio, Beliefs, Party, Country, Color) {
                     this.FirstName = FirstName;

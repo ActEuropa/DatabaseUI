@@ -37,7 +37,6 @@ databaseInit = function (app, i18n) {
            role: [{type: String, intl:true}]}],
         socialmedia_urls: [String],
         img_profile: String,
-        img_cover: String,
         quotes: 
         [{
             quote: {type: String, intl:true},
@@ -46,6 +45,11 @@ databaseInit = function (app, i18n) {
             source_urls: [String],
             context: String,
             score: Number //For future use
+        }],
+        criminalrecord:[{
+            gravity: 0, //0=not too important, 5= really fucking bad
+            title: {type: String, intl:true},
+            subtitle: {type: String, intl:true}
         }],
         positioning:{
             soc: Number,
