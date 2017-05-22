@@ -339,19 +339,34 @@ li.s {
     padding-left: 24px;
     width:700px;
     max-width:700px;
+    position: relative;
 }
 .rightColumn_top{
-    height:300px;
-    padding-top:50px;
     color:white;
+    font-family: Montserrat, sans-serif;
+    line-height: 26px;
+    display: table;
+    height: 350px;
+    margin-bottom: 48px;
+}
+.rightColumn_top > div{
+    display: table-cell;
+    vertical-align:middle;
 }
 .rightColumn_top strong{
-    font-weight: 400;
+    font-weight: "Thin";
+    opacity: 1;
+    font-weight:400;
+    font-size:0.9em;
+}
+.rightColumn_top span{
+    opacity: 0.75;
+    font-weight:300;
+    font-size:0.9em;
 }
 .rightColumn_bottom{
-    margin-left:-24px;
-    padding-top:12px;
-    padding-left:24px;
+    position: absolute;
+    bottom:0;
 }
 .profile_img_wrap{
     width: 300px;
@@ -440,8 +455,13 @@ font-weight:400;
     font-family: Montserrat, sans-serif;
     color:white;
     font-size:3em;
-    margin-bottom:24px;
+    margin-bottom:8px;
+    margin-top:0;
     line-height:1em;
+}
+.personSocial{
+    margin: 0 0 12px ;
+    display: block;
 }
 .flagIcon{
     width:30px;
@@ -470,7 +490,7 @@ font-weight:400;
     z-index:1;
 }
 .political_party_ul{
-    margin-bottom:12px;
+    margin:0;
     padding-left:0;
 }
 .political_party_ul:after{
@@ -643,11 +663,8 @@ font-weight:400;
     width: auto;
     white-space: nowrap;
 }
-.criminalrec{
-    background-color: rgba(192,62,18,0.25);
-}
 .criminalrecitem{
-    padding:12px;
+    padding-bottom:12px;
 }
 .criminalrecitem h4{
     color:#002f55;
@@ -660,9 +677,7 @@ font-weight:400;
     font-size:0.8em;
 }
 .warningSpan{
-    padding:12px;
     font-size:1em;
-    background-color: #002F55;
     font-weight:bold;
     color:#C73E12;
     font-family:Montserrat,sans-serif;

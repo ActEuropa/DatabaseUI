@@ -17,6 +17,7 @@ databaseInit = function (app, i18n) {
     var Schema = mongoose.Schema;
     var personSchema = new Schema({
         name: String,
+        gender: Number, //0=Male, 1 = Female, 2= Nonbinary
         bio_short: {type: String, intl:true},
         bio_long: {type: String, intl:true},
         dateofbirth: Date,
@@ -26,7 +27,8 @@ databaseInit = function (app, i18n) {
         [{ title: {type: String, intl:true}, 
            description: {type: String, intl:true}, 
            from: Date, 
-           to: Date, 
+           to: Date,
+           political: Boolean, //This mainly serves to calculate the political career length.
            tags: Schema.Types.ObjectId, 
            parlement: Schema.Types.ObjectId, 
            parlementplace: Number }],
