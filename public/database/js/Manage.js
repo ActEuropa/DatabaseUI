@@ -34,6 +34,10 @@ var quotelist = $("#quotes");
 $("#add-quote").click(function (e) { AddNewItem(quotelist, "#remove-quote"); })
 $("#remove-quote").click(function (e) { RemoveItem(quotelist, "#remove-quote"); })
 
+var creclist = $("#criminalrecs");
+$("#add-criminalrec").click(function (e) { AddNewItem(creclist, "#remove-criminalrec"); })
+$("#remove-criminalrec").click(function (e) { RemoveItem(creclist, "#remove-criminalrec"); })
+
 $("#eco_range").on("input", function(){ ChangeValText("#eco_range")})
 $("#soc_range").on("input", function(){ ChangeValText("#soc_range")})
 $("#eu_range").on("input", function(){ ChangeValText("#eu_range")})
@@ -43,13 +47,8 @@ function ChangeValText(rangename){$(rangename + "_val").text($(rangename).val())
 
 var personObject = {}
 personObject.positioning = {soc:50, eco:50, eu:50, auth: 50};
-$("#fullname, #birth_date, #death_date").change(function (){ personObject[this.id] = $(this).val() })
+$("#fullname, #birth_date, #death_date, #name, #nationalities").change(function (){ personObject[this.id] = $(this).val() })
 
-$("#nationalities select").change(function(){
-    var natArray = [];
-    $("#nationalities select").each(function(i){ natArray.push($($("#nationalities select")[i]).val()); })
-    personObject.nationality = natArray;
-})
 
 $("#eco_range").change(function(){personObject.positioning.eco = parseInt($(this).val()) })
 $("#soc_range").change(function(){personObject.positioning.soc = parseInt($(this).val()) })

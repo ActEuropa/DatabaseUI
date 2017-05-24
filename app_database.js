@@ -17,6 +17,7 @@ databaseInit = function (app, i18n) {
     var Schema = mongoose.Schema;
     var personSchema = new Schema({
         name: String,
+        fullname: String,
         gender: Number, //0=Male, 1 = Female, 2= Nonbinary
         bio_short: {type: String, intl:true},
         bio_long: {type: String, intl:true},
@@ -29,7 +30,6 @@ databaseInit = function (app, i18n) {
            from: Date, 
            to: Date,
            political: Boolean, //This mainly serves to calculate the political career length.
-           tags: Schema.Types.ObjectId, 
            parlement: Schema.Types.ObjectId, 
            parlementplace: Number }],
         politicalmemberships: 
@@ -45,8 +45,7 @@ databaseInit = function (app, i18n) {
             location: String,
             date: String,
             source_urls: [String],
-            context: String,
-            score: Number //For future use
+            context: String
         }],
         criminalrecord:[{
             gravity: 0, //0=not too important, 5= really fucking bad
@@ -76,6 +75,8 @@ databaseInit = function (app, i18n) {
         img_profile: String,
         img_cover: String,
         socialmedia_urls: [String],
+        predecessor: Schema.Types.ObjectId,
+        successor: Schema.Types.ObjectId,
         tags: Schema.Types.ObjectId,
         official_positioning:{
             SocialFreedom: Number,

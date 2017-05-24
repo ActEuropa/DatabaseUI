@@ -44,13 +44,13 @@
             }
 
             .inputprops {
-                display:inline-block;
+                display: inline-block;
                 height: 20px;
                 font-family: Montserrat, sans-serif;
                 font-size: 12px;
                 font-weight: bold;
                 text-transform: uppercase;
-                margin-left:6px;
+                margin-left: 6px;
             }
 
             .inputprops a.selected {
@@ -84,8 +84,9 @@
                 width: 50%;
                 text-align: center;
             }
-            .sectionHeader{
-                font-size:1.4em;
+
+            .sectionHeader {
+                font-size: 1.4em;
             }
         </style>
         <div class="center">
@@ -146,31 +147,41 @@
                 </tr>
             </table>
             <input id="profile-img-input" type="file" autocomplete="off">&nbsp;&nbsp;&nbsp;<span id="preview-size" style="font-size:0.8em;opacity:0.5;"></span><br><br>
+            <strong>Usage name:</strong>
+            <input type="text" id="name" class="styledinput" style="width:100%;" autocomplete="off">
             <strong>Full name:</strong>
-            <textarea id="fullname" rows="1" autocomplete="off"></textarea>
-            <br><br>
-            
-            <strong>Biography (short):</strong><div class="inputprops" id="bio_short_props"></div>
+            <input type="text" id="fullname" class="styledinput" style="width:100%;" autocomplete="off">
+            <br>
+            <div style="height:12px;"></div>
+            <strong>Gender:</strong>
+            <select>
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+                <option value="2">Non-binary</option>
+            </select><br>
+            <div style="height:12px;"></div>
+            <strong>Biography (short):</strong>
+            <div class="inputprops" id="bio_short_props"></div>
             <textarea id="bio_short" rows="2" data-localized="true" autocomplete="off"></textarea>
             <br><br>
 
-            <strong>Biography (long):</strong><div class="inputprops" id="bio_long_props"></div>
+            <strong>Biography (long):</strong>
+            <div class="inputprops" id="bio_long_props"></div>
             <textarea id="bio_long" rows="4" data-localized="true" autocomplete="off"></textarea>
             <br><br>
-            
 
-            <strong>Birth date:&nbsp;&nbsp;&nbsp;</strong>
+
+            <strong>Birth date:</strong>
             <input id="birth_date" type="date" class="styledinput noborder" placeholder="dd/mm/yyyy" autocomplete="off">
             <br>
 
 
-            <strong>Death date:&nbsp;&nbsp;</strong>
+            <strong>Death date:</strong>
             <input id="death_date" type="date" class="styledinput noborder" placeholder="dd/mm/yyyy" autocomplete="off">
             <br><br>
 
-            <strong>Nationalities:&nbsp;&nbsp;</strong>
-            <input type="text" class="input-tags" style="width:100%;">
-            <!--select class="input-tags">
+            <strong>Nationalities:</strong>
+            <select id="nationalities" class="input-tags" multiple="multiple" style="width:100%;">
                     <option value="at"><%= __('Austria') %></option>
                     <option value="be"><%= __('Belgium') %></option>
                     <option value="bg"><%= __('Bulgaria') %></option>
@@ -199,14 +210,18 @@
                     <option value="es"><%= __('Spain') %></option>
                     <option value="se"><%= __('Sweden') %></option>
                     <option value="en"><%= __('United Kingdom') %></option>
-                </select-->
-            <br>
+                </select>
+            <br><br>
+            
             <hr>
+
             <span class="sectionHeader">Positions</span><br>
             <div id="positions">
                 <div class="block block-position">
-                    <textarea class="transparent" placeholder="Title*" data-localized="true" rows="1" autocomplete="off"></textarea>
-                    <textarea class="transparent" placeholder="Description*" data-localized="true" rows="1" autocomplete="off"></textarea>
+                    <strong>Title:</strong>
+                    <input type="text" class="styledinput transparent" style="width:100%;" data-localized="true" rows="1" autocomplete="off">
+                    <strong>Description:</strong>
+                    <textarea class="transparent" styled="width:100%;" data-localized="true" rows="1" autocomplete="off"></textarea>
                     <table>
                         <tr>
                             <td><strong>From:&nbsp;&nbsp;&nbsp;</strong></td>
@@ -217,12 +232,12 @@
                             <td><input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy" autocomplete="off"><br></td>
                         </tr>
                     </table>
-                    <textarea class="transparent" placeholder="Parlement" rows="1" autocomplete="off" style="width:89.5%;"></textarea>
-                    <textarea class="transparent" placeholder="Seat" rows="1" autocomplete="off" style="width:10%;"></textarea>
+                    <input class="styledinput transparent" placeholder="Parlement" rows="1" autocomplete="off" style="width:89.5%;" type="text">
+                    <input class="styledinput transparent" placeholder="Seat" rows="1" autocomplete="off" style="width:10%;" type="number">
                 </div>
             </div>
-            <button id="add-position" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-position" class="arbtn"
-                style="display:none;"><i class="fa fa-minus"></i></button><br>
+            <button id="add-position" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-position"
+                class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
             <br>
             <hr>
             <span class="sectionHeader">Political memberships</span><br>
@@ -242,8 +257,8 @@
                     <textarea class="transparent" placeholder="Role within the party" rows="1" autocomplete="off"></textarea>
                 </div>
             </div>
-            <button id="add-membership" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-membership" class="arbtn"
-                style="display:none;"><i class="fa fa-minus"></i></button><br>
+            <button id="add-membership" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-membership"
+                class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
             <br>
             <hr>
 
@@ -294,8 +309,25 @@
                     <button class="arbtn"><i class="fa fa-plus"></i></button><br>
                 </div>
             </div>
-            <button id="add-quote" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-quote" class="arbtn"
-                style="display:none;"><i class="fa fa-minus"></i></button><br>
+            <button id="add-quote" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-quote" class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
+            
+            <hr>
+            
+            <span class="sectionHeader">Criminal record</span><br>
+            <div id="criminalrecs">
+                <div class="block">
+                    <strong>Title:</strong>
+                    <input type="text" class="styledinput transparent" style="width:100%;"><br>
+                    <strong>Subtitle:</strong>
+                    <input type="text" class="styledinput transparent" style="width:100%;"><br>
+                    <strong>Gravity:&nbsp;&nbsp;</strong>
+                    <input type="number" min="0" max="5" class="styledinput transparent"><br>
+                    <strong>Date:&nbsp;&nbsp;</strong>
+                    <input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy"><br>
+                </div>
+            </div>
+            <button id="add-criminalrec" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-criminalrec" class="arbtn" style="display:none;"><i class="fa fa-minus"></i></button><br>
+
             <button id="send" class="sendbutton" style="float:right;">VIEW JSON</button>
         </div>
         <br><br>

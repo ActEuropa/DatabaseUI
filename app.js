@@ -29,6 +29,10 @@ blogInit(app, Poet, i18n);
 require("./app_database.js");
 databaseInit(app, i18n);
 
+//Initialize media manager
+require("./app_media.js");
+mediaInit(app, i18n);
+
 ///////////////////////////
 //       Error pages     //
 ///////////////////////////
