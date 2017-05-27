@@ -6,7 +6,36 @@ var subdomain = require('express-subdomain');
 var cookieParser = require('cookie-parser');
 var i18n = require('i18n');
 var Poet = require('poet');
+var multer = require('multer');
+var fs = require('fs')
+var im = require('gm');
+
 var app = express()
+
+//This function serves to choose which language should be displayed for variables:
+app.locals.pick = function(input){
+  if(input[i18n.getLocale()] != null){
+    return input[i18n.getLocale()]}
+  else if(input[i18n.defaultLocale] != null){
+    return input[i18n.defaultLocale]}
+  else if(input[0] != null){
+    return input[0];}
+}
+//Add new function to date to convert to european format
+Date.toCivilizedString = function (input) {
+  var d = new Date(input);
+  return  d.getDate() + "/" + d.getMonth()+ "/" + d.getFullYear();
+};
+Date.getAge = function (birth) {
+    var t = new Date();
+    var d = new Date(birth);
+    var age = t.getFullYear() - d.getFullYear();
+    var m = t.getMonth() - d.getMonth();
+    if (m < 0 || (m === 0 && t.getDate() < d.getDate())) {
+        age--;
+    }
+    return age;
+};
 
 app.use(cookieParser());
 app.use(express.static('public'));
@@ -16,6 +45,8 @@ defaultLocale: 'en',
 cookie: 'lang',
 updateFiles: false });
 app.use(i18n.init);
+var upload = multer({ dest: 'public/media/tmp/' })
+
 
 ///////////////////////////
 //  Rendering functions  //
@@ -27,11 +58,7 @@ blogInit(app, Poet, i18n);
 
 //Initialize database
 require("./app_database.js");
-databaseInit(app, i18n);
-
-//Initialize media manager
-require("./app_media.js");
-mediaInit(app, i18n);
+databaseInit(app, i18n, upload, im, fs);
 
 ///////////////////////////
 //       Error pages     //

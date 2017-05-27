@@ -24,7 +24,7 @@
             <div class="leftColumn">
                 <div class="leftColumn_content">
                     <div class="profile_img_wrap">
-                        <img class="profile_img" src="http://i.imgur.com/PjNjCt5.jpg">
+                        <img class="profile_img" src="/media/w300/<%= p._id.toHexString() %>.jpg">
                     </div>
 
                 </div>
@@ -33,7 +33,7 @@
                 <div class="rightColumn_top">
                     <div>
                     <h1 class="personh1">
-                        <%= person_name %>
+                        <%= p.name %>
                     </h1>
                     <div class="personSocial">
                     <a title="Facebook" class="smicon" href="https://www.facebook.com/ActEuropa-1833768660239476" target="_blank"><img src="/common/img/sm-light/social_fb.svg"></a>
@@ -43,9 +43,24 @@
                     </div>
                 <table>
                     <tbody>
-                        <tr><td><strong>Gender:</strong>&nbsp;&nbsp;</td><td><span>Male</span></td></tr>
-                        <tr><td><strong>Born:</strong>&nbsp;&nbsp;</td><td><span>21/12/1977 (39 years old) at Amiens, France</span></td></tr>
-                        <tr><td><strong>Nationality:</strong>&nbsp;&nbsp;</td><td><span><img class="flag" src="/common/img/flags/Flag_of_France.svg">France</span></td></tr>
+                        <tr><td><strong>Gender:</strong>&nbsp;&nbsp;</td><td><span>
+                            <%if(p.gender == 0){%>
+                            <%= __('Male') %>
+                            <%}else if(p.gender == 1){%>
+                            <%= __('Female') %>
+                            <%}else if(p.gender == 2){%>
+                            <%= __('Non-binary') %>
+                            <%}%>
+                        </span></td></tr>
+                        <tr><td><strong>Born:</strong>&nbsp;&nbsp;</td><td><span>
+                            <%= Date.toCivilizedString(p.birthdate) %> (<%= Date.getAge(p.birthdate) + " " + __("years old") + ") " %>
+                            <%if (p.birthlocation != null){%><%= __("at ") + p.birthlocation %><%}%>
+                        </span></td></tr>
+                        <tr><td><strong>Nationality:</strong>&nbsp;&nbsp;</td><td>
+                            <% for(var i=0; i<p.nationalities.length; i++) {%>
+                                <span><img class="flag" src="/common/img/flags/<%= p.nationalities[i] %>.svg"><%= __(p.nationalities[i]) %></span>
+                            <% } %>
+                            </td></tr>
                         <tr><td><strong>Elected:</strong>&nbsp;&nbsp;</td><td><span>Once</span></td></tr>
                         <tr><td><strong>Political career:</strong>&nbsp;&nbsp;</td><td><span>5 years</span></td></tr>
                     </tbody>
@@ -53,7 +68,6 @@
                 </div>
                 </div>
                 <div class="rightColumn_bottom">
-
                     <ul class="political_party_ul">
                         <li class="political_party_btn">
                             <a>
@@ -108,26 +122,9 @@
             </div>
             <div class="bio">
                 <h2 class="serifheader">Biography</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut iaculis sit amet sapien et ullamcorper. Cras
-                    a varius augue. Nunc congue velit tellus. Integer faucibus tellus dolor, vitae vestibulum magna tristique
-                    ac. Nulla vel odio lacinia, luctus erat ac, ornare sapien. Fusce eleifend facilisis tellus, quis condimentum
-                    ante elementum sed. Donec lacinia felis sagittis commodo vestibulum. Fusce venenatis metus urna, suscipit
-                    egestas augue varius eu. Phasellus ante diam, fermentum sed iaculis sed, ultrices vitae erat.
-                </p>
-                <p>Donec tempor molestie ligula, in mollis orci placerat a. Ut id arcu ut eros iaculis dictum non id risus.
-                    Phasellus ac eros purus. Nam sagittis leo sed suscipit consectetur. Donec malesuada orci non tortor hendrerit,
-                    eu euismod enim pharetra. Phasellus blandit venenatis urna eu fermentum. Nunc efficitur felis eu magna
-                    fermentum, at semper turpis cursus. Aliquam blandit non risus ac eleifend. Ut quis massa eu erat varius
-                    congue.
-                </p>
-                <p>Aliquam a tempus arcu. Phasellus quis dui in dui tincidunt posuere. Duis iaculis augue est, feugiat sagittis
-                    diam tempor id. Nunc dapibus neque arcu, a lacinia nisi dictum et. Nam porttitor sit amet tellus lobortis
-                    porta. Sed ac nisi ut turpis tristique mattis. Fusce vitae sodales quam. Suspendisse potenti. Mauris
-                    et nisi ligula. Ut sodales purus justo. Mauris scelerisque libero nec nulla euismod, ac ultricies enim
-                    eleifend. Nulla condimentum congue turpis, nec vehicula nisi venenatis id. Curabitur varius, leo et lacinia
-                    pharetra, urna neque mattis nisi, non tincidunt mi dolor ut ipsum.
-                </p>
-                                <div class="criminalrec">
+                <%= pick(p.bio_long) %>
+
+                <div class="criminalrec">
                     <div class="warningSpan">CRIMINAL RECORD:</div>
                     <ul>
                     <li class="criminalrecitem">
@@ -254,7 +251,7 @@
                     this.Country = Country;
                     this.Color = Color;
                 }
-                NewVosem([new Person("Emmanuel", "Macron", "21/12/1977", 80, 70, 80, "", "", "En Marche!", "FR", "#377672")], undefined, "transparent", false, true)
+                NewVosem([new Person("Emmanuel", "Macron", "21/12/1977", <%= p.positioning.eco %>, <%= p.positioning.soc %>, <%= p.positioning.eu %>, "", "", "En Marche!", "FR", "#377672")], undefined, "transparent", false, true)
             </script>
 
 </body>

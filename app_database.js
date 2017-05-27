@@ -1,4 +1,4 @@
-databaseInit = function (app, i18n) {
+databaseInit = function (app, i18n, upload, im, fs) {
 
     //Mongoose setup
     var mongoose = require('mongoose');
@@ -22,8 +22,9 @@ databaseInit = function (app, i18n) {
         bio_short: {type: String, intl:true},
         bio_long: {type: String, intl:true},
         dateofbirth: Date,
+        birthlocation: String,
         dateofdeath: Date,
-        nationality: [String],
+        nationalities: [String],
         jobs: 
         [{ title: {type: String, intl:true}, 
            description: {type: String, intl:true}, 
@@ -59,6 +60,8 @@ databaseInit = function (app, i18n) {
             auth: Number
         }
     });
+    var Person = mongoose.model('Person', personSchema);
+
     var tagSchema = new Schema({
         text: {type: String, intl:true},
         description: {type: String, intl:true}
@@ -147,8 +150,11 @@ databaseInit = function (app, i18n) {
         res.render("Pages/Database/DataHome.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
     })
     //Person page
-    app.get("/person/:name", function (req, res, next) {
-        res.render('Pages/Database/Person.ejs', { lang: i18n.getLocale(req), person_name: req.params.name, headerIndex: 2 });
+    app.get("/person/:id", function (req, res, next) {
+        Person.findById(req.params.id, function(err, selPerson){
+            console.log(Date.toCivilizedString( selPerson._doc.birthdate))
+            res.render('Pages/Database/Person.ejs', { lang: i18n.getLocale(req), headerIndex: 2, p: selPerson._doc });
+        });     
     })
     //Country page
     app.get("/country/:name", function (req, res, next) {
@@ -158,16 +164,48 @@ databaseInit = function (app, i18n) {
     app.get("/party/:country/:name", function (req, res, next) {
         res.render("Pages/Database/PoliticalParty.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
     })
-
+    //Editing page
     app.get("/data/person/edit", function (req, res, next) {
         res.render("Pages/Database/Person_Edit.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
+    })
+    //Upload person data
+    app.post("/data/person/edit/upload", upload.single('profileimg'), function (req, res, next) {
+        var sentobj = JSON.parse(req.body.json);
+        var Person = mongoose.model("Person", personSchema);
+        var p = new Person;
+        p.name = sentobj.name;
+        p.fullname = sentobj.fullname
+        p.gender = sentobj.gender;
+        p.set("bio_short.all", sentobj.bio_short);
+        p.set("bio_long.all", sentobj.bio_short);
+        p.dateofbirth = new Date(sentobj.dateofbirth);
+        p.nationalities = sentobj.nationalities;
+        p.positioning.eco = sentobj.positioning.eco;
+        p.positioning.soc = sentobj.positioning.soc;
+        p.positioning.eu = sentobj.positioning.eu;
+        p.positioning.auth = sentobj.positioning.auth;
+        
+        var id = mongoose.Types.ObjectId();
+        im(req.file.path).resize(300).samplingFactor(4,2).quality(80).write("public/media/w300/" + id.toHexString() + ".jpg", function (err) { if (err) {  return; } });
+        im(req.file.path).resize(96).samplingFactor(4,2).quality(70).write("public/media/w96/" + id.toHexString() + ".jpg", function (err) { if (err) {  return; } });
+        im(req.file.path).resize(12).samplingFactor(4,2).quality(40).write("public/media/w12/" + id.toHexString() + ".png", function (err) { if (err) { return; } });
+        im(req.file.path).samplingFactor(4,2).quality(85).write("public/media/original/" + id.toHexString() + ".jpg", function (err) { if (err) { return; } });
+        //
+        fs.unlinkSync(req.file.path);
+        p._id = id;
+        p.save(function (err, mobj, numAffected) {
+            if (err) {res.sendStatus(400); }
+            else { res.sendStatus(200); }
+        });
+
+       // res.render("Pages/Database/Person_Edit.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
     })
     app.get("/data/person/new/Test", function (req, res, next) {
         createTestPerson();
     })
 
     function AddToDatabase(json){
-        var Person = mongoose.model('Person', personSchema);
+        
         var p = new Person;
         p.name = "Lorem Ipsum"
         p.bio_short = "This is the short biography of Lorem Ipsum, the first test entry in the ActEuropa database"
@@ -179,7 +217,7 @@ databaseInit = function (app, i18n) {
         p.dateofbirth = Date.now()
         p.nationality = ["en", "fr", "it", "es"]
         //I really can't be arsed to add the rest right now.
-        p.save(function(){console.log("Added test entry to database")});
+      //  p.save(function(){console.log("Added test entry to database")});
     }
     var getPersonData = function (name) {
         this.name = "test";

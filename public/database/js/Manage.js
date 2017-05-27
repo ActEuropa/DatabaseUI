@@ -116,6 +116,19 @@ function RemoveItem(list, removebutton, ignoreAnimation){
         if(list.children("div").length < 2) $(removebutton).fadeOut(200);
     }
 }
-$("#send").click(function (e) {
+$("#viewjson").click(function (e) {
     alert(JSON.stringify(personObject));
+})
+$("#sendjson").click(function (e) {
+    console.log("sending data...");
+    var formData = new FormData();
+    formData.append("json", JSON.stringify(personObject));
+    formData.append("profileimg", document.getElementById("profile-img-input").files[0])
+      $.ajax( {
+      url: '/data/person/edit/upload',
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false
+    } ).done(function(){ alert("Sent data!")});
 })

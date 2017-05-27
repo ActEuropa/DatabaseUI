@@ -1,5 +1,4 @@
-mediaInit = function (app, i18n) {
-    app.post("/media/img/upload", function (req, res, next) {
-        res.render("Pages/Database/DataHome.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
-    })
-}
+
+var SaveProfileImage = function(file, id){
+        gm(file.path).resize(96, 96, '!').write('public/media/w96/', function (err) {if (!err) console.log('done');});
+    }
