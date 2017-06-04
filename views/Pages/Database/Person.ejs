@@ -24,7 +24,7 @@
             <div class="leftColumn">
                 <div class="leftColumn_content">
                     <div class="profile_img_wrap">
-                        <img class="profile_img" src="/media/w300/<%= p._id.toHexString() %>.jpg">
+                        <img class="profile_img" src="http://res.cloudinary.com/acteuropa/image/upload/t_person_img_300/<%= p._id.toHexString() %>.jpg">
                     </div>
 
                 </div>
@@ -53,8 +53,8 @@
                             <%}%>
                         </span></td></tr>
                         <tr><td><strong>Born:</strong>&nbsp;&nbsp;</td><td><span>
-                            <%= Date.toCivilizedString(p.birthdate) %> (<%= Date.getAge(p.birthdate) + " " + __("years old") + ") " %>
-                            <%if (p.birthlocation != null){%><%= __("at ") + p.birthlocation %><%}%>
+                            <%= Date.toCivilizedString(p.dateofbirth) %> (<%= Date.getAge(p.dateofbirth) + " " + __("years old") + ") " %>
+                            <%if (p.locationofbirth != null){%><%= __("at ") + p.locationofbirth %><%}%>
                         </span></td></tr>
                         <tr><td><strong>Nationality:</strong>&nbsp;&nbsp;</td><td>
                             <% for(var i=0; i<p.nationalities.length; i++) {%>

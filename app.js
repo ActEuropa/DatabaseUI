@@ -9,7 +9,7 @@ var Poet = require('poet');
 var multer = require('multer');
 var fs = require('fs')
 var im = require('gm');
-
+var cloudinary = require('cloudinary');
 var app = express()
 
 //This function serves to choose which language should be displayed for variables:
@@ -37,6 +37,13 @@ Date.getAge = function (birth) {
     return age;
 };
 
+//Set up cloudinary:
+cloudinary.config({ 
+  cloud_name: 'acteuropa', 
+  api_key: '344884393851828', 
+  api_secret: process.env.CLOUDINARY_SECRET
+});
+
 app.use(cookieParser());
 app.use(express.static('public'));
 i18n.configure({ locales:["en","cr","cs","da","nl","et","fi","fr","bg","de","el","hu","ga","it","lv","lt","mt","pl","pt","ro","sk","sl","es","sv"], 
@@ -58,7 +65,7 @@ blogInit(app, Poet, i18n);
 
 //Initialize database
 require("./app_database.js");
-databaseInit(app, i18n, upload, im, fs);
+databaseInit(app, i18n, upload, im, fs, cloudinary);
 
 ///////////////////////////
 //       Error pages     //

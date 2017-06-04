@@ -219,21 +219,23 @@
             <div id="positions">
                 <div class="block block-position">
                     <strong>Title:</strong>
-                    <input type="text" class="styledinput transparent" style="width:100%;" data-localized="true" rows="1" autocomplete="off">
+                    <input type="text" class="pos_title styledinput transparent" style="width:100%;" data-localized="true" rows="1" autocomplete="off">
                     <strong>Description:</strong>
-                    <textarea class="transparent" styled="width:100%;" data-localized="true" rows="1" autocomplete="off"></textarea>
+                    <textarea class="pos_description transparent" styled="width:100%;" data-localized="true" rows="1" autocomplete="off"></textarea>
                     <table>
                         <tr>
                             <td><strong>From:&nbsp;&nbsp;&nbsp;</strong></td>
-                            <td><input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy" autocomplete="off"><br></td>
+                            <td><input type="date" class=" pos_from styledinput transparent noborder" placeholder="dd/mm/yyyy" autocomplete="off"><br></td>
                         </tr>
                         <tr>
                             <td><strong>To:&nbsp;&nbsp;</strong></td>
-                            <td><input type="date" class="styledinput transparent noborder" placeholder="dd/mm/yyyy" autocomplete="off"><br></td>
+                            <td><input type="date" class="pos_to styledinput transparent noborder" placeholder="dd/mm/yyyy" autocomplete="off"><br></td>
                         </tr>
                     </table>
-                    <input class="styledinput transparent" placeholder="Parlement" rows="1" autocomplete="off" style="width:89.5%;" type="text">
-                    <input class="styledinput transparent" placeholder="Seat" rows="1" autocomplete="off" style="width:10%;" type="number">
+                    <input class="pos_political" type="checkbox" autocomplete="off"><strong>&nbsp;&nbsp;&nbsp;Political</strong><br>
+                    <input class="pos_elected" type="checkbox" autocomplete="off"><strong>&nbsp;&nbsp;&nbsp;Elected</strong><br>
+                    <input class="pos_parlement styledinput transparent" placeholder="Parlement" rows="1" autocomplete="off" style="width:89.5%;" type="text">
+                    <input class="pos_seat styledinput transparent" placeholder="Seat" rows="1" autocomplete="off" style="width:10%;" type="number">
                 </div>
             </div>
             <button id="add-position" class="arbtn"><i class="fa fa-plus">&nbsp;new</i></button><button id="remove-position"

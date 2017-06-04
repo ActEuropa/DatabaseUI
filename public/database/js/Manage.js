@@ -116,7 +116,23 @@ function RemoveItem(list, removebutton, ignoreAnimation){
         if(list.children("div").length < 2) $(removebutton).fadeOut(200);
     }
 }
+function getValues(){
+    personObject.jobs = [];
+    $(".block-position").each(function(index,elem){
+        var job = new Object();
+        job.title = $(elem).children(".pos_title").val();
+        job.description = $(elem).children(".pos_description").val();
+        job.from = $(elem).children(".pos_from").val();
+        job.to = $(elem).children(".pos_to").val();
+        job.elected = $(elem).children(".pos_elected").is(":checked");
+        job.political = $(elem).children(".pos_political").is(":checked");
+        job.parlement = $(elem).children(".pos_parlement").val();
+        job.seat = $(elem).children(".pos_seat").val();
+        personObject.jobs.push(job);
+    })
+}
 $("#viewjson").click(function (e) {
+    getValues();
     alert(JSON.stringify(personObject));
 })
 $("#sendjson").click(function (e) {

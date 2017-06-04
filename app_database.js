@@ -1,8 +1,8 @@
-databaseInit = function (app, i18n, upload, im, fs) {
+databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
 
     //Mongoose setup
     var mongoose = require('mongoose');
-    mongoose.connect('mongodb://webapp:5xtgCftAyR2SmfS@ds137121.mlab.com:37121/acteuropadb');
+    mongoose.connect(process.env.MLAB_URL);
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function () {
@@ -22,7 +22,7 @@ databaseInit = function (app, i18n, upload, im, fs) {
         bio_short: {type: String, intl:true},
         bio_long: {type: String, intl:true},
         dateofbirth: Date,
-        birthlocation: String,
+        locationofbirth: String,
         dateofdeath: Date,
         nationalities: [String],
         jobs: 
@@ -31,6 +31,7 @@ databaseInit = function (app, i18n, upload, im, fs) {
            from: Date, 
            to: Date,
            political: Boolean, //This mainly serves to calculate the political career length.
+           elected: Boolean,
            parlement: Schema.Types.ObjectId, 
            parlementplace: Number }],
         politicalmemberships: 
@@ -178,7 +179,7 @@ databaseInit = function (app, i18n, upload, im, fs) {
         p.gender = sentobj.gender;
         p.set("bio_short.all", sentobj.bio_short);
         p.set("bio_long.all", sentobj.bio_short);
-        p.dateofbirth = new Date(sentobj.dateofbirth);
+        p.dateofbirth = new Date(sentobj.birth_date);
         p.nationalities = sentobj.nationalities;
         p.positioning.eco = sentobj.positioning.eco;
         p.positioning.soc = sentobj.positioning.soc;
@@ -186,12 +187,11 @@ databaseInit = function (app, i18n, upload, im, fs) {
         p.positioning.auth = sentobj.positioning.auth;
         
         var id = mongoose.Types.ObjectId();
-        im(req.file.path).resize(300).samplingFactor(4,2).quality(80).write("public/media/w300/" + id.toHexString() + ".jpg", function (err) { if (err) {  return; } });
-        im(req.file.path).resize(96).samplingFactor(4,2).quality(70).write("public/media/w96/" + id.toHexString() + ".jpg", function (err) { if (err) {  return; } });
-        im(req.file.path).resize(12).samplingFactor(4,2).quality(40).write("public/media/w12/" + id.toHexString() + ".png", function (err) { if (err) { return; } });
-        im(req.file.path).samplingFactor(4,2).quality(85).write("public/media/original/" + id.toHexString() + ".jpg", function (err) { if (err) { return; } });
-        //
-        fs.unlinkSync(req.file.path);
+        cloudinary.uploader.upload(req.file.path, function(result) { console.log(result) },
+        { public_id: id.toHexString(),
+        });
+
+        //fs.unlinkSync(req.file.path);
         p._id = id;
         p.save(function (err, mobj, numAffected) {
             if (err) {res.sendStatus(400); }
