@@ -131,6 +131,7 @@ function getValues(){
         personObject.jobs.push(job);
     })
 }
+
 $("#viewjson").click(function (e) {
     getValues();
     alert(JSON.stringify(personObject));

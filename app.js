@@ -12,6 +12,9 @@ var im = require('gm');
 var cloudinary = require('cloudinary');
 var app = express()
 
+//set up enviroment variables for local debugging (otherwise, heroku deals with that):
+require('dotenv').config()
+
 //This function serves to choose which language should be displayed for variables:
 app.locals.pick = function(input){
   if(input[i18n.getLocale()] != null){

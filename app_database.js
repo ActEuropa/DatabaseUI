@@ -1,8 +1,9 @@
 databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
 
+    console.log("Connecting to " +  process.env.MONGODB_URI)
     //Mongoose setup
     var mongoose = require('mongoose');
-    mongoose.connect(process.env.MLAB_URL);
+    mongoose.connect(process.env.MONGODB_URI);
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function () {

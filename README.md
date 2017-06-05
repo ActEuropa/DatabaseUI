@@ -1,11 +1,22 @@
 This is the front and back end of our main website. It is comprised of three main blocks:
 
 # Common
+
+### Config variables
+To function correctly, the database requires the following environment variables to be set:
+* `CLOUDINARY_SECRET` : The secret API key for the Cloudinary CDN
+* `MONGODB_URI` : A URI pointing towards the MongoDB database
+
+If you are running the nodejs server locally, create a `.env` file at the root of the project, containing the following text:
+
+    CLOUDINARY_SECRET=...
+    MONGODB_URI=mongodb://...
+
 ### Files/Directories
-* `/app.js`: core node.js server
-* `/public/common/`: All the front-end files common to the blog and database
-* `/views/Pages/Common/`: All the .ejs views common to the blog and database (error pages).
-* `/views/Partials/` These are all the partial .html files common to the blog and database
+* `/app.js` : core node.js server
+* `/public/common/` : All the front-end files common to the blog and database
+* `/views/Pages/Common/` : All the .ejs views common to the blog and database (error pages).
+* `/views/Partials/` : These are all the partial .html files common to the blog and database
 
 ### Breaking news
 Every time a user navigates to any page, the `/public/common/Breaking-News.json` file is downloaded by an inline script in the `/views/Partials/Header.html` file. It is a .json file that should be of the following structure:
@@ -69,4 +80,25 @@ Each article must *at least* be in english.
 * `/views/Pages/Data` All the database-specific .ejs views.
 
 
+                 <  ,     )  `_A_
+           /"\   / "P     `-",V  B"    /"\
+            ,-,/\T_D,      ,'( ) D
+            ,7  P ) \      \(  -'
+         _A_"--',T  H.   ..-H'-\         _A_
+         /"\   ,;T___( ,/       |        /"\
+                  , _/"        ,|
+               C8>'"          (  _
+           _A_  `q        _    "" )    _A_
+         _./"\   )      <,sm>   _/'    /"\
+        |  ""-._.H            ,/
+        /        _A_ ,-._,'`. \  _A_
+      ,/         /"\/    _A_ \ './"\      __,
+      /         /"       /"\  '-."`.   -="p""
+      ""\     _P"        !_!     "W "  H \_
+         """""                ---//    (  ='
+                              `"-'      `w
+                                           """'
+
 Icons by [Darrio Ferando](http://www.dario.io/)
+
+
