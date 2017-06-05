@@ -1,0 +1,61 @@
+        "name": 
+            {"type": "String", "i": false },
+        "fullname": 
+            {"type": "String", "i": false },
+        "gender": 
+            {"type": "Number", "i": true },
+        "bio_short": 
+            {"type": "String", "i":true },
+        "bio_long": 
+            {"type": "String", "i":true },
+        "dateofbirth": 
+            {"type": "Date", "i":true },
+        "locationofbirth": 
+            {"type": "String", "i":true },
+        "dateofdeath": 
+            {"type": "Date", "i":false },
+        "nationalities": 
+            [{"type": "String", "i":false}],
+        "jobs": 
+        [{ "title": 
+               {"type": "String", "i": true }, 
+           "description": 
+               {"type": "String", "i": true }, 
+           "from": 
+               {"type": "Date", "i": false }, 
+           "to": 
+               {"type": "Date", "i": false },
+           "political": 
+               {"type": "Boolean", "i": false }, //This mainly serves to calculate the political career length.
+           "elected": 
+               {"type": "Boolean", "i": false },
+           "parlement": 
+               {"type": "Schema.Types.ObjectId", "i": false }, 
+           "parlementplace": 
+               {"type": "Number", "i": false }
+        }],
+        "politicalmemberships": 
+        [{ "party": "Schema.Types.ObjectId",
+           "from": "Date",
+           "to": "Date",
+           "role": [{"type": "String", "i":true}]}],
+        "socialmedia_urls": ["String"],
+        "quotes": 
+        [{
+            quote: {type: String, intl:true},
+            location: String,
+            date: String,
+            source_urls: [String],
+            context: String
+        }],
+        criminalrecord:[{
+            gravity: 0, //0=not too important, 5= really fucking bad
+            title: {type: String, intl:true},
+            subtitle: {type: String, intl:true}
+        }],
+        positioning:{
+            soc: Number,
+            eco: Number,
+            eu: Number,
+            auth: Number
+        }

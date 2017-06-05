@@ -1,8 +1,45 @@
 databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
 
-    console.log("Connecting to " +  process.env.MONGODB_URI)
+    //Function to create JSON from the schema
+    Array.prototype.contains = function ( a ) { for (i in this) { if (this[i] == a) return true; } return false; }
+    function CreateForm(schema){
+        var iterate = function(mainobj, name){
+            obj = mainobj[name]
+            var formObject = new Object();
+            formObject.name = name;
+            console.log(formObject.name);
+            if(Array.isArray(obj)){
+                formObject.isArray = true;
+                obj = obj[0];
+            }
+            if(obj.type == undefined)
+            {
+                formObject.type = [];
+                for(var propertyName in obj) {
+                     formObject.type.push(iterate(obj, propertyName))
+                }
+            }
+            else{
+                formObject.type = obj.type.name;
+            }
+            
+            if (Intlfields.contains(name)) formObject.intl = true;
+            else formObject.intl = false;
+              
+            return formObject;
+        }
+
+        var schobj = schema.obj
+        var objects = [];
+        for(var propertyName in schobj) {
+            objects.push(iterate(schobj, propertyName))
+            console.log(JSON.stringify(objects.slice(-1)[0]))
+        }
+        
+    }
     //Mongoose setup
     var mongoose = require('mongoose');
+    console.log("Connecting to " +  process.env.MONGODB_URI)
     mongoose.connect(process.env.MONGODB_URI);
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
@@ -14,52 +51,55 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     var mongooseIntl = require('mongoose-intl');
     mongoose.plugin(mongooseIntl, { languages: ["en","cr","cs","da","nl","et","fi","fr","bg","de","el","hu","ga","it","lv","lt","mt","pl","pt","ro","sk","sl","es","sv"], defaultLanguage: 'en' });
 
+    var Intlfields= ["bio_short", "bio_long", "title", "description", "role", "quote", "subtitle"]; //This is to keep track of translateable fields
+    
     //Mongoose schema definitions
+    //WARNING!!!!! DO NOT CALL ANY PROPERTY "TYPE"! IT WILL MESS UP WITH THE FORM CREATION FUNCTION!
+    
     var Schema = mongoose.Schema;
     var personSchema = new Schema({
-        name: String,
-        fullname: String,
-        gender: Number, //0=Male, 1 = Female, 2= Nonbinary
-        bio_short: {type: String, intl:true},
-        bio_long: {type: String, intl:true},
-        dateofbirth: Date,
-        locationofbirth: String,
-        dateofdeath: Date,
-        nationalities: [String],
+        name: { type: String },
+        fullname: { type: String },
+        gender: { type: Number }, //0=Male, 1 = Female, 2= Nonbinary
+        bio_short: { type: String, intl:true },
+        bio_long: { type: String, intl:true },
+        dateofbirth: { type: Date },
+        locationofbirth: { type: String },
+        dateofdeath: { type: Date },
+        nationalities: [{ type: String }],
         jobs: 
-        [{ title: {type: String, intl:true}, 
-           description: {type: String, intl:true}, 
-           from: Date, 
-           to: Date,
-           political: Boolean, //This mainly serves to calculate the political career length.
-           elected: Boolean,
-           parlement: Schema.Types.ObjectId, 
+        [{ title: { type: String, intl:true }, 
+           description: { type: String, intl:true }, 
+           from: { type: Date }, 
+           to: { type: Date },
+           political: { type: Boolean }, //This mainly serves to calculate the political career length.
+           elected: { type: Boolean },
+           parlement: { type: String } , 
            parlementplace: Number }],
         politicalmemberships: 
-        [{ party: Schema.Types.ObjectId,
-           from: Date,
-           to: Date,
-           role: [{type: String, intl:true}]}],
-        socialmedia_urls: [String],
-        img_profile: String,
+        [{ party:  { type: String },
+           from: { type: Date },
+           to: { type: Date },
+           role: [{ type: String, intl:true }]}],
+        socialmedia_urls: [{ type: String }],
         quotes: 
         [{
-            quote: {type: String, intl:true},
-            location: String,
-            date: String,
-            source_urls: [String],
-            context: String
+            quote: { type: String, intl:true },
+            location: { type: String },
+            date: { type: String },
+            source_urls: [{ type: String }],
+            context: { type: String }
         }],
         criminalrecord:[{
-            gravity: 0, //0=not too important, 5= really fucking bad
-            title: {type: String, intl:true},
-            subtitle: {type: String, intl:true}
+            gravity:  { type: Number }, //0=not too important, 5= really fucking bad
+            title: { type: String, intl:true },
+            subtitle: { type: String, intl:true }
         }],
         positioning:{
-            soc: Number,
-            eco: Number,
-            eu: Number,
-            auth: Number
+            soc: { type: Number },
+            eco: { type: Number },
+            eu: { type: Number },
+            auth: { type: Number }
         }
     });
     var Person = mongoose.model('Person', personSchema);
@@ -68,6 +108,8 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         text: {type: String, intl:true},
         description: {type: String, intl:true}
     })
+   // var Tag = mongoose.model('Tag', tagSchema);
+    
     var partySchema = new Schema({
         name: {type: String, intl:true},
         abreviation: String,
@@ -96,6 +138,8 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
             Authoritarianism: Number
         }
     });
+  //  var Party = mongoose.model('Party', partySchema);
+    
     var parlementSchema = new Schema({
         name: {type: String, intl:true},
         type: Number,
@@ -107,6 +151,8 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         img_outside: String,
         svg: String //The seat numbers should be embeded in the SVG
     });
+  //  var Parlement = mongoose.model('Person', parlementSchema);
+    
     var electionSchema = new Schema({
         name: {type: String, intl:true},
         candidates: [Schema.Types.ObjectId],
@@ -123,6 +169,8 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
             values:[{candidate: [Schema.Types.ObjectId], value: Number}]
         }]
     });
+  //  var Election = mongoose.model('Person', personSchema);
+    
     var countrySchema = new Schema({
         iso_3166_2: String,
         name: {type: String, intl:true},
@@ -144,6 +192,7 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         //The rest of the data we've got about countries, like flags or statistics don't need to be linked to the database.
         //as they can just exist as plain files.
     });
+  //  var Country = mongoose.model('Person', personSchema);
     ///////////////////////////
     //  Rendering functions  //
     ///////////////////////////
@@ -168,7 +217,7 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     })
     //Editing page
     app.get("/data/person/edit", function (req, res, next) {
-        res.render("Pages/Database/Person_Edit.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
+       res.render("Pages/Database/EditDatabaseEntry.ejs", { lang: i18n.getLocale(req), headerIndex: 2, form: CreateForm(personSchema) });
     })
     //Upload person data
     app.post("/data/person/edit/upload", upload.single('profileimg'), function (req, res, next) {
@@ -201,26 +250,4 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
 
        // res.render("Pages/Database/Person_Edit.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
     })
-    app.get("/data/person/new/Test", function (req, res, next) {
-        createTestPerson();
-    })
-
-    function AddToDatabase(json){
-        
-        var p = new Person;
-        p.name = "Lorem Ipsum"
-        p.bio_short = "This is the short biography of Lorem Ipsum, the first test entry in the ActEuropa database"
-        p.set('bio_short.all', {
-            en: "title in English",
-            fr: "title in French"
-        });
-        p.bio_long = "This is the long biography of Lorem Ipsum, the first and hopefullt not last test entry in the glorious ActEuropa database. Born at 19:43, as the weather outside was grey and ugly, Lorem Ipsum's ambition had always been to serve his creators. This finally became a dream at the age of one minute, when this stupid pointless biography was finally written. Since, he has been mayor, MP, and is now hoping to become the next president of database test entries."
-        p.dateofbirth = Date.now()
-        p.nationality = ["en", "fr", "it", "es"]
-        //I really can't be arsed to add the rest right now.
-      //  p.save(function(){console.log("Added test entry to database")});
-    }
-    var getPersonData = function (name) {
-        this.name = "test";
-    }
 }
