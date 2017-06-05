@@ -3,18 +3,18 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     //Function to create JSON from the schema
     Array.prototype.contains = function ( a ) { for (i in this) { if (this[i] == a) return true; } return false; }
     function CreateForm(schema){
+        var FormHTML = "";
         var iterate = function(mainobj, name){
-            obj = mainobj[name]
+            var obj = mainobj[name];
             var formObject = new Object();
             formObject.name = name;
-            console.log(formObject.name);
             if(Array.isArray(obj)){
                 formObject.isArray = true;
                 obj = obj[0];
             }
-            if(obj.type == undefined)
+            formObject.type = [];
+            if(mainobj[name].type === undefined)
             {
-                formObject.type = [];
                 for(var propertyName in obj) {
                      formObject.type.push(iterate(obj, propertyName))
                 }
@@ -22,20 +22,24 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
             else{
                 formObject.type = obj.type.name;
             }
-            
+            if(obj.$DISP != undefined)
+            formObject.$DISP = obj.$DISP;
             if (Intlfields.contains(name)) formObject.intl = true;
             else formObject.intl = false;
-              
             return formObject;
         }
-
         var schobj = schema.obj
-        var objects = [];
+        var entries = [];
         for(var propertyName in schobj) {
-            objects.push(iterate(schobj, propertyName))
-            console.log(JSON.stringify(objects.slice(-1)[0]))
+            entries.push(iterate(schobj, propertyName))
         }
-        
+        for (i = 0; i < entries.length; i++) {
+             var type = "text"
+             if(entries[i].type == "Date") type = "date"
+             else if(entries[i].type == "Number") type = "number"
+             FormHTML += "<label>"+ entries[i].$DISP + "</label><input class='styledinput' type='"+type+"' autocomplete='off' style='width:100%;'></input>"
+        } 
+        return FormHTML;
     }
     //Mongoose setup
     var mongoose = require('mongoose');
@@ -58,14 +62,14 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     
     var Schema = mongoose.Schema;
     var personSchema = new Schema({
-        name: { type: String },
-        fullname: { type: String },
-        gender: { type: Number }, //0=Male, 1 = Female, 2= Nonbinary
-        bio_short: { type: String, intl:true },
-        bio_long: { type: String, intl:true },
-        dateofbirth: { type: Date },
-        locationofbirth: { type: String },
-        dateofdeath: { type: Date },
+        name: { type: String, $DISP:"Name" },
+        fullname: { type: String, $DISP:"Full name" },
+        gender: { type: Number, $DISP:"Gender" }, //0=Male, 1 = Female, 2= Nonbinary
+        bio_short: { type: String, intl:true, $DISP:"Short biography" },
+        bio_long: { type: String, intl:true, $DISP:"Long biography" },
+        dateofbirth: { type: Date, $DISP:"Date of birth" },
+        locationofbirth: { type: String, $DISP:"Birth location" },
+        dateofdeath: { type: Date, $DISP: "Date of death" },
         nationalities: [{ type: String }],
         jobs: 
         [{ title: { type: String, intl:true }, 
@@ -74,8 +78,9 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
            to: { type: Date },
            political: { type: Boolean }, //This mainly serves to calculate the political career length.
            elected: { type: Boolean },
-           parlement: { type: String } , 
-           parlementplace: Number }],
+           parlement: { type: String }, 
+           parlementplace: { type: Number }
+        }],
         politicalmemberships: 
         [{ party:  { type: String },
            from: { type: Date },

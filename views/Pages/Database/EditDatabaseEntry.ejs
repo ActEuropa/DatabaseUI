@@ -16,6 +16,79 @@
 
 <body>
     <% include ../../Partials/Header.html %>
+            <style>
+            .transparent {
+                background-color: transparent;
+            }
+
+            .discretetext {
+                font-size: 0.8em;
+                opacity: 0.75;
+            }
+
+            .block {
+                background-color: rgba(255, 255, 255, 0.5);
+                padding: 18px;
+                margin-top: 12px;
+                border: dashed rgba(0, 0, 0, 0.36) 1px;
+                transition: border 200ms;
+            }
+
+            .block:hover {
+                border: solid rgba(0, 0, 0, 0.5) 1px;
+            }
+
+            [data-localized] {
+                border-width: 3px;
+                border-style: dashed;
+            }
+
+            .inputprops {
+                display: inline-block;
+                height: 20px;
+                font-family: Montserrat, sans-serif;
+                font-size: 12px;
+                font-weight: bold;
+                text-transform: uppercase;
+                margin-left: 6px;
+            }
+
+            .inputprops a.selected {
+                opacity: 1;
+                color: #c73e12;
+            }
+
+            textarea {
+                resize: none;
+            }
+
+            button.arbtn {
+                background: transparent;
+                color: #002f55;
+                opacity: 0.5;
+                border: none;
+            }
+
+            button.arbtn:hover {
+                opacity: 0.75;
+            }
+
+            button.arbtn:active {
+                opacity: 1;
+            }
+
+            .range_val {
+                font-family: Montserrat, sans-serif;
+                position: relative;
+                margin: auto;
+                width: 50%;
+                text-align: center;
+            }
+
+            .sectionHeader {
+                font-size: 1.4em;
+            }
+        </style>
     <div class="center">
         <h1 style="font-family:Montserrat, sans-serif;color:#002f55;">Edit database entry</h1>
         <%- form %>
