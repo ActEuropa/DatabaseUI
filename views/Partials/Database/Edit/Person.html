@@ -1,0 +1,202 @@
+<label>Profile photo</label>
+<table id="previews">
+    <tr>
+        <td>
+            <div class="profile_img_wrap no-shadow" style="background-color:#aeaeae;">
+                <img id="rectangle-preview" class="profile_img">
+            </div>
+        </td>
+        <td>
+            <div class="circular--portrait" style="width:128px;height:128px;margin-left:24px;background-color:#aeaeae;">
+                <img id="circle-preview" />
+            </div>
+        </td>
+    </tr>
+</table>
+<input id="profile-img-input" type="file" autocomplete="off">&nbsp;&nbsp;&nbsp;<span id="preview-size" style="font-size:0.8em;opacity:0.5;"></span><br><br>
+
+<label>Name</label>
+<input type="text" class="styledinput fw" autocomplete="off" data-property="name">
+
+<label>Full name</label>
+<input type="text" class="styledinput fw" autocomplete="off" data-property="fullname">
+
+<label>Gender</label>
+<br>
+<input type="radio" name="g" value="0" data-property="gender">&nbsp;Male<br>
+<input type="radio" name="g" value="1" data-property="gender">&nbsp;Female<br>
+<input type="radio" name="g" value="2" data-property="gender">&nbsp;Non-binary<br>
+
+
+<label>Short bio</label>
+<textarea autocomplete="off" data-property="bio_short" data-localized></textarea>
+
+<label>Long bio</label>
+<textarea autocomplete="off" data-property="bio_long" data-localized></textarea>
+
+<label>Date of birth</label>
+<input type="date" class="styledinput fw" autocomplete="off" data-property="dateofbirth">
+
+<label>Location of birth</label>
+<input type="text" class="styledinput fw" autocomplete="off" data-property="locationofbirth">
+
+<label>Date of death</label>
+<input type="date" class="styledinput fw" autocomplete="off" data-property="dateofdeath">
+
+<label>Nationalities</label>
+<select autocomplete="off" class="input-tags" multiple="multiple" style="width:100%;" data-property="nationalities">
+    <option value="at"><%= __('Austria') %></option>
+    <option value="be"><%= __('Belgium') %></option>
+    <option value="bg"><%= __('Bulgaria') %></option>
+    <option value="cr"><%= __('Croatia') %></option>
+    <option value="cy"><%= __('Cyprus') %></option>
+    <option value="cs"><%= __('Czech Republic') %></option>
+    <option value="da"><%= __('Denmark') %></option>
+    <option value="et"><%= __('Estnoia') %></option>
+    <option value="fi"><%= __('Finland') %></option>
+    <option value="fr"><%= __('France') %></option>
+    <option value="de"><%= __('Germany') %></option>
+    <option value="el"><%= __('Greece') %></option>
+    <option value="hu"><%= __('Hungary') %></option>
+    <option value="ie"><%= __('Ireland') %></option>
+    <option value="it"><%= __('Italy') %></option>
+    <option value="lv"><%= __('Latvia') %></option>
+    <option value="lt"><%= __('Lithuania') %></option>
+    <option value="lu"><%= __('Luxembourg') %></option>
+    <option value="mt"><%= __('Malta') %></option>
+    <option value="nl"><%= __('Netherlands') %></option>
+    <option value="pl"><%= __('Poland') %></option>
+    <option value="pt"><%= __('Portugal') %></option>
+    <option value="ro"><%= __('Romania') %></option>
+    <option value="sk"><%= __('Slovakia') %></option>
+    <option value="sl"><%= __('Slovenia') %></option>
+    <option value="es"><%= __('Spain') %></option>
+    <option value="se"><%= __('Sweden') %></option>
+    <option value="en"><%= __('United Kingdom') %></option>
+</select>
+
+<h2>Jobs</h2>
+<div>
+    <div class="arrayItem" data-index="0" data-property-alt="jobs">
+        <label>Title</label>
+        <input type="text" class="styledinput fw" autocomplete="off" data-property=".title" data-localized>
+
+        <label>Description</label>
+        <input type="text" class="styledinput fw" autocomplete="off" data-property=".description" data-localized>
+
+        <label>From</label>
+        <input type="date" class="styledinput fw" autocomplete="off" data-property=".from">
+
+        <label>To</label>
+        <input type="date" class="styledinput fw" autocomplete="off" data-property=".to">
+
+        <input type="checkbox" autocomplete="off" data-property=".political">
+        <label>Political</label><br>
+
+        <input type="checkbox" autocomplete="off" data-property=".elected">
+        <label>Elected</label><br>
+
+
+        <label>Parlement</label>
+        <input type="text" class="styledinput fw" autocomplete="off" data-property=".parlement">
+
+        <label>Parlement place</label>
+        <input type="number" class="styledinput fw" autocomplete="off" data-property=".parlementplace">
+    </div>
+</div>
+
+<h2>Political memberships</h2>
+<div>
+    <div class="arrayItem" data-index="0" data-property-alt="politicalmemberships">
+        <label>Party</label>
+        <input type="text" class="styledinput fw" autocomplete="off" data-property=".party">
+
+        <label>From</label>
+        <input type="date" class="styledinput fw" autocomplete="off" data-property=".from">
+
+        <label>To</label>
+        <input type="date" class="styledinput fw" autocomplete="off" data-property=".to">
+
+        <label>Roles</label>
+        <input class="input-tags styledinput fw" autocomplete="off" multiple="multiple" style="width:100%;" data-property=".roles"
+            data-localized>
+    </div>
+</div>
+
+<h2>Social media</h2>
+<div>
+    <div class="arrayItem" data-index="0" data-property-alt="socialmedia_urls">
+        <label>URL</label>
+        <input type="text" class="styledinput fw" autocomplete="off" data-property=" ">
+    </div>
+</div>
+
+<h2>Quotes</h2>
+<div>
+    <div class="arrayItem" data-index="0" data-property-alt="quotes">
+        <label>Quote</label>
+        <input type="text" class="styledinput fw" autocomplete="off" data-property=".quote" data-localized>
+
+        <label>Location</label>
+        <input type="text" class="styledinput fw" autocomplete="off" data-property=".location">
+
+        <label>Date</label>
+        <input type="datetime" class="styledinput fw" autocomplete="off" data-property=".date">
+
+        <label>Source URLs</label>
+        <div>
+            <div class="arrayItem" data-index="0" data-property-alt=".source_urls">
+                <label>URL</label>
+                <input type="text" class="styledinput fw" autocomplete="off" data-property="">
+            </div>
+        </div>
+
+        <label>Context</label>
+        <input type="text" class="styledinput fw" autocomplete="off" data-property=".location">
+    </div>
+</div>
+
+<h2>Criminal record</h2>
+<div>
+    <div class="arrayItem" data-index="0" data-property-alt="criminalrecord">
+        <label>Gravity</label>
+        <input type="number" class="styledinput fw" autocomplete="off" min="0" max="5" data-property=".gravity">
+
+        <label>Title</label>
+        <input type="datetime" class="styledinput fw" autocomplete="off" data-property=".title" data-localized>
+
+        <label>Subtitle</label>
+        <input type="datetime" class="styledinput fw" autocomplete="off" data-property=".subtitle" data-localized>
+
+        <label>Event timeline</label>
+        <div>
+            <div class="arrayItem" data-index="0" data-property-alt=".timeline">
+                <label>Title</label>
+                <input type="text" class="styledinput fw" autocomplete="off" data-property=".title" data-localized>
+                <label>Date</label>
+                <input type="datetime" class="styledinput fw" autocomplete="off" data-property=".date">
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Positioning</h2>
+<span style="position:relative;float:left;">Economically interventionist</span>
+<span style="position:relative;float:right;">Economically liberal</span>
+<div class="range_val">50</div>
+<input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.eco">
+
+<span style="position:relative;float:left;">Socially conservative</span>
+<span style="position:relative;float:right;">Socially progressive</span>
+<div class="range_val">50</div>
+<input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.soc">
+
+<span style="position:relative;float:left;">Anti-EU</span>
+<span style="position:relative;float:right;">Pro-EU</span>
+<div class="range_val">50</div>
+<input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.eu">
+
+<span style="position:relative;float:left;">Authoritarian</span>
+<span style="position:relative;float:right;">Libertarian</span>
+<div class="range_val">50</div>
+<input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.auth">

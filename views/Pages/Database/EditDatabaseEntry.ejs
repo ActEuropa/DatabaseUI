@@ -16,7 +16,7 @@
 
 <body>
     <% include ../../Partials/Header.html %>
-            <style>
+        <style>
             .transparent {
                 background-color: transparent;
             }
@@ -39,7 +39,7 @@
             }
 
             [data-localized] {
-                border-width: 3px;
+                border-width: 1px;
                 border-style: dashed;
             }
 
@@ -88,10 +88,194 @@
             .sectionHeader {
                 font-size: 1.4em;
             }
+
+            .arrayItem {
+                background-color: rgba(255, 255, 255, 0.5);
+                padding: 24px;
+                padding-bottom: 6px;
+                border: 1px dotted #002f55;
+            }
+
+            .fw {
+                width: 100%;
+            }
+
+            label {
+                font-weight: bold;
+            }
+
+            .arrayItem .styledinput {
+                background-color: transparent;
+            }
+
+            .arrayItem .add,
+            .arrayItem .remove {
+                background-color: rgba(0, 0, 0, 0.1);
+                ;
+                border: none;
+                margin-top: 24px;
+                font-family: Montserrat, sans-serif;
+            }
+            /* TODO: Don't hide the first remove button if there are more than one arrayItems */
+            div:first-child > .remove{
+                visibility: hidden;
+            }
         </style>
-    <div class="center">
-        <h1 style="font-family:Montserrat, sans-serif;color:#002f55;">Edit database entry</h1>
-        <%- form %>
-    </div>
-    <% include ../../Partials/Footer.html %>
+        <div class="center">
+            <h1 style="font-family:Montserrat, sans-serif;color:#002f55;">Edit database entry</h1>
+            <span class="sectionHeader" style="color:#002f55;">Editing language:&nbsp;&nbsp;&nbsp;</span>
+            <span>
+                <select id="currentlang" class="nice-select wide left" autocomplete="off">
+                    <option value="bg">български</option>
+                    <option value="cr">hrvatski</option>
+                    <option value="cs">Čeština</option>
+                    <option value="da">Dansk</option>
+                    <option value="nl">Nederlands</option>
+                    <option value="en" selected="true">English</option>
+                    <option value="et">Eesti keel</option>
+                    <option value="fi">Suomi</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="el">Ελληνικά</option>
+                    <option value="hu">Magyar</option>
+                    <option value="ga">Gaeilge</option>
+                    <option value="it">Italiano</option>
+                    <option value="lv">Latviešu valoda</option>
+                    <option value="lt">Lithuanian</option>
+                    <option value="mt">Malti</option>
+                    <option value="pl">Polskie</option>
+                    <option value="pt">Português</option>
+                    <option value="ro">Română</option>
+                    <option value="sk">Slovenský jazyk</option>
+                    <option value="sl">Slovenski jezik</option>
+                    <option value="es">Español</option>
+                    <option value="se">Svenska</option>
+               </select>
+            </span><br>
+            <span class="discreteText">Inputs that can be in multiple languages have a <span data-localized>&nbsp;dashed border.&nbsp;</span></span><br>
+            <hr>
+            <% include ../../Partials/Database/Edit/Person.html %>
+                <h2>Visibility</h2>
+                <input type="radio" name="v" value="0" data-property="visibility">&nbsp;Visible<br>
+                <input type="radio" name="v" value="1" data-property="visibility">&nbsp;Hidden<br>
+                <input type="radio" name="v" value="2" data-property="visibility">&nbsp;Not indexed (only visible with a
+                direct link)<br>
+                <br><br>
+                <button id="viewjson" class="sendbutton">VIEW JSON</button>
+                <button id="sendjson" class="sendbutton" style="margin-left:2px;">UPLOAD</button>
+                <br><br>
+        </div>
+        <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+        <script>
+            var editingObject = {};
+            $("input[type='range']").on("input", function () {
+                $(this).prev("div").text($(this).val())
+            })
+            $(".arrayItem").each(function (index, elem) {
+                $(elem).append("<button class='add'>+</button>").append("<button class='remove'>-</button>")
+            })
+            $("[data-localized]").each(function (index, elem) {
+                if (elem.attributes["data-property"] != undefined)
+                    $(elem).before("<div class='inputprops' data-lang='" + elem.attributes["data-property"].value + "'></div>")
+            })
+            $("[data-localized]").on("input", function () {
+               $(this).change();
+            })
+            var selectize = $("#currentlang").selectize()[0].selectize;
+            function languageClick(e) {
+                selectize.setValue(selectize.search(e.innerHTML).items[0].id);
+            }
+            $("#currentlang").change(function () {
+                var objs = $(".inputprops a");
+                var currentlang = $("#currentlang").val();
+                objs.removeClass("selected");
+                objs.each(function (i) {
+                    if (objs[i].innerHTML == currentlang)
+                        $(objs[i]).addClass("selected")
+                });
+                locinputs = $("[data-localized]");
+                locinputs.each(function (i) {
+                    $(locinputs[i]).val(_.get(editingObject, this.attributes["data-property"].value + "." + currentlang));
+
+                })
+            });
+            $("[data-property]").change(function () {
+                var lang = "";
+                if (this.attributes["data-localized"] != undefined) {
+                    lang = "." + $("#currentlang").val();
+                }
+                var path = this.attributes["data-property"].value;
+                if (path != "") {
+                    if (path === "") {
+                        lang = "";
+                    }
+                    path = path.replace(" ", "");
+                    if (this.parentElement.attributes["data-property-alt"] != undefined) {
+                        path = this.parentElement.attributes["data-property-alt"].value + "[" + this.parentElement.attributes["data-index"].value + "]" + path;
+                    }
+                    if (this.attributes["type"] != undefined && this.attributes["type"].value == "checkbox") {
+                        _.set(editingObject, path + lang, this.checked)
+                    }
+                    else {
+                        if (path != "")
+                            _.set(editingObject, path + lang, $(this).val())
+                        else
+                            delete _.get(editingObject, path + lang)
+                    }
+                    if (this.value == "")
+                        _.unset(editingObject, path + lang)
+                    if (this.attributes["data-localized"] != undefined) {
+                        var valuelist = "";
+                        var s = _.get(editingObject, path)
+                        const list = {};
+                        Object.keys(s).sort().forEach(function (key) {
+                            list[key] = s[key];
+                        });
+
+                        for (x in list) {
+                            x = $("<a/>", { text: x }).attr("onclick", "languageClick(this)");
+                            x.addClass("langAnchor")
+                            if ($("#currentlang").val() == x.text()) x.addClass("selected");
+                            valuelist = valuelist + "&nbsp;&nbsp;" + x[0].outerHTML;
+                        }
+                        var inp = $(this).prev(".inputprops")
+                        inp.html(valuelist);
+                    }
+                }
+                console.log(JSON.stringify(editingObject));
+            })
+            var updateindexes = function (parent) {
+                parent.children(".arrayItem").each(function (index, elem) {
+                    $(elem).attr("data-index", index)
+                })
+            }
+            $(".add").click(function () {
+                var parent = $(this.parentElement);
+                var newitem = parent.clone(true).hide();
+                $(newitem.children("textarea, input")).val("");
+                $(newitem.children(".inputprops")).html("");
+                parent.after(newitem);
+                newitem.slideDown(200);
+                updateindexes(parent.parent(), newitem);
+                var index = newitem.attr("data-index");
+                //There's a problem here when arrayItems are inside others
+                var path = parent[0].attributes["data-property-alt"].value;
+                editingObject[path].splice(index, 0, {});
+            })
+            $(".remove").click(function () {
+                var parent = $(this.parentElement);
+                parent.slideUp(200, function () {
+                    var pp = parent.parent();
+                    $(this).remove();
+                    updateindexes(pp);
+                    var index = parent.attr("data-index");
+                    editingObject[parent[0].attributes["data-property-alt"].value].splice(index, 1)
+                });
+
+            })
+            $("#viewjson").click(function () {
+                alert(JSON.stringify(editingObject));
+            })
+        </script>
+        <% include ../../Partials/Footer.html %>
 </body>

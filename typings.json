@@ -3,6 +3,7 @@
   "globalDependencies": {
     "http-errors": "registry:dt/http-errors#1.5.0+20170314130347",
     "mongoose": "registry:dt/mongoose#4.7.0+20170322192047",
+    "object-path": "registry:dt/object-path#0.9.0+20160510002910",
     "three": "registry:dt/three#0.84.0+20170308001709"
   }
 }
