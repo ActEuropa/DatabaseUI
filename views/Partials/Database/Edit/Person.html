@@ -1,50 +1,41 @@
-<label>Profile photo</label>
-<table id="previews">
-    <tr>
-        <td>
-            <div class="profile_img_wrap no-shadow" style="background-color:#aeaeae;">
-                <img id="rectangle-preview" class="profile_img">
-            </div>
-        </td>
-        <td>
-            <div class="circular--portrait" style="width:128px;height:128px;margin-left:24px;background-color:#aeaeae;">
-                <img id="circle-preview" />
-            </div>
-        </td>
-    </tr>
-</table>
-<input id="profile-img-input" type="file" autocomplete="off">&nbsp;&nbsp;&nbsp;<span id="preview-size" style="font-size:0.8em;opacity:0.5;"></span><br><br>
+<h2>Personal info</h2>
+<div>
+    <label>Profile photo</label>
+    <div class="profile_img_wrap no-shadow" style="background-color:#aeaeae;">
+        <img id="rectangle-preview" class="profile_img">
+    </div>
+    <input id="profile-img-input" type="file" autocomplete="off">&nbsp;&nbsp;&nbsp;<span id="preview-size" style="font-size:0.8em;opacity:0.5;"></span><br><br>
 
-<label>Name</label>
-<input type="text" class="styledinput fw" autocomplete="off" data-property="name">
+    <label>Name</label>
+    <input type="text" class="styledinput fw" autocomplete="off" data-property="name">
 
-<label>Full name</label>
-<input type="text" class="styledinput fw" autocomplete="off" data-property="fullname">
+    <label>Full name</label>
+    <input type="text" class="styledinput fw" autocomplete="off" data-property="fullname">
 
-<label>Gender</label>
-<br>
-<input type="radio" name="g" value="0" data-property="gender">&nbsp;Male<br>
-<input type="radio" name="g" value="1" data-property="gender">&nbsp;Female<br>
-<input type="radio" name="g" value="2" data-property="gender">&nbsp;Non-binary<br>
+    <label>Gender</label>
+    <br>
+    <input type="radio" name="g" value="0" data-property="gender">&nbsp;Male<br>
+    <input type="radio" name="g" value="1" data-property="gender">&nbsp;Female<br>
+    <input type="radio" name="g" value="2" data-property="gender">&nbsp;Non-binary<br>
 
 
-<label>Short bio</label>
-<textarea autocomplete="off" data-property="bio_short" data-localized></textarea>
+    <label>Short bio</label>
+    <textarea autocomplete="off" data-property="bio_short" data-localized></textarea>
 
-<label>Long bio</label>
-<textarea autocomplete="off" data-property="bio_long" data-localized></textarea>
+    <label>Long bio</label>
+    <textarea autocomplete="off" data-property="bio_long" data-localized></textarea>
 
-<label>Date of birth</label>
-<input type="date" class="styledinput fw" autocomplete="off" data-property="dateofbirth">
+    <label>Date of birth</label>
+    <input type="date" class="styledinput fw" autocomplete="off" data-property="dateofbirth">
 
-<label>Location of birth</label>
-<input type="text" class="styledinput fw" autocomplete="off" data-property="locationofbirth">
+    <label>Location of birth</label>
+    <input type="text" class="styledinput fw" autocomplete="off" data-property="locationofbirth">
 
-<label>Date of death</label>
-<input type="date" class="styledinput fw" autocomplete="off" data-property="dateofdeath">
+    <label>Date of death</label>
+    <input type="date" class="styledinput fw" autocomplete="off" data-property="dateofdeath">
 
-<label>Nationalities</label>
-<select autocomplete="off" class="input-tags" multiple="multiple" style="width:100%;" data-property="nationalities">
+    <label>Nationalities</label>
+    <select autocomplete="off" class="input-tags" multiple="multiple" style="width:100%;" data-property="nationalities">
     <option value="at"><%= __('Austria') %></option>
     <option value="be"><%= __('Belgium') %></option>
     <option value="bg"><%= __('Bulgaria') %></option>
@@ -74,6 +65,7 @@
     <option value="se"><%= __('Sweden') %></option>
     <option value="en"><%= __('United Kingdom') %></option>
 </select>
+</div>
 
 <h2>Jobs</h2>
 <div>
@@ -181,22 +173,24 @@
 </div>
 
 <h2>Positioning</h2>
-<span style="position:relative;float:left;">Economically interventionist</span>
-<span style="position:relative;float:right;">Economically liberal</span>
-<div class="range_val">50</div>
-<input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.eco">
+<div>
+    <span style="position:relative;float:left;">Economically interventionist</span>
+    <span style="position:relative;float:right;">Economically liberal</span>
+    <div class="range_val">50</div>
+    <input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.eco">
 
-<span style="position:relative;float:left;">Socially conservative</span>
-<span style="position:relative;float:right;">Socially progressive</span>
-<div class="range_val">50</div>
-<input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.soc">
+    <span style="position:relative;float:left;">Socially conservative</span>
+    <span style="position:relative;float:right;">Socially progressive</span>
+    <div class="range_val">50</div>
+    <input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.soc">
 
-<span style="position:relative;float:left;">Anti-EU</span>
-<span style="position:relative;float:right;">Pro-EU</span>
-<div class="range_val">50</div>
-<input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.eu">
+    <span style="position:relative;float:left;">Anti-EU</span>
+    <span style="position:relative;float:right;">Pro-EU</span>
+    <div class="range_val">50</div>
+    <input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.eu">
 
-<span style="position:relative;float:left;">Authoritarian</span>
-<span style="position:relative;float:right;">Libertarian</span>
-<div class="range_val">50</div>
-<input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.auth">
+    <span style="position:relative;float:left;">Authoritarian</span>
+    <span style="position:relative;float:right;">Libertarian</span>
+    <div class="range_val">50</div>
+    <input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="positioning.auth">
+</div>

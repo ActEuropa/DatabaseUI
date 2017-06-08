@@ -94,6 +94,7 @@
                 padding: 24px;
                 padding-bottom: 6px;
                 border: 1px dotted #002f55;
+                margin-top: 4px;
             }
 
             .fw {
@@ -111,20 +112,30 @@
             .arrayItem .add,
             .arrayItem .remove {
                 background-color: rgba(0, 0, 0, 0.1);
-                ;
                 border: none;
                 margin-top: 24px;
                 font-family: Montserrat, sans-serif;
             }
+
+            .fa-angle-right {
+                transition: transform 300ms ease;
+            }
             /* TODO: Don't hide the first remove button if there are more than one arrayItems */
-            div:first-child > .remove{
+
+            div:first-child>.remove {
                 visibility: hidden;
             }
+
+            h2 {
+                cursor: pointer;
+            }
         </style>
+        <script></script>
         <div class="center">
             <h1 style="font-family:Montserrat, sans-serif;color:#002f55;">Edit database entry</h1>
-            <span class="sectionHeader" style="color:#002f55;">Editing language:&nbsp;&nbsp;&nbsp;</span>
-            <span>
+            <div id="stickyLanguage" style="background-color:#eaeaea; z-index:10;width:100%;padding:6px;margin:0 -6px">
+                <label style="color:#002f55;">Editing language:&nbsp;&nbsp;&nbsp;</label>
+                <span>
                 <select id="currentlang" class="nice-select wide left" autocomplete="off">
                     <option value="bg">български</option>
                     <option value="cr">hrvatski</option>
@@ -151,40 +162,62 @@
                     <option value="es">Español</option>
                     <option value="se">Svenska</option>
                </select>
-            </span><br>
-            <span class="discreteText">Inputs that can be in multiple languages have a <span data-localized>&nbsp;dashed border.&nbsp;</span></span><br>
-            <hr>
+              </span>
+            </div>
+            <span class="discretetext">Inputs that can be in multiple languages have a <span style="border-width:1px;border-style:dashed;">&nbsp;dashed border.&nbsp;</span></span><br>
+
             <% include ../../Partials/Database/Edit/Person.html %>
                 <h2>Visibility</h2>
-                <input type="radio" name="v" value="0" data-property="visibility">&nbsp;Visible<br>
-                <input type="radio" name="v" value="1" data-property="visibility">&nbsp;Hidden<br>
-                <input type="radio" name="v" value="2" data-property="visibility">&nbsp;Not indexed (only visible with a
-                direct link)<br>
+                <div>
+                    <input type="radio" name="v" value="0" data-property="visibility">&nbsp;Visible<br>
+                    <input type="radio" name="v" value="1" data-property="visibility">&nbsp;Hidden<br>
+                    <input type="radio" name="v" value="2" data-property="visibility">&nbsp;Not indexed (only visible with
+                    a direct link)
+                </div>
+                <br>
                 <br><br>
                 <button id="viewjson" class="sendbutton">VIEW JSON</button>
                 <button id="sendjson" class="sendbutton" style="margin-left:2px;">UPLOAD</button>
                 <br><br>
+                <div id="loader" style="background-color:#002f55;position:fixed;right:0;top:0;left:0;bottom:0;z-index:200;display:none;">
+                    <div style="font-family:Montserrat,sans-serif;color:#c73e12;position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);">UPLOADING DATA</div>
+                </div>
         </div>
         <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.sticky/1.0.1/jquery.sticky.min.js"></script>
         <script>
-            var editingObject = {};
+            var editingObject = {}; //The object that represents the currently editing data
+
+            //Update the indicator text when you change a range control:
             $("input[type='range']").on("input", function () {
                 $(this).prev("div").text($(this).val())
             })
+
+            //Set up the "remove" and "add" button on arrayItems
             $(".arrayItem").each(function (index, elem) {
-                $(elem).append("<button class='add'>+</button>").append("<button class='remove'>-</button>")
+                $(elem)
+                    .append("<button class='add' title='insert new element below'>+</button>")
+                    .append("<button class='remove' title='delete this element'>-</button>")
             })
+
+            //Set up the language indicator (inputprops) before each localized field:
             $("[data-localized]").each(function (index, elem) {
                 if (elem.attributes["data-property"] != undefined)
                     $(elem).before("<div class='inputprops' data-lang='" + elem.attributes["data-property"].value + "'></div>")
             })
+
+            //For optimal UX, the localized fields should update as you type:
             $("[data-localized]").on("input", function () {
-               $(this).change();
+                $(this).change();
             })
             var selectize = $("#currentlang").selectize()[0].selectize;
             function languageClick(e) {
                 selectize.setValue(selectize.search(e.innerHTML).items[0].id);
             }
+            //Changing the editing language:
             $("#currentlang").change(function () {
                 var objs = $(".inputprops a");
                 var currentlang = $("#currentlang").val();
@@ -199,6 +232,7 @@
 
                 })
             });
+            //Changing any property binded to the editingObject:
             $("[data-property]").change(function () {
                 var lang = "";
                 if (this.attributes["data-localized"] != undefined) {
@@ -242,13 +276,16 @@
                         inp.html(valuelist);
                     }
                 }
-                console.log(JSON.stringify(editingObject));
             })
+
+            //Update the data-index properties when you add or remove arrayItems
             var updateindexes = function (parent) {
                 parent.children(".arrayItem").each(function (index, elem) {
                     $(elem).attr("data-index", index)
                 })
             }
+
+            //Add a new arrayItem by cloning and clearing the previous one
             $(".add").click(function () {
                 var parent = $(this.parentElement);
                 var newitem = parent.clone(true).hide();
@@ -262,6 +299,8 @@
                 var path = parent[0].attributes["data-property-alt"].value;
                 editingObject[path].splice(index, 0, {});
             })
+
+            //Remove an arrayItem:
             $(".remove").click(function () {
                 var parent = $(this.parentElement);
                 parent.slideUp(200, function () {
@@ -273,8 +312,56 @@
                 });
 
             })
+
+            //Display a JSON version of the editingObject:
             $("#viewjson").click(function () {
-                alert(JSON.stringify(editingObject));
+                alert(JSON.stringify(editingObject, null, 2));
+            })
+
+            //Set up the accordion-like UI:
+            $('.center').find('h2').prepend("<i class='fa fa-angle-right'></i>&nbsp;&nbsp;")
+            $('.center').find('h2').click(function () {
+                if ($(this).next().css("display") == "none")
+                    this.children[0].style.transform = "rotate(90deg)"
+                else
+                    this.children[0].style.transform = "rotate(0deg)"
+                $(this).next().slideToggle();
+
+            }).next().hide();
+
+            //Make sure the language select box is always visible
+            $("#stickyLanguage").sticky({ topSpacing: 0 });
+
+            //Set up image uploading mechanism
+            $("#profile-img-input").change(function () {
+                var files = $(this)[0].files;
+                if (files.length > 0) {
+                    var file = files[0]
+                    $('#rectangle-preview').attr('src', window.URL.createObjectURL(file));
+                    $('#preview-size').html(file.size + ' bytes');
+                }
+            })
+
+            $("#sendjson").click(function (e) {
+                console.log("sending data...");
+                var formData = new FormData();
+                formData.append("json", JSON.stringify(editingObject));
+                formData.append("profileimg", document.getElementById("profile-img-input").files[0])
+                
+                $.ajaxSetup({beforeSend: function() {$('#loader').fadeIn(200);},complete: function(){$('#loader').fadeOut(200);}});
+                $.ajax({
+                          url: '/data/person/edit/upload',
+                          type: 'POST',
+                          data: formData,
+                          processData: false,
+                          contentType: false,
+                          error: function(jas, ers, ers2){
+                              alert(ers2);
+                          },
+                          success: function(jas,ers, ers2){
+                              window.location.href = ers2;
+                          }
+                });
             })
         </script>
         <% include ../../Partials/Footer.html %>

@@ -293,7 +293,7 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         var id = mongoose.Types.ObjectId();
         cloudinary.uploader.upload(req.file.path, function (result) { console.log(result) },
             {
-                public_id: id.toHexString(),
+                public_id: id.toHexString()
             });
 
         //fs.unlinkSync(req.file.path);
