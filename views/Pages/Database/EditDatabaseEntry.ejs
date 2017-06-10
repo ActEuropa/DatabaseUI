@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="/common/css/normalize.css">
     <link rel="stylesheet" href="/database/css/main.css">
     <link rel="stylesheet" href="/common/css/metricsgraphics.css">
+    <link rel="stylesheet" href="/common/css/zebra_dialog.css">
     <link rel="stylesheet" href="/common/font-awesome/css/font-awesome.min.css">
+
     <% include ../../Partials/Favicons+Fonts.html %>
 </head>
 
@@ -188,6 +190,7 @@ transform: translate(-50%, -50%);">UPLOADING DATA</div>
         </div>
         <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
         <script src="https://cdn.jsdelivr.net/jquery.sticky/1.0.1/jquery.sticky.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/stefangabos/Zebra_Dialog/dist/zebra_dialog.min.js"></script>
         <script>
             var editingObject = {}; //The object that represents the currently editing data
 
@@ -370,7 +373,7 @@ transform: translate(-50%, -50%);">UPLOADING DATA</div>
                 formData.append("json", JSON.stringify(editingObject));
                 formData.append("profileimg", document.getElementById("profile-img-input").files[0])
 
-                $.ajaxSetup({ beforeSend: function () { $('#loader').fadeIn(200); }, complete: function () { $('#loader').fadeOut(200); } });
+                $.ajaxSetup({ beforeSend: function () { $('#loader').fadeIn(200); }, afterSend: function(){$('#loader').fadeOut(200);} });
                 $.ajax({
                     url: '/data/person/edit/upload',
                     type: 'POST',
@@ -378,7 +381,23 @@ transform: translate(-50%, -50%);">UPLOADING DATA</div>
                     processData: false,
                     contentType: false,
                     error: function (jas, ers, ers2) {
-                        alert(ers2);
+                        var error = {};
+                        try{
+                            error = JSON.parse(jas.responseText);
+                        }catch(exception){}
+                        var errormessage = "";
+                        if(error.errors != undefined){
+                            errormessage += "<ul>"
+                           for(ex in error.errors){
+                               errormessage += "<li>" + error.errors[ex].message + "</li>";
+                           }
+                           errormessage += "</ul>"
+                        }
+                        $('#loader').fadeOut(200);
+                        var zebm = new $.Zebra_Dialog(errormessage, 
+                        { type: "error", 
+                          title: jas.status + ": " + jas.statusText,
+                        });
                     },
                     success: function (jas, ers, ers2) {
                         window.location.href = ers2.responseText;

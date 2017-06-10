@@ -26,10 +26,10 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
 
     var Schema = mongoose.Schema;
     var personSchema = new Schema({
-        visibility: {type: Number}, //0=visible, 1= hidden, 2= non-referenced
-        name: { type: String },
+        visibility: { type: Number, required: true }, //0=visible, 1= hidden, 2= non-referenced
+        name: { type: String, required: true },
         fullname: { type: String },
-        gender: { type: Number }, //0=Male, 1 = Female, 2= Nonbinary
+        gender: { type: Number, required: true }, //0=Male, 1 = Female, 2= Nonbinary
         bio_short: { type: String, i18n: true },
         bio_long: { type: String, i18n: true },
         dateofbirth: { type: Date },
@@ -198,19 +198,20 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     })
     //Upload person data
     app.post("/data/person/edit/upload", upload.single('profileimg'), function (req, res, next) {
+      //  res.sendStatus(403);return;
         var so = JSON.parse(req.body.json);
         var Person = mongoose.model("Person", personSchema);
         var p = new Person;
         Object.assign(p, so);
         var id = mongoose.Types.ObjectId();
 
-        //fs.unlinkSync(req.file.path);
+       
         p._id = id;
         p.save(function (err, mobj, numAffected) {
-            if (err) { res.sendStatus(400); console.log(err); return; }
+            if (err) { res.status(400).send(JSON.stringify(err)); fs.unlinkSync(req.file.path); return;  }
             else { res.status(200).send("/person/" + id.toHexString()) }
         });
-        cloudinary.uploader.upload(req.file.path, function (result) { console.log(result) },
+        cloudinary.uploader.upload(req.file.path, function (result) {  fs.unlinkSync(req.file.path); },
         {
             public_id: id.toHexString()
         });
