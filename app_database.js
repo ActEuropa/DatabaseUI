@@ -208,10 +208,10 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
        
         p._id = id;
         p.save(function (err, mobj, numAffected) {
-            if (err) { res.status(400).send(JSON.stringify(err)); fs.unlinkSync(req.file.path); return;  }
+            if (err) { res.status(400).send(JSON.stringify(err)); /*fs.unlinkSync(req.file.path);*/ return;  }
             else { res.status(200).send("/person/" + id.toHexString()) }
         });
-        cloudinary.uploader.upload(req.file.path, function (result) {  fs.unlinkSync(req.file.path); },
+        cloudinary.uploader.upload(req.file.path, function (result) { /* fs.unlinkSync(req.file.path);*/ },
         {
             public_id: id.toHexString()
         });
