@@ -3,85 +3,7 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     //Function to create JSON from the schema
     Array.prototype.contains = function (a) { for (i in this) { if (this[i] == a) return true; } return false; }
     var objectPath = require("object-path");
-    function CreateForm(schema) {
-        var FormHTML = "";
-        var currentpath = "";
-        var getPath = function (object, key) {
 
-            function iter(o, p) {
-                if (typeof o === 'object') {
-                    return Object.keys(o).some(function (k) {
-                        return iter(o[k], p.concat(k));
-                    });
-                }
-                if (p[p.length - 1] === key) {
-                    path = p;
-                    return true;
-                }
-            }
-
-            var path = [];
-            iter(object, []);
-            return path.join('.');
-        }
-
-        var iterate = function (mainobj, name, recpath) {
-            currentpath = recpath + "." + name;
-            var obj = mainobj[name];
-            var formObject = new Object();
-            formObject.name = name;
-            if (Array.isArray(obj)) {
-                formObject.isArray = true;
-                obj = obj[0];
-            }
-            formObject.type = [];
-            if (mainobj[name].type === undefined) {
-                for (var propertyName in obj) {
-                    formObject.type.push(iterate(obj, propertyName, currentpath))
-                }
-            }
-            else {
-                formObject.type = obj.type.name;
-            }
-
-            if (obj.$DISP != undefined)
-                formObject.$DISP = obj.$DISP;
-            currentpath = "";
-            if (Intlfields.contains(name)) formObject.intl = true;
-            else formObject.intl = false;
-            return formObject;
-        }
-        var schobj = schema.obj
-        var entries = [];
-        for (var propertyName in schobj) {
-            entries.push(iterate(schobj, propertyName, ""))
-        }
-        var newInput = function (type, name) {
-            return "<input class='styledinput' type='" + type + "' autocomplete='off' style='width:100%;' data-name='" + name + "'></input>"
-        }
-        var newentry = function (item) {
-            var currentStr = "";
-            var type = "text"
-            var HitElse = false;
-            if (item.type == "Date") type = "date"
-            else if (item.type == "Number") type = "number"
-            else if (item.isArray) {
-                HitElse = true;
-                currentStr += "<h2>" + item.name + "</h2>"
-                currentStr += "<div style='background-color:white;padding:12px;'>"
-                for (i2 = 0; i2 < item.type.length; i2++) {
-                    currentStr += newentry(item.type[i2]);
-                }
-                currentStr += "</div>"
-            }
-             if(!HitElse) currentStr += "<label>"+ item.name + "</label>" + newInput(item.type, item.name)
-            return currentStr;
-        }
-        for (i = 0; i < entries.length; i++) {
-            FormHTML += newentry(entries[i])
-        }
-        return FormHTML;
-    }
     //Mongoose setup
     var mongoose = require('mongoose');
     console.log("Connecting to " + process.env.MONGODB_URI)
@@ -94,7 +16,8 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
 
     //Mongoose Internationalization
     var mongooseIntl = require('mongoose-intl');
-    mongoose.plugin(mongooseIntl, { languages: ["en", "cr", "cs", "da", "nl", "et", "fi", "fr", "bg", "de", "el", "hu", "ga", "it", "lv", "lt", "mt", "pl", "pt", "ro", "sk", "sl", "es", "sv"], defaultLanguage: 'en' });
+    var i18nPlugin = require('mongoose-i18n');
+    mongoose.plugin(i18nPlugin, { languages: ["en", "cr", "cs", "da", "nl", "et", "fi", "fr", "bg", "de", "el", "hu", "ga", "it", "lv", "lt", "mt", "pl", "pt", "ro", "sk", "sl", "es", "sv"], defaultLanguage: 'en' });
 
     var Intlfields = ["bio_short", "bio_long", "title", "description", "role", "quote", "subtitle"]; //This is to keep track of translateable fields
 
@@ -107,16 +30,16 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         name: { type: String },
         fullname: { type: String },
         gender: { type: Number }, //0=Male, 1 = Female, 2= Nonbinary
-        bio_short: { type: String, intl: true },
-        bio_long: { type: String, intl: true },
+        bio_short: { type: String, i18n: true },
+        bio_long: { type: String, i18n: true },
         dateofbirth: { type: Date },
         locationofbirth: { type: String },
         dateofdeath: { type: Date },
         nationalities: [{ type: String }],
         jobs:
         [{
-            title: { type: String, intl: true },
-            description: { type: String, intl: true },
+            title: { type: String, i18n: true },
+            description: { type: String, i18n: true },
             from: { type: Date },
             to: { type: Date },
             political: { type: Boolean }, //This mainly serves to calculate the political career length.
@@ -129,12 +52,12 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
             party: { type: String },
             from: { type: Date },
             to: { type: Date },
-            role: [{ type: String, intl: true }]
+            role: [{ type: String, i18n: true }]
         }],
         socialmedia_urls: [{ type: String }],
         quotes:
         [{
-            quote: { type: String, intl: true },
+            quote: { type: String, i18n: true },
             location: { type: String },
             date: { type: String },
             source_urls: [{ type: String }],
@@ -142,10 +65,10 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         }],
         criminalrecord: [{
             gravity: { type: Number }, //0=not too important, 5= really fucking bad
-            title: { type: String, intl: true },
-            subtitle: { type: String, intl: true },
+            title: { type: String, i18n: true },
+            subtitle: { type: String, i18n: true },
             timeline: {
-                title: { type: String, intl: true },
+                title: { type: String, i18n: true },
                 date: { type: Date }
             }
         }],
@@ -275,34 +198,22 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     })
     //Upload person data
     app.post("/data/person/edit/upload", upload.single('profileimg'), function (req, res, next) {
-        var sentobj = JSON.parse(req.body.json);
+        var so = JSON.parse(req.body.json);
         var Person = mongoose.model("Person", personSchema);
         var p = new Person;
-        p.name = sentobj.name;
-        p.fullname = sentobj.fullname
-        p.gender = sentobj.gender;
-        p.set("bio_short.all", sentobj.bio_short);
-        p.set("bio_long.all", sentobj.bio_short);
-        p.dateofbirth = new Date(sentobj.birth_date);
-        p.nationalities = sentobj.nationalities;
-        p.positioning.eco = sentobj.positioning.eco;
-        p.positioning.soc = sentobj.positioning.soc;
-        p.positioning.eu = sentobj.positioning.eu;
-        p.positioning.auth = sentobj.positioning.auth;
-
+        Object.assign(p, so);
         var id = mongoose.Types.ObjectId();
-        cloudinary.uploader.upload(req.file.path, function (result) { console.log(result) },
-            {
-                public_id: id.toHexString()
-            });
 
         //fs.unlinkSync(req.file.path);
         p._id = id;
         p.save(function (err, mobj, numAffected) {
-            if (err) { res.sendStatus(400); }
-            else { res.sendStatus(200); }
+            if (err) { res.sendStatus(400); console.log(err); return; }
+            else { res.status(200).send("/person/" + id.toHexString()) }
         });
-
+        cloudinary.uploader.upload(req.file.path, function (result) { console.log(result) },
+        {
+            public_id: id.toHexString()
+        });
         // res.render("Pages/Database/Person_Edit.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
     })
 }
