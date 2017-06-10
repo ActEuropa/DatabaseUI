@@ -18,7 +18,7 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     var mongooseIntl = require('mongoose-intl');
     var i18nPlugin = require('mongoose-i18n');
     mongoose.plugin(i18nPlugin, { languages: ["en", "cr", "cs", "da", "nl", "et", "fi", "fr", "bg", "de", "el", "hu", "ga", "it", "lv", "lt", "mt", "pl", "pt", "ro", "sk", "sl", "es", "sv"], defaultLanguage: 'en' });
-
+    
     var Intlfields = ["bio_short", "bio_long", "title", "description", "role", "quote", "subtitle"]; //This is to keep track of translateable fields
 
     //Mongoose schema definitions

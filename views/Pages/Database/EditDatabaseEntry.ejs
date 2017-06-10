@@ -169,10 +169,10 @@
             <% include ../../Partials/Database/Edit/Person.html %>
                 <h2>Visibility</h2>
                 <div>
-                    <input type="radio" name="v" value="0" data-property="visibility">&nbsp;Visible<br>
-                    <input type="radio" name="v" value="1" data-property="visibility">&nbsp;Hidden<br>
-                    <input type="radio" name="v" value="2" data-property="visibility">&nbsp;Not indexed (only visible with
-                    a direct link)
+                    <input type="radio" name="v" value="0" autocomplete="off" data-property="visibility">&nbsp;Visible<br>
+                    <input type="radio" name="v" value="1" autocomplete="off" data-property="visibility">&nbsp;Hidden<br>
+                    <input type="radio" name="v" value="2" autocomplete="off" data-property="visibility">&nbsp;Not indexed
+                    (only visible with a direct link)
                 </div>
                 <br>
                 <br><br>
@@ -228,8 +228,19 @@ transform: translate(-50%, -50%);">UPLOADING DATA</div>
                 });
                 locinputs = $("[data-localized]");
                 locinputs.each(function (i) {
-                    $(locinputs[i]).val(_.get(editingObject, this.attributes["data-property"].value + "." + currentlang));
-
+                    var lang = "";
+                    if (this.attributes["data-localized"] != undefined) {
+                        lang = "." + $("#currentlang").val();
+                    }
+                    var path = this.attributes["data-property"].value;
+                    if (path === "") {
+                        lang = "";
+                    }
+                    path = path.replace(" ", "");
+                    if (this.parentElement.attributes["data-property-alt"] != undefined) {
+                        path = this.parentElement.attributes["data-property-alt"].value + "[" + this.parentElement.attributes["data-index"].value + "]" + path;
+                    }
+                    $(locinputs[i]).val(_.get(editingObject, path + lang));
                 })
             });
             //Changing any property binded to the editingObject:
@@ -244,9 +255,9 @@ transform: translate(-50%, -50%);">UPLOADING DATA</div>
                         lang = "";
                     }
                     path = path.replace(" ", "");
-                    if (this.parentElement.attributes["data-property-alt"] != undefined) {
-                        path = this.parentElement.attributes["data-property-alt"].value + "[" + this.parentElement.attributes["data-index"].value + "]" + path;
-                    }
+                    $(this).parents(".arrayItem").each(function (i, elem) {
+                        path = elem.getAttribute("data-property-alt") + "[" + elem.getAttribute("data-index") + "]" + path;
+                    })
                     if (this.attributes["type"] != undefined && this.attributes["type"].value == "checkbox") {
                         _.set(editingObject, path + lang, this.checked)
                     }
@@ -296,19 +307,30 @@ transform: translate(-50%, -50%);">UPLOADING DATA</div>
                 updateindexes(parent.parent(), newitem);
                 var index = newitem.attr("data-index");
                 //There's a problem here when arrayItems are inside others
-                var path = parent[0].attributes["data-property-alt"].value;
-                editingObject[path].splice(index, 0, {});
+                var path = "";
+                $(this).parents(".arrayItem").each(function (i, elem) {
+                    if (i != 0) path = elem.getAttribute("data-property-alt") + "[" + elem.getAttribute("data-index") + "]" + path;
+                    else path = elem.getAttribute("data-property-alt");
+                })
+                _.get(editingObject, path).splice(index, 0, {});
+                editingObject[path]
             })
 
             //Remove an arrayItem:
             $(".remove").click(function () {
                 var parent = $(this.parentElement);
+                var path = "";
+                $(this).parents(".arrayItem").each(function (i, elem) {
+                    if (i != 0) path = elem.getAttribute("data-property-alt") + "[" + elem.getAttribute("data-index") + "]" + path;
+                    else path = elem.getAttribute("data-property-alt");
+                })
+                var index = parent.attr("data-index");
+                _.get(editingObject, path).splice(index, 1);
                 parent.slideUp(200, function () {
                     var pp = parent.parent();
                     $(this).remove();
                     updateindexes(pp);
-                    var index = parent.attr("data-index");
-                    editingObject[parent[0].attributes["data-property-alt"].value].splice(index, 1)
+
                 });
 
             })
@@ -347,20 +369,20 @@ transform: translate(-50%, -50%);">UPLOADING DATA</div>
                 var formData = new FormData();
                 formData.append("json", JSON.stringify(editingObject));
                 formData.append("profileimg", document.getElementById("profile-img-input").files[0])
-                
-                $.ajaxSetup({beforeSend: function() {$('#loader').fadeIn(200);},complete: function(){$('#loader').fadeOut(200);}});
+
+                $.ajaxSetup({ beforeSend: function () { $('#loader').fadeIn(200); }, complete: function () { $('#loader').fadeOut(200); } });
                 $.ajax({
-                          url: '/data/person/edit/upload',
-                          type: 'POST',
-                          data: formData,
-                          processData: false,
-                          contentType: false,
-                          error: function(jas, ers, ers2){
-                              alert(ers2);
-                          },
-                          success: function(jas,ers, ers2){
-                              window.location.href = ers2.responseText;
-                          }
+                    url: '/data/person/edit/upload',
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    error: function (jas, ers, ers2) {
+                        alert(ers2);
+                    },
+                    success: function (jas, ers, ers2) {
+                        window.location.href = ers2.responseText;
+                    }
                 });
             })
         </script>
