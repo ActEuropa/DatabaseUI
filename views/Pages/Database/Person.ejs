@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/common/css/normalize.css">
     <link rel="stylesheet" href="/database/css/main.css">
     <link rel="stylesheet" href="/common/css/metricsgraphics.css">
-    <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+    <script src="/common/js/DurationHumanize.js"></script>
     <% include ../../Partials/Favicons+Fonts.html %>
 </head>
 
@@ -32,7 +32,6 @@
                     <div class="profile_img_wrap">
                         <img class="profile_img" src="http://res.cloudinary.com/acteuropa/image/upload/t_person_img_300/<%= p._id.toHexString() %>.jpg">
                     </div>
-
                 </div>
             </div>
             <div class="rightColumn">
@@ -42,10 +41,7 @@
                         <%= p.name %>
                     </h1>
                     <div class="personSocial">
-                    <a title="Facebook" class="smicon" href="https://www.facebook.com/ActEuropa-1833768660239476" target="_blank"><img src="/common/img/sm-light/social_fb.svg"></a>
-                    <a title="Twitter" class="smicon" href="https://twitter.com/ActEuropa" target="_blank"><img src="/common/img/sm-light/social_tw.svg"></a>
-                    <a title="YouTube" class="smicon" href="https://www.youtube.com/user/acteuropa" target="_blank"><img src="/common/img/sm-light/social_yt.svg"></a>
-                    <a title="Wikipedia" class="smicon" target="_blank"><img src="/common/img/sm-light/info_wiki.svg"></a>
+                    <%- detect_socialmedia(p.socialmedia_urls, true) %>
                     </div>
                 <table>
                     <tbody>
@@ -67,8 +63,17 @@
                                 <span><img class="flag" src="/common/img/flags/<%= p.nationalities[i] %>.svg"><%= __(p.nationalities[i]) %></span>
                             <% } %>
                             </td></tr>
-                        <tr><td><strong>Elected:</strong>&nbsp;&nbsp;</td><td><span>Once</span></td></tr>
-                        <tr><td><strong>Political career:</strong>&nbsp;&nbsp;</td><td><span>5 years</span></td></tr>
+                        <tr><td><strong>Elected:</strong>&nbsp;&nbsp;</td><td>
+                            <span>
+                                <% if(p.jobs != undefined) 
+                                var nb = 0;
+                                for(var i=0; i<p.jobs.length; i++) { if(p.jobs[i].elected == true) nb++; } %>
+                                <%if(nb == 1){%><%= __("Once") %><%}%>
+                                <%if(nb == 2){%><%= __("Twice") %><%}%>
+                                <%if(nb > 2){%><%= nb %> <%=__("Times")%><%}%>
+                            </span>
+                        </td></tr>
+                        <tr><td><strong>Political career:</strong>&nbsp;&nbsp;</td><td><span id="politicalCareer"></span></td></tr>
                     </tbody>
                 </table>
                 </div>
@@ -129,7 +134,9 @@
             <div class="bio">
                 <h2 class="serifheader">Biography</h2>
                 <%= pick(p.bio_long) %>
-
+            </div>
+            <div>
+                <h2>Integrity</h2>
                 <div class="criminalrec">
                     <div class="warningSpan">CRIMINAL RECORD:</div>
                     <ul>
@@ -231,13 +238,11 @@
             <script>
                 //This array is here so that it can be rendered by the EJS engine as the page is being sent (to prevent pointless AJAX calls)
                 var events = [
-                    new Event("President of France", moment("2017-05-14"), undefined, { description: 'ipsum' }),
-                    new Event("Candidate at the 2016 presidential election", moment("2016-11-16"), moment("2017-05-08"), { description: 'ipsum' }),
-                    new Event("President of 'En Marche!'", moment("2016-03-06"), moment("2017-05-08"), {description: 'ipsum' }),
-                    new Event("Minister of Economy, Industry, and Digital affairs", moment("2014-08-26"), moment("2016-08-30"), {description: 'ipsum' }),
-                    new Event("Joint secretary of the French presidential cabinet", moment("2012-05-15"), moment("2014-07-15"), {description: 'ipsum' }),
-                    new Event("Intermediary job for testing", moment("2013"), moment("2015"), {description: 'ipsum' }),
-                    new Event("Investment banker at Rothschild Inc.", moment("2008-09"), moment("2012-05"), {description: 'ipsum' })
+                    <% if(p.jobs != undefined) 
+                       for(var i=0; i<p.jobs.length; i++) {%>
+                        new Event("<%=pick(p.jobs[i].title)%>", moment(<%=Date.parse(p.jobs[i].from)%>), moment(<%=Date.parse(p.jobs[i].to)%>), { description: '<%=pick(p.jobs[i].description)%>', elected: '<%=p.jobs[i].elected%>', political: '<%=p.jobs[i].political%>' })
+                        <% if(i != p.jobs.length-1) {%> , <% } %>
+                    <% } %>
                 ];
                 var vm = new ViewModel();
                 ko.applyBindings(vm);

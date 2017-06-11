@@ -36,7 +36,6 @@ function Event(title, start, end, template) {
         totalHeight += h;
         return days * this.scale();
     }, this);
-
     this.top = ko.computed(function () {
         var now = moment();
         if (!this.end) {
@@ -77,6 +76,7 @@ function ViewModel() {
     this.title = "jQuery Simple Timeline";
     this.subtitle = "Example";
     this.lastIndex = 0;
+    var politicalTime = 0;
     //THIS IS KIND OF SHITTY (at least it doesn't need to be obfuscated though)
     for (i = 0, len = events.length; i < len; i++) {
         var start1 = events[i].start.unix();
@@ -102,11 +102,17 @@ function ViewModel() {
                 }
             }
         };
+                       
+        if(events[i].template.political == "true"){
+            politicalTime = politicalTime +  (end1 - start1);
+        }
+        $("#politicalCareer").text(humanizeDuration(politicalTime*1000, {units: ['y', 'mo', 'd'], round:true}));
         console.log("pushed");
         console.log("side=" + events[i].side);
         rightEvents.push(events[i]);
     }
 
+    
     $("#timeline-grid").css("height", totalHeight-200 + "px");
     this.leftEvents = ko.observableArray(leftEvents);
     this.rightEvents = ko.observableArray(events);

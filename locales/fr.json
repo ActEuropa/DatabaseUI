@@ -48,5 +48,8 @@
     "CONSERVATIVE":"CONSERVATEUR",
     "PROGRESSIVE":"PROGRESSISTE",
     "PRO-EU":"PRO-UE",
-    "ANTI-EU":"ANTI-UE"
+    "ANTI-EU":"ANTI-UE",
+    "Once": "Une fois",
+    "Twice":"Deux fois",
+    "Times":"fois"
 }

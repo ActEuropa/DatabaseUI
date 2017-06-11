@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/common/css/metricsgraphics.css">
     <link rel="stylesheet" href="/common/css/zebra_dialog.css">
     <link rel="stylesheet" href="/common/font-awesome/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="/database/css/bootstrap-colorpicker.min.css">
     <% include ../../Partials/Favicons+Fonts.html %>
 </head>
 
@@ -168,7 +168,7 @@
             </div>
             <span class="discretetext">Inputs that can be in multiple languages have a <span style="border-width:1px;border-style:dashed;">&nbsp;dashed border.&nbsp;</span></span><br>
 
-            <% include ../../Partials/Database/Edit/Person.html %>
+            <%- include(partial) %>
                 <h2>Visibility</h2>
                 <div>
                     <input type="radio" name="v" value="0" autocomplete="off" data-property="visibility">&nbsp;Visible<br>
@@ -404,6 +404,8 @@ transform: translate(-50%, -50%);">UPLOADING DATA</div>
                     }
                 });
             })
+        
+            $(".colorpicker-component").colorpicker();
         </script>
         <% include ../../Partials/Footer.html %>
 </body>

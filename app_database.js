@@ -90,29 +90,30 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     var partySchema = new Schema({
         name: { type: String, intl: true },
         abreviation: String,
+        color1: String,
+        color2: String,
         bio_short: { type: String, intl: true },
         bio_long: { type: String, intl: true },
         dateofbirth: Date,
         dateofdeath: Date,
         nationality: String,
         major: Boolean,
-        img_profile: String,
-        img_cover: String,
         socialmedia_urls: [String],
+        founders: [Schema.Types.ObjectId],
         predecessor: Schema.Types.ObjectId,
         successor: Schema.Types.ObjectId,
         tags: Schema.Types.ObjectId,
         official_positioning: {
-            SocialFreedom: Number,
-            EconomicFreedom: Number,
-            Europeanism: Number,
-            Authoritarianism: Number
+            eco: Number,
+            soc: Number,
+            eu: Number,
+            auth: Number
         },
         calculated_positioning: {
-            SocialFreedom: Number,
-            EconomicFreedom: Number,
-            Europeanism: Number,
-            Authoritarianism: Number
+            eco: Number,
+            soc: Number,
+            eu: Number,
+            auth: Number
         }
     });
     //  var Party = mongoose.model('Party', partySchema);
@@ -180,6 +181,9 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
     //Person page
     app.get("/person/:id", function (req, res, next) {
         Person.findById(req.params.id, function (err, selPerson) {
+            if(selPerson == undefined){
+                res.sendStatus(404); return;
+            }
             console.log(Date.toCivilizedString(selPerson._doc.birthdate))
             res.render('Pages/Database/Person.ejs', { lang: i18n.getLocale(req), headerIndex: 2, p: selPerson._doc });
         });
@@ -193,8 +197,11 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         res.render("Pages/Database/PoliticalParty.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
     })
     //Editing page
-    app.get("/data/person/edit", function (req, res, next) {
-        res.render("Pages/Database/EditDatabaseEntry.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
+    app.get("/data/new/person", function (req, res, next) {
+        res.render("Pages/Database/EditDatabaseEntry.ejs", { lang: i18n.getLocale(req), headerIndex: 2, partial: "../../Partials/Database/Edit/Person.html"});
+    })
+    app.get("/data/new/party", function (req, res, next) {
+        res.render("Pages/Database/EditDatabaseEntry.ejs", { lang: i18n.getLocale(req), headerIndex: 2, partial: "../../Partials/Database/Edit/Party.html" });
     })
     //Upload person data
     app.post("/data/person/edit/upload", upload.single('profileimg'), function (req, res, next) {
@@ -204,7 +211,6 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         var p = new Person;
         Object.assign(p, so);
         var id = mongoose.Types.ObjectId();
-
        
         p._id = id;
         p.save(function (err, mobj, numAffected) {
@@ -215,6 +221,5 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         {
             public_id: id.toHexString()
         });
-        // res.render("Pages/Database/Person_Edit.ejs", { lang: i18n.getLocale(req), headerIndex: 2 });
     })
 }

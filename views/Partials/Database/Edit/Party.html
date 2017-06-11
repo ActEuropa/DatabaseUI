@@ -1,0 +1,127 @@
+<label>Logo (SVG)</label>
+<div class="profile_img_wrap no-shadow" style="background-color:#aeaeae;">
+    <img id="rectangle-preview" class="profile_img">
+</div>
+<input id="profile-img-input" type="file" autocomplete="off" accept=".svg">&nbsp;&nbsp;&nbsp;<span id="preview-size" style="font-size:0.8em;opacity:0.5;"></span><br><br>
+
+<label>Name</label>
+<input type="text" class="styledinput fw" autocomplete="off" data-property="name" data-localized>
+
+<label><input type="checkbox" autocomplete="off" data-property="major">
+Major political party</label><br>
+
+<label>Abbreviation</label>
+<input type="text" class="styledinput fw" autocomplete="off" data-property="abbreviation">
+
+<style>
+.colorpicker {position: absolute;background-color: white;box-shadow: 0 5px 15px rgba(0,0,0,0.3);padding: 6px;}
+.colorpicker-element .add-on i, .colorpicker-element .input-group-addon i {height: 35px;margin-top: -9px;margin-left: -4px;border: #002f55 1px solid;}
+</style>
+
+<label>Color 1</label>
+<div class="input-group colorpicker-component">
+    <input type="text" class="styledinput" value="#004eff" data-property="color1"/>
+    <span class="input-group-addon"><i></i></span>
+</div>
+
+<label>Color 2</label>
+<div class="input-group colorpicker-component">
+    <input type="text" class="styledinput" value="#ff4700" data-property="color2"/>
+    <span class="input-group-addon"><i></i></span>
+</div>
+
+<label>Background color</label>
+<div class="input-group colorpicker-component">
+    <input type="text" class="styledinput" value="#210c64" data-property="colorbg"/>
+    <span class="input-group-addon"><i></i></span>
+</div>
+
+<label>Short bio</label>
+<textarea autocomplete="off" data-property="bio_short" data-localized></textarea>
+
+<label>Long bio</label>
+<textarea autocomplete="off" data-property="bio_long" data-localized></textarea>
+
+<label>Founder(s)</label>
+<input type="text" class="styledinput fw" autocomplete="off" data-property="founders">
+
+<label>Foundation date</label>
+<input type="date" class="styledinput fw" autocomplete="off" data-property="dateofbirth">
+
+<label>Dissolution date</label>
+<input type="date" class="styledinput fw" autocomplete="off" data-property="dateofdeath">
+
+<label>Nationality</label><br>
+<select autocomplete="off" data-property="nationality">
+    <option value="at"><%= __('Austria') %></option>
+    <option value="be"><%= __('Belgium') %></option>
+    <option value="bg"><%= __('Bulgaria') %></option>
+    <option value="cr"><%= __('Croatia') %></option>
+    <option value="cy"><%= __('Cyprus') %></option>
+    <option value="cs"><%= __('Czech Republic') %></option>
+    <option value="da"><%= __('Denmark') %></option>
+    <option value="et"><%= __('Estnoia') %></option>
+    <option value="fi"><%= __('Finland') %></option>
+    <option value="fr"><%= __('France') %></option>
+    <option value="de"><%= __('Germany') %></option>
+    <option value="el"><%= __('Greece') %></option>
+    <option value="hu"><%= __('Hungary') %></option>
+    <option value="ie"><%= __('Ireland') %></option>
+    <option value="it"><%= __('Italy') %></option>
+    <option value="lv"><%= __('Latvia') %></option>
+    <option value="lt"><%= __('Lithuania') %></option>
+    <option value="lu"><%= __('Luxembourg') %></option>
+    <option value="mt"><%= __('Malta') %></option>
+    <option value="nl"><%= __('Netherlands') %></option>
+    <option value="pl"><%= __('Poland') %></option>
+    <option value="pt"><%= __('Portugal') %></option>
+    <option value="ro"><%= __('Romania') %></option>
+    <option value="sk"><%= __('Slovakia') %></option>
+    <option value="sl"><%= __('Slovenia') %></option>
+    <option value="es"><%= __('Spain') %></option>
+    <option value="se"><%= __('Sweden') %></option>
+    <option value="en"><%= __('United Kingdom') %></option>
+    <option value="eu"><%= __('European Union') %></option>
+</select>
+<br>
+<label>Predecessor</label>
+<input type="text" class="styledinput fw" autocomplete="off" data-property="predecessor">
+
+<label>Sucessor</label>
+<input type="text" class="styledinput fw" autocomplete="off" data-property="predecessor">
+
+<label>Tags</label>
+<input type="text" autocomplete="off" class="styledinput fw input-tags" multiple="multiple" style="width:100%;" data-property="tags">
+
+<h2>Approximate positioning</h2>
+<div>
+    <span style="position:relative;float:left;">Economically interventionist</span>
+    <span style="position:relative;float:right;">Economically liberal</span>
+    <div class="range_val">50</div>
+    <input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="declared_positioning.eco">
+
+    <span style="position:relative;float:left;">Socially conservative</span>
+    <span style="position:relative;float:right;">Socially progressive</span>
+    <div class="range_val">50</div>
+    <input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="declared_positioning.soc">
+
+    <span style="position:relative;float:left;">Anti-EU</span>
+    <span style="position:relative;float:right;">Pro-EU</span>
+    <div class="range_val">50</div>
+    <input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="declared_positioning.eu">
+
+    <span style="position:relative;float:left;">Authoritarian</span>
+    <span style="position:relative;float:right;">Libertarian</span>
+    <div class="range_val">50</div>
+    <input type="range" style="width:100%;" autocomplete="off" min="0" max="100" value="50" data-property="declared_positioning.auth">
+</div>
+
+<h2>Social media</h2>
+<div>
+    <div class="arrayItem" data-index="0" data-property-alt="socialmedia_urls">
+        <label>URL</label>
+        <input type="text" class="styledinput fw" autocomplete="off" data-property=" ">
+    </div>
+</div>
+
+<script src="/database/js/bootstrap-colorpicker.min.js"></script>
