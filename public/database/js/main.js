@@ -1,22 +1,3 @@
-function Person(FirstName, LastName, DateOfBirth, Liberal_sc, Libertarian_sc, ProEU_sc, Bio, Beliefs, Party, Country, Color) {
-    this.FirstName = FirstName;
-    this.LastName = LastName;
-    this.DateOfBirth = DateOfBirth;
-    this.Liberal_sc = Liberal_sc;
-    this.Libertarian_sc = Libertarian_sc;
-    this.ProEU_sc = ProEU_sc;
-    this.Bio = Bio;
-    this.Beliefs = Beliefs;
-    this.Party = Party;
-    this.Country = Country;
-    this.Color = Color;
-}
-
-var p1 = new Person("Emmanuel", "Macron", "21/12/1977", 80, 70, 80, "", "", "En Marche!", "FR", "#377672");
-var p2 = new Person("Jean-Luc", "Mélenchon", "19/07/1951", 95, 10, 40, "", "", "La France Insoumise - GUE/NGL", "FR", "#b50000");
-var p3 = new Person("Marine", "Le Pen", "05/07/1968", 3, 10, 10, "", "", "FN", "FR", "#1f2c6f");
-var p4 = new Person("François", "Fillon", "04/03/1954", 10, 95, 60, "", "", "La France Insoumise", "FR", "#452887");
-var Candidates = [p1, p2, p3, p4];
 
 
 //Sticky headers + Graphs:
@@ -31,7 +12,6 @@ jQuery(document).ready(function () {
         headlineSelector: 'strong'
     });
 });
-NewVosem(Candidates);
 function NewGraph(dataset) {
     d3.tsv(dataset.file, function (data) {
         //var filtered = data.filter(d => d[column] == row);

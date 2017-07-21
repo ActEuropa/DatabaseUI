@@ -61,13 +61,16 @@ app.locals.detect_socialmedia = function (inputarray, light) {
   }
   return output;
 }
+//Add 0 padding feature to Number
+Number.prototype.pad0=function(size){var s=String(this);while(s.length<(size||2)){s="0"+s;}return s;}
 //Add new function to date to convert to european format
 Date.toCivilizedString = function (input) {
   var d = new Date(input);
-  return d.getDate() + "/" + d.getMonth() + "/" + d.getFullYear();
+  return d.getDate().pad0(2) + "/" + (d.getMonth()+1).pad0(2) + "/" + d.getFullYear();
 };
-Date.getAge = function (birth) {
+Date.getAge = function (birth, death) {
   var t = new Date();
+  if(death != undefined) t = new Date(death);
   var d = new Date(birth);
   var age = t.getFullYear() - d.getFullYear();
   var m = t.getMonth() - d.getMonth();

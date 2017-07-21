@@ -45,6 +45,7 @@
                     </div>
                 <table>
                     <tbody>
+                        <%if (p.gender != undefined){%>
                         <tr><td><strong>Gender:</strong>&nbsp;&nbsp;</td><td><span>
                             <%if(p.gender == 0){%>
                             <%= __('Male') %>
@@ -54,20 +55,34 @@
                             <%= __('Non-binary') %>
                             <%}%>
                         </span></td></tr>
+                        <%}%>
+                        <%if(p.dateofbirth != undefined || p.locationofbirth != undefined){%>
                         <tr><td><strong>Born:</strong>&nbsp;&nbsp;</td><td><span>
-                            <%= Date.toCivilizedString(p.dateofbirth) %> (<%= Date.getAge(p.dateofbirth) + " " + __("years old") + ") " %>
-                            <%if (p.locationofbirth != null){%><%= __("at ") + p.locationofbirth %><%}%>
+                            <%= Date.toCivilizedString(p.dateofbirth) %><%if (p.dateofdeath == undefined){%> (<%= Date.getAge(p.dateofbirth) + " " + __("years old") + ") " %><%}%>
+                            <%if (p.locationofbirth != undefined){%><%= __("at ") + p.locationofbirth %><%}%>
                         </span></td></tr>
+                        <%}%>
+
+                        <%if(p.dateofdeath != undefined || p.locationofdeath != undefined){%>
+                        <tr><td><strong>Died:</strong>&nbsp;&nbsp;</td><td><span>
+                            <%= Date.toCivilizedString(p.dateofdeath) %><%if (p.dateofbirth != undefined){%> (<%= Date.getAge(p.dateofbirth, p.dateofdeath) + " " + __("years old") + ") " %><%}%>
+                            <%if (p.locationofdeath != undefined){%><%= __("at ") + p.locationofdeath %><%}%>
+                        </span></td></tr>
+                        <%}%>
+
+                        <%if(p.nationalities != undefined && p.nationalities.length > 0){%>
                         <tr><td><strong>Nationality:</strong>&nbsp;&nbsp;</td><td>
                             <% for(var i=0; i<p.nationalities.length; i++) {%>
                                 <span><img class="flag" src="/common/img/flags/<%= p.nationalities[i] %>.svg"><%= __(p.nationalities[i]) %></span>
                             <% } %>
                             </td></tr>
+                        <%}%>
                         <tr><td><strong>Elected:</strong>&nbsp;&nbsp;</td><td>
                             <span>
                                 <% if(p.jobs != undefined) 
                                 var nb = 0;
                                 for(var i=0; i<p.jobs.length; i++) { if(p.jobs[i].elected == true) nb++; } %>
+                                <%if(nb == 1){%><%= __("Never") %><%}%>
                                 <%if(nb == 1){%><%= __("Once") %><%}%>
                                 <%if(nb == 2){%><%= __("Twice") %><%}%>
                                 <%if(nb > 2){%><%= nb %> <%=__("Times")%><%}%>

@@ -35,6 +35,7 @@ databaseInit = function (app, i18n, upload, im, fs, cloudinary) {
         dateofbirth: { type: Date },
         locationofbirth: { type: String },
         dateofdeath: { type: Date },
+        locationofdeath: { type:String },
         nationalities: [{ type: String }],
         jobs:
         [{
